@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zafar's Profile</title>
+    <style>
+        body {            
+            background-color: #474e83c7;
+            color: #ece8ff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 100vw;
+            position: relative;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;   /*  flex-start */
+            max-height: auto;
+            align-items: center;
+            width: 6vw;
+            background-color: #424874;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav a {
+            justify-content: center;
+            width: 7vw;
+            height: 40px;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #ece8ff;
+        }
+
+        .nav a:hover,
+        .education {
+            background-color: #555b92;
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 55%;
+            border-radius: 20px;
+            margin: auto;
+            padding: 25px 20px 20px 30px; 
+            background-color: #424874;
+            border: #424874 solid;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgb(43, 42, 57);
+            margin-top: 20px;
+            margin-left: 20%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .name {
+            margin-bottom: 10px;
+            margin-left: 26%;
+            font-size: 1.5em;
+            font-family: 'Cambria', Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px; /* Reduced gap */
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+
+        .button { /* Adjusted flex property */
+            height: 35px;
+            width: 120px;
+            background-color: #020d18;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            transition: transform 0.06s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button:hover {
+            transform: scale(1.02);
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+
+        .qualifications-container {
+            width: 60%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .qualification-card {
+            flex: 0 0 calc(33.33% - 20px);
+            border-radius: 10px;
+            background-color: #4d4666;
+            padding: 15px;
+            transition: transform 0.4s;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            margin: 10px;
+        }
+
+        .qualification-card h2 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            color: #ece8ff;
+        }
+
+        .qualification-card p {
+            font-size: 0.9em;
+            color: lightgray;
+        }
+
+        .qualification-card:hover {
+            transform: scale(1.02);
+        }
+
+        .icon-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .nav img {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="../../home.html" class="home-page"><img src="./img/home.png" style="width: 33px; height: 33px;" alt="Home"></a>
+            <a href="about.html" class="about"><img src="./img/user.png" style="width: 35px; height: 35px;" alt="User"></a>
+            <a href="education.html" class="education"><img src="./img/Education.png" style="width: 38px; height: 38px;" alt="Education"></a>
+            <a href="project.html" class="project"><img src="./img/Project.png" style="width: 38px; height: 38px;" alt="Project"></a>
+            <!-- <a href="github.html" class="github"><img src="github.png" style="width: 38px; height: 38px;" alt="GitHub"></a>
+            <a href="instagram.html" class="instagram"><img src="instagram.png" style="width: 38px; height: 38px;" alt="Instagram"></a>
+            <a href="linkedin.html" class="linkedin"><img src="linkedin.png" style="width: 38px; height: 38px;" alt="LinkedIn"></a> -->
+        </div>
+        <div class="profile">
+            <div>
+                <img class="profile-pic" src="./img/my.jpg" alt="Profile Picture">
+                <div class="name">
+                    <h1>Zafar</h1>
+                </div>
+                <div class="button-container">
+                    <button class="button">Contact</button>
+                    <button class="button">Resume</button>
+                </div>
+            </div>
+            <div class="qualifications-container">
+                <!-- Education Card -->
+                <div class="qualification-card">
+                    <h2>Education</h2>
+                    <p>B.Tech in Computer Science Engineering<br>Maharishi Markandeshwar University</p>
+                </div>
+
+                <!-- Skills Card -->
+                <div class="qualification-card">
+                    <h2>Skills</h2>
+                    <div class="icon-container">
+                        <img src="skills-icon.png" class="icon" alt="Skills">
+                        <p>Programming, Web Development, Data Science, AI/ML</p>
+                    </div>
+                </div>
+
+                <!-- Certificates Card -->
+                <div class="qualification-card">
+                    <h2>Certificates</h2>
+                    <div class="icon-container">
+                        <img src="certificate-icon.png" class="icon" alt="Certificates">
+                        <p>Certified Python Developer<br>Certified Web Developer</p>
+                    </div>
+                </div>
+
+                <!-- Programming Languages Card -->
+                <div class="qualification-card">
+                    <h2>Programming Languages</h2>
+                    <div class="icon-container">
+                        <img src="programming-icon.png" class="icon" alt="Programming Languages">
+                        <p>Python, JavaScript, Java, C++</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

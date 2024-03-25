@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #474e83c7;
+            color: #ece8ff;
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            width: 100vw;
+            position: relative;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;   /*  flex-start */
+            align-items: center;
+            width: 6vw;
+            background-color: #424874;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav a {
+            justify-content: center;
+            width: 7vw;
+            height: 40px;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #ece8ff;
+        }
+
+        .nav a:hover,
+        .Projects {
+            background-color: #555b92;
+        }
+
+        .nav img {
+            margin-right: 10px;
+        }
+
+        .projects-container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .project {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 40%;
+            border-radius: 20px;
+            margin: auto;
+            padding: 28px 20px 20px;
+            background-color: #424874; /* Retained the background color */
+            border: #424874 solid; /* Retained the border color */
+            box-shadow: 0 0px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .project-card {
+            border-radius: 10px;
+            background-color: #4d4666; /* Retained the background color */
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .project-card h2 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            color: #ece8ff;
+        }
+
+        .project-card p {
+            font-size: 0.9em;
+            color: #c4c8e0; /* Retained the text color */
+        }
+
+        .project-card .status {
+            font-size: 0.8em;
+            color: #8da5ff;
+            margin-top: 5px;
+        }
+
+        .view-project-button {
+            width: 120px;
+            height: 35px;
+            background-color: #020d18;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.2s, transform 0.06s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .view-project-button:hover {
+            transform: scale(1.02);
+        }
+
+        .view-project-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="../../home.html" class="home-page"><img src="./img/home.png" style="width: 33px; height: 33px;" alt="Home"></a>
+            <a href="about.html" class="about"><img src="./img/user.png" style="width: 35px; height: 35px;" alt="User"></a>
+            <a href="education.html" class="education"><img src="./img/Education.png" style="width: 38px; height: 38px;" alt="Education"></a>
+            <a href="project.html" class="Projects"><img src="./img/Project.png" style="width: 38px; height: 38px;" alt="Project"></a>
+            <!-- <a href="github.html" class="github"><img src="github.png" style="width: 38px; height: 38px;" alt="GitHub"></a>
+            <a href="instagram.html" class="instagram"><img src="instagram.png" style="width: 38px; height: 38px;" alt="Instagram"></a>
+            <a href="linkedin.html" class="linkedin"><img src="linkedin.png" style="width: 38px; height: 38px;" alt="LinkedIn"></a> -->
+        </div>
+
+        <div class="projects-container">
+            <!-- Completed Projects Card -->
+            <div class="project">
+                <div class="project-card">
+                    <h2>Completed Project 1</h2>
+                    <p>Description of the completed project. It involved data analysis and machine learning.</p>
+                    <p class="status">Status: Completed</p>
+                    <button class="view-project-button">View Project</button>
+                </div>
+                <div class="project-card">
+                    <h2>Completed Project 2</h2>
+                    <p>Description of the completed project. It involved web development and database management.</p>
+                    <p class="status">Status: Completed</p>
+                    <button class="view-project-button">View Project</button>
+                </div>
+            </div>
+
+            <!-- Ongoing Projects Card -->
+            <div class="project">
+                <div class="project-card">
+                    <h2>Ongoing Project 1</h2>
+                    <p>Description of the ongoing project. It involves natural language processing and sentiment analysis.</p>
+                    <p class="status">Status: Ongoing</p>
+                    <button class="view-project-button">View Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

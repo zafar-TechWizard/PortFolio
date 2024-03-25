@@ -1,0 +1,20 @@
+insta, linkedint, github, educations, projects, contact and resume button
+
+in nav items add:
+ -insta
+ -linkedint
+ -github
+ -projects
+ -educations
+ social meadia will contans a card with the details and the dp same as actual on social meadia and button to follow, connect and visit accordingly which will direct to the actual account.
+
+-profile area:
+    -Bellow the profile two buttons: 1. contact    2. resume
+
+
+qualification area: 
+    cards for:-
+        qualifications
+        educations
+        skills
+        showing certificates
