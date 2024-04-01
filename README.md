@@ -6,13 +6,13 @@ Hey there! Welcome to my portfolio website. Here, you can find information about
 
 ## View Live Website
 
-Check out my portfolio live at [Your Live Webpage URL](https://zafar00.github.io/PortFolio/) 🚀
+Check out my portfolio live at [Your Live Webpage URL](https://zafar-techwizard.github.io/PortFolio/) 🚀
 
 ## About Me
 
 I am B.Tech 3rd year student facinate about Ai/Ml and Data science. These things really grab my attention because they're all about teaching computers to learn and make decisions like humans do.
 
-If you want to know more about me into the world of Ai/ML and Data Science, check out my [webpage](https://zafar00.github.io/PortFolio/). Let's explore together!
+If you want to know more about me into the world of Ai/ML and Data Science, check out my [webpage](https://zafar-techwizard.github.io/PortFolio/). Let's explore together!
 
 
 ## Contact Me
