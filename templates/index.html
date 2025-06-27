@@ -28,11 +28,11 @@
         <div class="nav">
             <div class="nav-logo">Zafar.dev</div>
             <ul class="nav-links">
-                <li><a href="#" class="nav-link active">Home</a></li>
-                <li><a href="./src/pages/about.html" class="nav-link">About</a></li>
-                <li><a href="./src/pages/project.html" class="nav-link">Projects</a></li>
-                <li><a href="./src/pages/education.html" class="nav-link">Education</a></li>
-                <li><a href="./src/pages/contact.html" class="nav-link">Contact</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-link active">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                <li><a href="{{ url_for('work') }}" class="nav-link">Projects</a></li>
+                <li><a href="{{ url_for('skills') }}" class="nav-link">Education</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>

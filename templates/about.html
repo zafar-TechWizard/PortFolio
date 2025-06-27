@@ -4,154 +4,817 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zafar's Profile</title>
+    <title>About | Zafar - AI/ML Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #474e83c7;
-            color: #ece8ff;
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: flex-start;
-            align-items: stretch;
-            height: 100vh;
+            box-sizing: border-box;
         }
 
-        .container {
-            display: flex;
-            width: 100vw;
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --border-color: rgba(148, 163, 184, 0.1);
+            --glass-bg: rgba(30, 41, 59, 0.8);
+            --glass-border: rgba(148, 163, 184, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, #1e1b4b 50%, var(--secondary-bg) 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
             position: relative;
         }
 
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+            animation: float 20s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
         .nav {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            flex-direction: column;
-            justify-content: center;   /*  flex-start */
-            max-height: auto;
+            justify-content: space-between;
             align-items: center;
-            width: 6vw;
-            background-color: #424874;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1rem 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .nav a {
-            justify-content: center;
-            width: 7vw;
-            height: 40px;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
             display: flex;
-            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
             text-decoration: none;
-            color: #ece8ff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
-        .nav a:hover,
-        .about {
-            background-color: #555b92;
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(59, 130, 246, 0.1);
         }
 
-        .profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 55%;
-            border-radius: 20px;
-            margin: auto;
-            padding: 25px 20px 20px;
-            background-color: #424874;
-            border: #424874 solid;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+        .nav-link.active {
+            color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.1);
         }
 
-        .profile-pic {
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* About Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            animation: fadeInLeft 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .profile-card:hover::before {
+            left: 100%;
+        }
+
+        .profile-avatar {
             width: 150px;
             height: 150px;
             border-radius: 50%;
+            margin: 0 auto 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid transparent;
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple)) border-box;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border: 3px solid rgb(43, 42, 57);
-            margin-bottom: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-
+            border-radius: 50%;
         }
 
-        .name {
-            margin-bottom: 10px;
-            font-size: 1.5em;
-            font-family: 'Cambria', Cochin, Georgia, Times, 'Times New Roman', serif;
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        p {
-            margin: 10px 5% 5%;
-            font-size: 1em;
-            line-height: 1.5;
+        .profile-title {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .profile-bio {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
             text-align: left;
         }
 
-        .button-container {
+        .contact-buttons {
             display: flex;
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        .button {
-            width: 120px;
-            height: 35px;
-            background-color: #020d18;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-            transition: background-color 0.2s, transform 0.06s;
-            display: flex;
+            gap: 1rem;
             justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
+            gap: 0.5rem;
         }
 
-        .button:hover {
-            transform: scale(1.02);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
         }
 
-        .button:active {
-            transform: scale(0.98);
+        .btn-secondary {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
         }
 
-        .nav img {
-            margin-right: 10px;
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            animation: fadeInRight 1s ease;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-blue);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        .skill-name {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .skill-level {
+            width: 60px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+
+        /* Experience Timeline */
+        .timeline-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-blue);
+        }
+
+        .timeline-date {
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .timeline-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-card,
+            .skills-section,
+            .timeline-section {
+                padding: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .profile-avatar {
+                width: 120px;
+                height: 120px;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="nav">
-            <a href="../../index.html" class="home-page"><img src="./img/home.png" style="width: 33px; height: 33px;" alt="Home"></a>
-            <a href="about.html" class="about"><img src="./img/user.png" style="width: 35px; height: 35px;" alt="User"></a>
-            <a href="education.html" class="education"><img src="./img/Education.png" style="width: 38px; height: 38px;" alt="Education"></a>
-            <a href="project.html" class="project"><img src="./img/Project.png" style="width: 38px; height: 38px;" alt="Project"></a>
-            <!-- <a href="github.html" class="github"><img src="github.png" style="width: 38px; height: 38px;" alt="GitHub"></a>
-            <a href="instagram.html" class="instagram"><img src="instagram.png" style="width: 38px; height: 38px;" alt="Instagram"></a>
-            <a href="linkedin.html" class="linkedin"><img src="linkedin.png" style="width: 38px; height: 38px;" alt="LinkedIn"></a> -->
-        </div>
-        <div class="profile">
-            <img class="profile-pic" src="./img/my.jpg" alt="Profile Picture">
-            <div class="name">
-                <h1>Zafar</h1>
-            </div>
-            <p>I am a 2nd-year B.Tech CSE Student, passionate about programming and learning new technologies. Aspiring to become a skilled <b>Ai/Ml</b> developer and future <b>Data Scientist.</b></p>
-            <p>Known for my enthusiasm and curiosity, I love taking on challenges and solving problems through innovative solutions. Outside of tech, I enjoy drawing and exploring the wonders of space, science, AI, and machine learning.</p>
-            <div class="button-container">
-                <a href="#"><button class="button">Resume</button></a>
-                <a href="https://www.linkedin.com/in/md-zafar-41687b157?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><button class="button">Connect</button></a>
-            </div>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
         </div>
     </div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav">
+            <div class="nav-logo">Zafar.dev</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}" class="nav-link active">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                <li><a href="{{ url_for('work') }}" class="nav-link">Projects</a></li>
+                <li><a href="{{ url_for('skills') }}" class="nav-link">Education</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <header class="page-header">
+                <h1 class="page-title">About Me</h1>
+                <p class="page-subtitle">
+                    Passionate AI/ML engineer with a drive for innovation and problem-solving. 
+                    Exploring the intersection of technology and creativity.
+                </p>
+            </header>
+
+            <!-- About Grid -->
+            <div class="about-grid">
+                <!-- Profile Card -->
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <img src="./img/my.jpg" alt="Zafar - AI/ML Engineer">
+                    </div>
+                    
+                    <h2 class="profile-name">Zafar</h2>
+                    <p class="profile-title">AI/ML Engineer & Data Scientist</p>
+                    
+                    <p class="profile-bio">
+                        I am a passionate 3rd-year B.Tech CSE student with an unwavering enthusiasm for programming and emerging technologies. 
+                        My journey is driven by the goal of becoming a skilled AI/ML developer and future Data Scientist.
+                    </p>
+                    
+                    <p class="profile-bio">
+                        Known for my curiosity and problem-solving mindset, I thrive on tackling complex challenges through innovative solutions. 
+                        My projects reflect my commitment to learning and applying cutting-edge technologies in real-world scenarios.
+                    </p>
+                    
+                    <div class="contact-buttons">
+                        <a href="#" class="btn btn-primary">
+                            📄 Resume
+                        </a>
+                        <a href="https://www.linkedin.com/in/md-zafar-41687b157" class="btn btn-secondary">
+                            🔗 Connect
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="skills-section">
+                    <h2 class="section-title">Skills & Expertise</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>🐍 Programming Languages</h3>
+                            <ul class="skill-list">
+                                <li class="skill-item">
+                                    <span class="skill-name">Python</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 95%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">JavaScript</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 80%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">C/C++</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 75%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">HTML/CSS</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 90%"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3>🤖 AI/ML & Data Science</h3>
+                            <ul class="skill-list">
+                                <li class="skill-item">
+                                    <span class="skill-name">Machine Learning</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 85%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Deep Learning</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 80%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Computer Vision</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 75%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Data Analysis</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 90%"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3>📊 Data Science Tools</h3>
+                            <ul class="skill-list">
+                                <li class="skill-item">
+                                    <span class="skill-name">Pandas & NumPy</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 90%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Scikit-learn</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 85%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">TensorFlow/PyTorch</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 80%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Matplotlib & Seaborn</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 85%"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3>🌐 Web Development</h3>
+                            <ul class="skill-list">
+                                <li class="skill-item">
+                                    <span class="skill-name">Flask Framework</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 85%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">SQLite Database</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 80%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">RESTful APIs</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 75%"></div>
+                                    </div>
+                                </li>
+                                <li class="skill-item">
+                                    <span class="skill-name">Git Version Control</span>
+                                    <div class="skill-level">
+                                        <div class="skill-progress" style="width: 90%"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Timeline -->
+            <div class="timeline-section">
+                <h2 class="section-title">My Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2023 - Present</div>
+                            <div class="timeline-title">AI/ML Projects Development</div>
+                            <div class="timeline-description">
+                                Developed RhythMix song recommendation system and SmartEye surveillance system. 
+                                Focused on machine learning algorithms and computer vision applications.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2022 - 2023</div>
+                            <div class="timeline-title">Web Development & Security</div>
+                            <div class="timeline-description">
+                                Built secure password management system using Flask and implemented 
+                                encryption techniques with bcrypt for data security.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2021 - 2022</div>
+                            <div class="timeline-title">B.Tech CSE Journey Begins</div>
+                            <div class="timeline-description">
+                                Started my computer science engineering journey at Maharishi Markandeshwar University. 
+                                Began exploring programming fundamentals and data structures.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
