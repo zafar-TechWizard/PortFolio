@@ -34,7 +34,6 @@
                 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
                 <li><a href="{{ url_for('about') }}" class="nav-link active">About</a></li>
                 <li><a href="{{ url_for('work') }}" class="nav-link">Projects</a></li>
-                <li><a href="{{ url_for('skills') }}" class="nav-link">Education</a></li>
                 <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn">
@@ -62,7 +61,7 @@
                 <!-- Profile Card -->
                 <div class="profile-card">
                     <div class="profile-avatar">
-                        <img src="{{ url_for('static', filename='img/my.jpg') }}" alt="Zafar - AI/ML Engineer" width="180" height="180" loading="lazy">
+                        <img src="{{ url_for('static', filename='img/my.png') }}" alt="Zafar - AI/ML Engineer" width="180" height="180" loading="lazy">
                     </div>
                     
                     <h2 class="profile-name">Zafar</h2>
@@ -227,6 +226,254 @@
                 </div>
             </div>
 
+            <!-- Education Section -->
+            <div class="education-section">
+                <h2 class="section-title">Education</h2>
+                
+                <div class="education-grid">
+                    <!-- Current Education -->
+                    <div class="education-card featured">
+                        <div class="card-header">
+                            <div class="institution-logo">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="status-badge ongoing">
+                                <i class="fas fa-sync-alt fa-spin"></i> Current
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3>B.Tech Computer Science Engineering</h3>
+                            <p class="institution">Maharishi Markandeshwar University</p>
+                            <p class="duration">2021 - 2025 (Expected)</p>
+                            
+                            <div class="education-stats">
+                                <div class="stat-item">
+                                    <div class="stat-circle">
+                                        <span class="stat-value">8.5</span>
+                                    </div>
+                                    <span class="stat-label">CGPA</span>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-circle">
+                                        <span class="stat-value">10+</span>
+                                    </div>
+                                    <span class="stat-label">Projects</span>
+                                </div>
+                            </div>
+
+                            <div class="specialization-grid">
+                                <div class="specialization-item">
+                                    <i class="fas fa-brain"></i>
+                                    <span>AI/ML</span>
+                                </div>
+                                <div class="specialization-item">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span>Data Science</span>
+                                </div>
+                                <div class="specialization-item">
+                                    <i class="fas fa-eye"></i>
+                                    <span>Computer Vision</span>
+                                </div>
+                                <div class="specialization-item">
+                                    <i class="fas fa-network-wired"></i>
+                                    <span>Deep Learning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Previous Education -->
+                    <div class="education-card">
+                        <div class="card-header">
+                            <div class="institution-logo">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="status-badge completed">
+                                <i class="fas fa-check-circle"></i> Completed
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3>Higher Secondary Education</h3>
+                            <p class="institution">CBSE Board</p>
+                            <p class="duration">2019 - 2021</p>
+                            
+                            <div class="education-stats">
+                                <div class="stat-item">
+                                    <div class="stat-circle">
+                                        <span class="stat-value">85%</span>
+                                    </div>
+                                    <span class="stat-label">Overall Score</span>
+                                </div>
+                            </div>
+
+                            <div class="subjects-grid">
+                                <span class="subject-tag">Science</span>
+                                <span class="subject-tag">Mathematics</span>
+                                <span class="subject-tag">Computer Science</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="education-card">
+                        <div class="card-header">
+                            <div class="institution-logo">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="status-badge completed">
+                                <i class="fas fa-check-circle"></i> Completed
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3>Secondary Education</h3>
+                            <p class="institution">CBSE Board</p>
+                            <p class="duration">2018 - 2019</p>
+                            
+                            <div class="education-stats">
+                                <div class="stat-item">
+                                    <div class="stat-circle">
+                                        <span class="stat-value">82%</span>
+                                    </div>
+                                    <span class="stat-label">Overall Score</span>
+                                </div>
+                            </div>
+
+                            <div class="subjects-grid">
+                                <span class="subject-tag">Science</span>
+                                <span class="subject-tag">Mathematics</span>
+                                <span class="subject-tag">Computer Applications</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications Carousel -->
+                <div class="certifications-section">
+                    <h2 class="section-title">Professional Certifications</h2>
+                    <div class="cert-carousel">
+                        <div class="cert-track">
+                            <div class="cert-slide">
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="path/to/cert1.jpg" alt="Certificate 1" loading="lazy">
+                                        <div class="cert-overlay">
+                                            <button class="cert-view-btn">View Certificate</button>
+                                        </div>
+                                    </div>
+                                    <div class="cert-content">
+                                        <h3>Certificate Title</h3>
+                                        <div class="cert-meta">
+                                            <span class="cert-issuer">
+                                                <i class="fas fa-building"></i>
+                                                Issuing Organization
+                                            </span>
+                                            <span class="cert-date">
+                                                <i class="fas fa-calendar"></i>
+                                                Issue Date
+                                            </span>
+                                        </div>
+                                        <p class="cert-description">Brief description of the certification and what it represents.</p>
+                                        <div class="cert-skills">
+                                            <span>Skill 1</span>
+                                            <span>Skill 2</span>
+                                            <span>Skill 3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cert-slide">
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="path/to/cert2.jpg" alt="Certificate 2" loading="lazy">
+                                        <div class="cert-overlay">
+                                            <button class="cert-view-btn">View Certificate</button>
+                                        </div>
+                                    </div>
+                                    <div class="cert-content">
+                                        <h3>Certificate Title 2</h3>
+                                        <div class="cert-meta">
+                                            <span class="cert-issuer">
+                                                <i class="fas fa-building"></i>
+                                                Issuing Organization
+                                            </span>
+                                            <span class="cert-date">
+                                                <i class="fas fa-calendar"></i>
+                                                Issue Date
+                                            </span>
+                                        </div>
+                                        <p class="cert-description">Brief description of the certification and what it represents.</p>
+                                        <div class="cert-skills">
+                                            <span>Skill 1</span>
+                                            <span>Skill 2</span>
+                                            <span>Skill 3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cert-slide">
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="path/to/cert3.jpg" alt="Certificate 3" loading="lazy">
+                                        <div class="cert-overlay">
+                                            <button class="cert-view-btn">View Certificate</button>
+                                        </div>
+                                    </div>
+                                    <div class="cert-content">
+                                        <h3>Certificate Title 3</h3>
+                                        <div class="cert-meta">
+                                            <span class="cert-issuer">
+                                                <i class="fas fa-building"></i>
+                                                Issuing Organization
+                                            </span>
+                                            <span class="cert-date">
+                                                <i class="fas fa-calendar"></i>
+                                                Issue Date
+                                            </span>
+                                        </div>
+                                        <p class="cert-description">Brief description of the certification and what it represents.</p>
+                                        <div class="cert-skills">
+                                            <span>Skill 1</span>
+                                            <span>Skill 2</span>
+                                            <span>Skill 3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cert-slide">
+                                <div class="cert-card">
+                                    <div class="cert-image">
+                                        <img src="path/to/cert3.jpg" alt="Certificate 3" loading="lazy">
+                                        <div class="cert-overlay">
+                                            <button class="cert-view-btn">View Certificate</button>
+                                        </div>
+                                    </div>
+                                    <div class="cert-content">
+                                        <h3>Certificate Title 3</h3>
+                                        <div class="cert-meta">
+                                            <span class="cert-issuer">
+                                                <i class="fas fa-building"></i>
+                                                Issuing Organization
+                                            </span>
+                                            <span class="cert-date">
+                                                <i class="fas fa-calendar"></i>
+                                                Issue Date
+                                            </span>
+                                        </div>
+                                        <p class="cert-description">Brief description of the certification and what it represents.</p>
+                                        <div class="cert-skills">
+                                            <span>Skill 1</span>
+                                            <span>Skill 2</span>
+                                            <span>Skill 3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="cert-dots"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Experience Timeline -->
             <div class="timeline-section">
                 <h2 class="section-title">My Journey</h2>
@@ -275,7 +522,6 @@
             <li><a href="{{ url_for('index') }}" class="mobile-nav-link">Home</a></li>
             <li><a href="{{ url_for('about') }}" class="mobile-nav-link active">About</a></li>
             <li><a href="{{ url_for('work') }}" class="mobile-nav-link">Projects</a></li>
-            <li><a href="{{ url_for('skills') }}" class="mobile-nav-link">Education</a></li>
             <li><a href="{{ url_for('contact') }}" class="mobile-nav-link">Contact</a></li>
         </ul>
     </div>
@@ -326,6 +572,153 @@
             progress.style.width = '0';
             observer.observe(progress);
         });
+
+        // Certifications Carousel
+        const track = document.querySelector('.cert-track');
+        const slides = document.querySelectorAll('.cert-slide');
+        const dotsContainer = document.querySelector('.cert-dots');
+        
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID = 0;
+        let currentIndex = 0;
+        let slidesPerView = 0;
+        let maxIndex = 0;
+
+        function updateSlidesConfig() {
+            const trackWidth = track.offsetWidth;
+            const slideWidth = slides[0].offsetWidth + 32; // Width + gap
+            slidesPerView = Math.round(trackWidth / slideWidth);
+            maxIndex = Math.max(0, slides.length - slidesPerView);
+            
+            // Update dots
+            dotsContainer.innerHTML = '';
+            const numDots = maxIndex + 1;
+            
+            for (let i = 0; i < numDots; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('cert-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            // Reset position if current index is out of bounds
+            if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
+                setPositionByIndex();
+            }
+        }
+
+        const dots = () => document.querySelectorAll('.cert-dot');
+
+        function updateDots() {
+            dots().forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Touch events
+        track.addEventListener('touchstart', dragStart);
+        track.addEventListener('touchend', dragEnd);
+        track.addEventListener('touchmove', drag);
+
+        // Mouse events
+        track.addEventListener('mousedown', dragStart);
+        track.addEventListener('mouseup', dragEnd);
+        track.addEventListener('mouseleave', dragEnd);
+        track.addEventListener('mousemove', drag);
+
+        // Prevent menu popup on hold
+        window.oncontextmenu = function(event) {
+            if (event.target.closest('.cert-carousel')) {
+                event.preventDefault();
+                event.stopPropagation();
+                return false;
+            }
+        }
+
+        function dragStart(event) {
+            if (event.type === 'touchstart') {
+                startPos = event.touches[0].clientX;
+            } else {
+                startPos = event.clientX;
+                track.style.cursor = 'grabbing';
+            }
+            
+            isDragging = true;
+            animationID = requestAnimationFrame(animation);
+            track.classList.add('grabbing');
+        }
+
+        function drag(event) {
+            if (!isDragging) return;
+            
+            event.preventDefault();
+            const currentPosition = event.type === 'touchmove' ? event.touches[0].clientX : event.clientX;
+            const currentMove = currentPosition - startPos;
+            currentTranslate = prevTranslate + currentMove;
+        }
+
+        function dragEnd() {
+            isDragging = false;
+            cancelAnimationFrame(animationID);
+            track.classList.remove('grabbing');
+            track.style.cursor = 'grab';
+
+            const movedBy = currentTranslate - prevTranslate;
+            
+            // If moved enough negative
+            if (movedBy < -100 && currentIndex < maxIndex) {
+                currentIndex += 1;
+            }
+            
+            // If moved enough positive
+            if (movedBy > 100 && currentIndex > 0) {
+                currentIndex -= 1;
+            }
+
+            setPositionByIndex();
+            updateDots();
+        }
+
+        function animation() {
+            setSliderPosition();
+            if (isDragging) requestAnimationFrame(animation);
+        }
+
+        function setSliderPosition() {
+            track.style.transform = `translateX(${currentTranslate}px)`;
+        }
+
+        function setPositionByIndex() {
+            const slideWidth = slides[0].offsetWidth + 32; // Width + gap
+            currentTranslate = currentIndex * -slideWidth;
+            prevTranslate = currentTranslate;
+            setSliderPosition();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            setPositionByIndex();
+            updateDots();
+        }
+
+        // Handle window resize
+        let timeoutId;
+        window.addEventListener('resize', () => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                updateSlidesConfig();
+                setPositionByIndex();
+            }, 250);
+        });
+
+        // Initial setup
+        updateSlidesConfig();
+        setPositionByIndex();
     </script>
 </body>
 

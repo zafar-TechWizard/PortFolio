@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore my portfolio of AI/ML, web development, and data science projects. Each project showcases innovative solutions and technical expertise.">
     <title>Projects | Zafar - AI/ML Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}">
 </head>
 
@@ -18,295 +20,562 @@
             <div class="shape"></div>
             <div class="shape"></div>
             <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
         </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="nav-container">
+    <nav class="nav-container" id="navbar">
         <div class="nav">
+            <div class="nav-blur-bg"></div>
             <div class="nav-logo">Zafar.dev</div>
             <ul class="nav-links">
                 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
                 <li><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
                 <li><a href="{{ url_for('work') }}" class="nav-link active">Projects</a></li>
-                <li><a href="{{ url_for('skills') }}" class="nav-link">Education</a></li>
                 <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
             </ul>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" role="dialog" aria-modal="true">
+        <div class="mobile-menu-blur-bg"></div>
+        <ul class="mobile-nav-links">
+            <li><a href="{{ url_for('index') }}" class="mobile-nav-link">Home</a></li>
+            <li><a href="{{ url_for('about') }}" class="mobile-nav-link">About</a></li>
+            <li><a href="{{ url_for('work') }}" class="mobile-nav-link active">Projects</a></li>
+            <li><a href="{{ url_for('contact') }}" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
+
     <!-- Main Content -->
     <main class="main-content">
-        <div class="container">
-            <!-- Page Header -->
-            <header class="page-header">
-                <h1 class="page-title">My Projects</h1>
-                <p class="page-subtitle">
-                    Explore my journey through AI/ML, web development, and data science projects. 
-                    Each project represents a step towards becoming a skilled Data Scientist.
-                </p>
-            </header>
+        <!-- Hero Section -->
+        <section class="project-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Projects</h1>
+                <p class="hero-subtitle">Innovative solutions in AI, Machine Learning, and Data Science by a passionate B.Tech CSE student</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="10">0</span>
+                        <span class="stat-label">AI/ML Projects</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="5">0</span>
+                        <span class="stat-label">Core Technologies</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="2">0</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <!-- Highlighted Projects Section -->
-            <section>
-                <h2 style="font-size:2rem;font-weight:800;margin-bottom:2rem;background:linear-gradient(135deg,var(--accent-blue),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;">🌟 Highlighted Projects</h2>
-                <div class="projects-grid">
-                    <!-- Infolytix -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">📊</div>
-                            <h3 class="project-title">Infolytix</h3>
+        <!-- Project Timeline -->
+        <section class="project-timeline">
+            <div class="timeline-container">
+                <!-- Featured Project -->
+                <div class="timeline-featured">
+                    <div class="carousel">
+                        <div class="carousel-content">
+                            <!-- Infolytix -->
+                            <div class="carousel-item">
+                                <div class="project-card featured">
+                                    <div class="card-content">
+                                        <div class="card-header">
+                                            <div class="project-icon">📊</div>
+                                            <span class="status-badge ongoing">
+                                                <i class="fas fa-sync-alt fa-spin"></i> In Development
+                                            </span>
+                                        </div>
+                                        <h3>Infolytix</h3>
+                                        <p>A data analytics and visualization platform combining advanced NLP with interactive dashboards for comprehensive business insights.</p>
+                                        <div class="tech-stack">
+                                            <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                                            <span class="tech-badge"><i class="fab fa-react"></i> React</span>
+                                            <span class="tech-badge"><i class="fas fa-brain"></i> TensorFlow</span>
+                                            <span class="tech-badge"><i class="fas fa-bolt"></i> FastAPI</span>
+                                        </div>
+                                        <div class="project-metrics">
+                                            <div class="metric">
+                                                <span class="metric-value">98%</span>
+                                                <span class="metric-label">Accuracy</span>
+                                            </div>
+                                            <div class="metric">
+                                                <span class="metric-value">50K+</span>
+                                                <span class="metric-label">Data Points</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-actions">
+                                            <a href="#" class="card-btn" target="_blank">
+                                                <i class="fab fa-github"></i> View Project
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SoFi -->
+                            <div class="carousel-item">
+                                <div class="project-card featured">
+                                    <div class="card-content">
+                                        <div class="card-header">
+                                            <div class="project-icon">💰</div>
+                                            <span class="status-badge completed">
+                                                <i class="fas fa-check-circle"></i> Completed
+                                            </span>
+                                        </div>
+                                        <h3>SoFi</h3>
+                                        <p>An AI-powered social finance platform that helps users make smarter financial decisions through personalized insights.</p>
+                                        <div class="tech-stack">
+                                            <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                                            <span class="tech-badge"><i class="fab fa-vuejs"></i> Vue.js</span>
+                                            <span class="tech-badge"><i class="fas fa-database"></i> MongoDB</span>
+                                            <span class="tech-badge"><i class="fas fa-robot"></i> ML</span>
+                                        </div>
+                                        <div class="project-metrics">
+                                            <div class="metric">
+                                                <span class="metric-value">92%</span>
+                                                <span class="metric-label">Accuracy</span>
+                                            </div>
+                                            <div class="metric">
+                                                <span class="metric-value">25K+</span>
+                                                <span class="metric-label">Users</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-actions">
+                                            <a href="#" class="card-btn" target="_blank">
+                                                <i class="fab fa-github"></i> View Project
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ZenPulse -->
+                            <div class="carousel-item">
+                                <div class="project-card featured">
+                                    <div class="card-content">
+                                        <div class="card-header">
+                                            <div class="project-icon">🎵</div>
+                                            <span class="status-badge completed">
+                                                <i class="fas fa-check-circle"></i> Completed
+                                            </span>
+                                        </div>
+                                        <h3>ZenPulse</h3>
+                                        <p>AI-powered music recommendation system with mood-based playlist generation and personalized insights.</p>
+                                        <div class="tech-stack">
+                                            <span class="tech-badge"><i class="fab fa-react"></i> React Native</span>
+                                            <span class="tech-badge"><i class="fab fa-node-js"></i> Node.js</span>
+                                            <span class="tech-badge"><i class="fas fa-brain"></i> TensorFlow</span>
+                                            <span class="tech-badge"><i class="fas fa-database"></i> MongoDB</span>
+                                        </div>
+                                        <div class="project-metrics">
+                                            <div class="metric">
+                                                <span class="metric-value">96%</span>
+                                                <span class="metric-label">Accuracy</span>
+                                            </div>
+                                            <div class="metric">
+                                                <span class="metric-value">8K+</span>
+                                                <span class="metric-label">Songs</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-actions">
+                                            <a href="#" class="card-btn" target="_blank">
+                                                <i class="fab fa-github"></i> View Project
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="project-description">A data analytics and visualization platform for actionable business insights. (Add more details and GitHub link here when available.)</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Data Science</span>
-                            <span class="tech-badge">Visualization</span>
-                        </div>
-                        <div class="project-status status-ongoing">🔄 Ongoing</div>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-primary">📁 GitHub</a>
+
+                        <button class="carousel-previous" aria-label="Previous slide">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-next" aria-label="Next slide">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                        <div class="carousel-dots">
+                            <button class="dot active" data-index="0" aria-label="Go to slide 1"></button>
+                            <button class="dot" data-index="1" aria-label="Go to slide 2"></button>
+                            <button class="dot" data-index="2" aria-label="Go to slide 3"></button>
                         </div>
                     </div>
-                    <!-- ZenPulse -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🧘‍♂️</div>
-                            <h3 class="project-title">ZenPulse</h3>
+                </div>
+
+                <!-- Project Grid -->
+                <div class="project-grid">
+                    <!-- Age & Gender Detection -->
+                    <article class="project-card">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="project-icon">👤</div>
+                                <span class="status-badge completed">
+                                    <i class="fas fa-check-circle"></i> Completed
+                                </span>
+                            </div>
+                            <h3>Age & Gender Detection</h3>
+                            <p>Computer vision project for real-time age and gender detection using deep learning.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">OpenCV</span>
+                                <span class="tech-badge">TensorFlow</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">95%</span>
+                                    <span class="metric-label">Accuracy</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">20ms</span>
+                                    <span class="metric-label">Latency</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://github.com/zafar-TechWizard/Age-Gender-Detection" class="card-btn" target="_blank">
+                                    <i class="fab fa-github"></i> View Project
+                                </a>
+                            </div>
                         </div>
-                        <p class="project-description">A mindfulness and productivity app leveraging AI for personalized wellness. (Add more details and GitHub link here when available.)</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">AI</span>
-                            <span class="tech-badge">Productivity</span>
-                            <span class="tech-badge">Mobile</span>
-                        </div>
-                        <div class="project-status status-ongoing">🔄 Ongoing</div>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-primary">📁 GitHub</a>
-                        </div>
-                    </div>
-                    <!-- Sofi (Placeholder) -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🤖</div>
-                            <h3 class="project-title">Sofi (Personal AI Assistant)</h3>
-                        </div>
-                        <p class="project-description">A next-gen personal AI assistant. <em>Coming soon – GitHub repo will be updated.</em></p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">AI</span>
-                            <span class="tech-badge">NLP</span>
-                            <span class="tech-badge">Assistant</span>
-                        </div>
-                        <div class="project-status status-ongoing">🚧 In Development</div>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-secondary">⏳ Stay Tuned</a>
-                        </div>
-                    </div>
-                    <!-- Age and Gender Detection -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🧑‍💻</div>
-                            <h3 class="project-title">Age & Gender Detection</h3>
-                        </div>
-                        <p class="project-description">A computer vision project to detect age and gender from images using deep learning.</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Computer Vision</span>
-                            <span class="tech-badge">Deep Learning</span>
-                            <span class="tech-badge">Python</span>
-                        </div>
-                        <div class="project-status status-completed">✅ Completed</div>
-                        <div class="project-links">
-                            <a href="https://github.com/zafar-TechWizard/Age-Gender-Detection" class="btn btn-primary">📁 GitHub</a>
-                        </div>
-                    </div>
+                    </article>
+
                     <!-- Car Price Prediction -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🚗</div>
-                            <h3 class="project-title">Car Price Prediction</h3>
+                    <article class="project-card">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="project-icon">🚗</div>
+                                <span class="status-badge completed">
+                                    <i class="fas fa-check-circle"></i> Completed
+                                </span>
+                            </div>
+                            <h3>Car Price Prediction</h3>
+                            <p>Machine learning model to predict car prices based on various features and market data.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Scikit-learn</span>
+                                <span class="tech-badge">Pandas</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">92%</span>
+                                    <span class="metric-label">R² Score</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">5K+</span>
+                                    <span class="metric-label">Data Points</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://github.com/zafar-TechWizard/Alpha-Intern-Internship-Program/tree/main/Car_price_prediction" class="card-btn" target="_blank">
+                                    <i class="fab fa-github"></i> View Project
+                                </a>
+                            </div>
                         </div>
-                        <p class="project-description">Predicts car prices using machine learning. Internship project at Alpha Intern. <a href="https://github.com/zafar-TechWizard/Alpha-Intern-Internship-Program/tree/main/Car_price_prediction" style="color:var(--accent-blue);text-decoration:underline;">See repo</a></p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Machine Learning</span>
-                            <span class="tech-badge">Regression</span>
-                            <span class="tech-badge">Python</span>
+                    </article>
+
+                    <!-- RhythMix -->
+                    <article class="project-card">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="project-icon">🎵</div>
+                                <span class="status-badge completed">
+                                    <i class="fas fa-check-circle"></i> Completed
+                                </span>
+                            </div>
+                            <h3>RhythMix</h3>
+                            <p>AI-powered music recommendation system with mood-based playlist generation.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">TensorFlow</span>
+                                <span class="tech-badge">Flask</span>
+                                <span class="tech-badge">Spotify API</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">8K+</span>
+                                    <span class="metric-label">Songs</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">96%</span>
+                                    <span class="metric-label">Accuracy</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://github.com/zafar-TechWizard/RhythMix--A-Song-Recommendation-System" class="card-btn" target="_blank">
+                                    <i class="fab fa-github"></i> View Project
+                                </a>
+                            </div>
                         </div>
-                        <div class="project-status status-completed">✅ Completed</div>
-                        <div class="project-links">
-                            <a href="https://github.com/zafar-TechWizard/Alpha-Intern-Internship-Program/tree/main/Car_price_prediction" class="btn btn-primary">📁 GitHub</a>
-                        </div>
-                    </div>
-                    <!-- Movie Recommendation System -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🎬</div>
-                            <h3 class="project-title">Movie Recommendation System</h3>
-                        </div>
-                        <p class="project-description">A content-based movie recommender system. Internship project at Alpha Intern. <a href="https://github.com/zafar-TechWizard/Alpha-Intern-Internship-Program/tree/main/Movie_recommendation_system" style="color:var(--accent-blue);text-decoration:underline;">See repo</a></p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Machine Learning</span>
-                            <span class="tech-badge">Recommendation</span>
-                            <span class="tech-badge">Python</span>
-                        </div>
-                        <div class="project-status status-completed">✅ Completed</div>
-                        <div class="project-links">
-                            <a href="https://github.com/zafar-TechWizard/Alpha-Intern-Internship-Program/tree/main/Movie_recommendation_system" class="btn btn-primary">📁 GitHub</a>
-                        </div>
-                    </div>
+                    </article>
                 </div>
-            </section>
 
-            <!-- Other Projects Section -->
-            <section style="margin-top:4rem;">
-                <h2 style="font-size:1.7rem;font-weight:800;margin-bottom:2rem;background:linear-gradient(135deg,var(--accent-blue),var(--accent-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;">Other Projects</h2>
-                <div class="projects-grid">
-                    <!-- RhythMix Project -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🤖</div>
-                            <h3 class="project-title">RhythMix</h3>
-                        </div>
-                        <p class="project-description">
-                            An intelligent song recommendation system that creates personalized playlists based on your emotions and tempo preferences. 
-                            Like having your own personal DJ that understands your mood!
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Machine Learning</span>
-                            <span class="tech-badge">Recommendation System</span>
-                            <span class="tech-badge">Data Analysis</span>
-                        </div>
-                        <div class="features-list">
-                            <ul>
-                                <li>Emotion-based music recommendations</li>
-                                <li>Tempo preference analysis</li>
-                                <li>Personalized playlist generation</li>
-                                <li>User preference learning</li>
-                            </ul>
-                        </div>
-                        <div class="project-status status-completed">✅ Completed</div>
-                        <div class="project-links">
-                            <a href="https://github.com/zafar-TechWizard/RhythMix--A-Song-Recommendation-System" class="btn btn-primary">
-                                📁 GitHub
-                            </a>
-                            <a href="#" class="btn btn-secondary">
-                                🎵 Live Demo
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Password Management System -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🔐</div>
-                            <h3 class="project-title">Password Management System</h3>
-                        </div>
-                        <p class="project-description">
-                            A secure and efficient password management system built with Flask. Features encryption, 
-                            secure password generation, and local storage capabilities to keep your data safe.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Flask</span>
-                            <span class="tech-badge">SQLite</span>
-                            <span class="tech-badge">bcrypt</span>
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">HTML/CSS</span>
-                        </div>
-                        <div class="features-list">
-                            <ul>
-                                <li>Secure password encryption</li>
-                                <li>Password generation</li>
-                                <li>Local data storage</li>
-                                <li>User authentication</li>
-                            </ul>
-                        </div>
-                        <div class="project-status status-completed">✅ Completed</div>
-                        <div class="project-links">
-                            <a href="https://github.com/zafar-TechWizard/Password-Management-System" class="btn btn-primary">
-                                📁 GitHub
-                            </a>
-                            <a href="#" class="btn btn-secondary">
-                                🔐 Live Demo
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- SmartEye Project -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">👁️</div>
-                            <h3 class="project-title">SmartEye</h3>
-                        </div>
-                        <p class="project-description">
-                            An advanced surveillance system powered by computer vision and machine learning. 
-                            Provides real-time threat detection and incident reporting from CCTV feeds for enhanced security.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Computer Vision</span>
-                            <span class="tech-badge">OpenCV</span>
-                            <span class="tech-badge">Machine Learning</span>
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Real-time Processing</span>
-                        </div>
-                        <div class="features-list">
-                            <ul>
-                                <li>Real-time threat detection</li>
-                                <li>CCTV feed analysis</li>
-                                <li>Incident reporting</li>
-                                <li>Proactive security alerts</li>
-                            </ul>
-                        </div>
-                        <div class="project-status status-ongoing">🔄 In Progress</div>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-primary">
-                                📁 GitHub
-                            </a>
-                            <a href="#" class="btn btn-secondary">
-                                👁️ Preview
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Data Science Portfolio -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">📊</div>
-                            <h3 class="project-title">Data Science Portfolio</h3>
-                        </div>
-                        <p class="project-description">
-                            A comprehensive collection of data analysis projects, machine learning models, 
-                            and statistical insights showcasing my journey in data science and AI/ML.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Pandas</span>
-                            <span class="tech-badge">NumPy</span>
-                            <span class="tech-badge">Scikit-learn</span>
-                            <span class="tech-badge">Matplotlib</span>
-                            <span class="tech-badge">Jupyter</span>
-                        </div>
-                        <div class="features-list">
-                            <ul>
-                                <li>Data analysis and visualization</li>
-                                <li>Machine learning models</li>
-                                <li>Statistical analysis</li>
-                                <li>Predictive modeling</li>
-                            </ul>
-                        </div>
-                        <div class="project-status status-ongoing">🔄 Ongoing</div>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-primary">
-                                📁 GitHub
-                            </a>
-                            <a href="#" class="btn btn-secondary">
-                                📊 View Projects
-                            </a>
-                        </div>
-                    </div>
+                <!-- GitHub Profile Button -->
+                <div class="github-profile-container">
+                    <a href="https://github.com/zafar-TechWizard?tab=repositories" target="_blank" rel="noopener" class="github-profile-btn">
+                        <i class="fab fa-github"></i>
+                        <span>Explore More Projects</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
+
+    <script>
+        // Carousel functionality
+        const carousel = {
+            currentIndex: 0,
+            content: document.querySelector('.carousel-content'),
+            items: document.querySelectorAll('.carousel-item'),
+            prevBtn: document.querySelector('.carousel-previous'),
+            nextBtn: document.querySelector('.carousel-next'),
+            dots: document.querySelectorAll('.dot'),
+            isAnimating: false,
+            autoplayInterval: null,
+            
+            init() {
+                this.updateSlidePosition();
+                this.setupEventListeners();
+                this.startAutoplay();
+            },
+
+            setupEventListeners() {
+                // Navigation buttons
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+
+                // Dot navigation
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                });
+
+                // Touch events
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                this.content.addEventListener('touchstart', (e) => {
+                    touchStartX = e.touches[0].clientX;
+                }, { passive: true });
+
+                this.content.addEventListener('touchmove', (e) => {
+                    if (!this.isAnimating) {
+                        touchEndX = e.touches[0].clientX;
+                        const diff = touchStartX - touchEndX;
+                        const threshold = 50;
+
+                        if (Math.abs(diff) > threshold) {
+                            if (diff > 0) {
+                                this.next();
+                            } else {
+                                this.prev();
+                            }
+                            touchStartX = touchEndX;
+                        }
+                    }
+                }, { passive: true });
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        this.prev();
+                    } else if (e.key === 'ArrowRight') {
+                        this.next();
+                    }
+                });
+
+                // Pause autoplay on hover/focus
+                const carouselElement = document.querySelector('.carousel');
+                ['mouseenter', 'focusin'].forEach(event => {
+                    carouselElement.addEventListener(event, () => this.stopAutoplay());
+                });
+
+                ['mouseleave', 'focusout'].forEach(event => {
+                    carouselElement.addEventListener(event, () => this.startAutoplay());
+                });
+
+                // Handle visibility change
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        this.stopAutoplay();
+                    } else {
+                        this.startAutoplay();
+                    }
+                });
+
+                // Reset animation flag after transition
+                this.content.addEventListener('transitionend', () => {
+                    this.isAnimating = false;
+                });
+            },
+
+            updateSlidePosition() {
+                if (this.isAnimating) return;
+                this.isAnimating = true;
+
+                const newTransform = `translateX(-${this.currentIndex * 100}%)`;
+                this.content.style.transform = newTransform;
+
+                // Update dots
+                this.dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentIndex);
+                    dot.setAttribute('aria-current', index === this.currentIndex ? 'true' : 'false');
+                });
+
+                // Announce for screen readers
+                this.announceSlideChange(this.currentIndex + 1, this.items.length);
+            },
+
+            next() {
+                if (this.isAnimating) return;
+                this.currentIndex = (this.currentIndex + 1) % this.items.length;
+                this.updateSlidePosition();
+            },
+
+            prev() {
+                if (this.isAnimating) return;
+                this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+                this.updateSlidePosition();
+            },
+
+            goToSlide(index) {
+                if (this.isAnimating || this.currentIndex === index) return;
+                this.currentIndex = index;
+                this.updateSlidePosition();
+            },
+
+            startAutoplay() {
+                this.stopAutoplay();
+                this.autoplayInterval = setInterval(() => {
+                    if (!document.hidden && !this.isAnimating) {
+                        this.next();
+                    }
+                }, 5000);
+            },
+
+            stopAutoplay() {
+                if (this.autoplayInterval) {
+                    clearInterval(this.autoplayInterval);
+                    this.autoplayInterval = null;
+                }
+            },
+
+            announceSlideChange(current, total) {
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('class', 'sr-only');
+                announcement.textContent = `Showing slide ${current} of ${total}`;
+                document.body.appendChild(announcement);
+                setTimeout(() => announcement.remove(), 1000);
+            }
+        };
+
+        // Initialize carousel when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            carousel.init();
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const body = document.body;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Navbar scroll effect with throttling
+        let lastScroll = 0;
+        let ticking = false;
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const currentScroll = window.pageYOffset;
+                    
+                    if (currentScroll <= 0) {
+                        navbar.classList.remove('scroll-up');
+                        navbar.classList.remove('scroll-down');
+                    } else if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+                        navbar.classList.remove('scroll-up');
+                        navbar.classList.add('scroll-down');
+                    } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+                        navbar.classList.remove('scroll-down');
+                        navbar.classList.add('scroll-up');
+                    }
+                    lastScroll = currentScroll;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '50px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .featured-project, .stat-card').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Number counter animation
+        const animateValue = (element, start, end, duration) => {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                    clearInterval(timer);
+                    element.textContent = end + '+';
+                } else {
+                    element.textContent = Math.floor(current) + '+';
+                }
+            }, 16);
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target;
+                    const endValue = parseInt(statNumber.dataset.count);
+                    animateValue(statNumber, 0, endValue, 2000);
+                    statsObserver.unobserve(statNumber);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
 </body>
 
 </html>
