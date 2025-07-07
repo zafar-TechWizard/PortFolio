@@ -25,6 +25,16 @@
     --transition-bezier: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@font-face {
+    font-family: 'Logo';
+    src: url('../font/Yesteryear-Regular.ttf') format('woff2'); 
+}
+
+@font-face {
+    font-family: 'hero-font';
+    src: url('../font/AlexBrush-Regular.ttf') format('woff2'); 
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, var(--primary-bg) 0%, #1e1b4b 50%, var(--secondary-bg) 100%);
@@ -144,6 +154,8 @@ body {
 }
 
 .nav-logo {
+    font-family: 'Logo';
+    letter-spacing: 0.6vw;
     font-size: 1.5rem;
     font-weight: 700;
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
@@ -214,17 +226,16 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 22vw;
+    font-size: 18vw;
     font-weight: 900;
     color: #cdd8ec;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     opacity: 0.8;
     z-index: 1;
     user-select: none;
     pointer-events: none;
     white-space: nowrap;
-    text-transform: uppercase;
-    font-family: 'Inter', sans-serif;
+    font-family: 'hero-font';
     text-align: center;
     line-height: 1;
 }

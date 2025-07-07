@@ -25,6 +25,11 @@
     --transition-bezier: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@font-face {
+    font-family: 'Logo';
+    src: url('../font/Yesteryear-Regular.ttf') format('woff2'); 
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, var(--primary-bg) 0%, #1e1b4b 50%, var(--secondary-bg) 100%);
@@ -140,6 +145,8 @@ body {
 
 .nav-logo {
     font-size: 1.5rem;
+    letter-spacing: 0.6vw;
+    font-family: 'Logo';
     font-weight: 700;
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
     -webkit-background-clip: text;
