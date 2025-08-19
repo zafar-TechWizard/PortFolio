@@ -1,8 +1,10 @@
 # Welcome to My Portfolio
 
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&duration=2000&pause=1000&color=FF6B35&background=00000000&center=true&vCenter=true&multiline=false&width=250&height=50&lines=🔄+Under+Development;⚡+Work+in+Progress;" alt="Development Status">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2000&pause=1500&color=FF6B35&center=true&vCenter=true&width=300&lines=%F0%9F%94%84+Under+Development;%E2%9A%A1+Work+in+Progress;%F0%9F%9A%80+Coming+Soon" alt="Development Status">
 </div>
+
+
 
 
 ---
