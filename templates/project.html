@@ -5,7 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore my portfolio of AI/ML, web development, and data science projects. Each project showcases innovative solutions and technical expertise.">
-    <title>Projects | Zafar</title>
+    <title>AI/ML Projects by Zafar - InfoLytix, SOFI, ZenPulse | Portfolio</title>
+    <meta name="keywords" content="AI ML projects, InfoLytix AI assistant, SOFI artificial intelligence, ZenPulse mental health app, Python projects, TensorFlow projects, Flask applications, machine learning portfolio, computer vision projects, data science projects">
+    <meta name="author" content="Zafar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourportfolio.com/work">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourportfolio.com/work">
+    <meta property="og:title" content="AI/ML Projects by Zafar - Innovative Technology Solutions">
+    <meta property="og:description" content="Explore Zafar's portfolio of AI/ML projects including InfoLytix research assistant, SOFI AI assistant, and ZenPulse mental health platform.">
+    <meta property="og:image" content="{{ url_for('static', filename='img/my.png', _external=True) }}">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourportfolio.com/work">
+    <meta property="twitter:title" content="AI/ML Projects by Zafar">
+    <meta property="twitter:description" content="Explore innovative AI/ML projects including research assistants and mental health applications.">
+    <meta property="twitter:image" content="{{ url_for('static', filename='img/my.png', _external=True) }}">
+
     <link rel="icon" sizes="50x50" href="{{ url_for('static', filename='img/Logo.png') }}" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +32,103 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}">
+    
+    <!-- JSON-LD Structured Data for Projects -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "AI/ML Projects by Zafar",
+        "description": "Portfolio of artificial intelligence and machine learning projects",
+        "numberOfItems": 6,
+        "itemListElement": [
+            {
+                "@type": "SoftwareApplication",
+                "position": 1,
+                "name": "InfoLytix",
+                "description": "Next-gen AI research assistant that searches the web, analyzes information in real-time, and delivers intelligent answers along with personal knowledgebase",
+                "applicationCategory": "AI Research Assistant",
+                "operatingSystem": "Web",
+                "programmingLanguage": ["Python", "JavaScript"],
+                "author": {
+                    "@type": "Person",
+                    "name": "Zafar"
+                },
+                "url": "https://github.com/zafar-TechWizard/InfoLytix"
+            },
+            {
+                "@type": "SoftwareApplication",
+                "position": 2,
+                "name": "SOFI - AI Assistant",
+                "description": "A sophisticated AI assistant leveraging LangChain and advanced LLMs with natural language processing and context-aware responses",
+                "applicationCategory": "AI Assistant",
+                "operatingSystem": "Web",
+                "programmingLanguage": ["Python"],
+                "author": {
+                    "@type": "Person",
+                    "name": "Zafar"
+                },
+                "url": "https://github.com/zafar-TechWizard/SOFI"
+            },
+            {
+                "@type": "SoftwareApplication",
+                "position": 3,
+                "name": "ZenPulse",
+                "description": "A Flask-based mental health web application designed to provide emotional support and improve users' well-being",
+                "applicationCategory": "Mental Health App",
+                "operatingSystem": "Web",
+                "programmingLanguage": ["Python", "JavaScript"],
+                "author": {
+                    "@type": "Person",
+                    "name": "Zafar"
+                },
+                "url": "https://github.com/zafar-TechWizard/ZenPulse"
+            },
+            {
+                "@type": "SoftwareApplication",
+                "position": 4,
+                "name": "Age & Gender Detection",
+                "description": "Computer vision project for real-time age and gender detection using deep learning and OpenCV",
+                "applicationCategory": "Computer Vision",
+                "operatingSystem": "Desktop",
+                "programmingLanguage": ["Python"],
+                "author": {
+                    "@type": "Person",
+                    "name": "Zafar"
+                },
+                "url": "https://github.com/zafar-TechWizard/Age-Gender-Detection"
+            },
+            {
+                "@type": "SoftwareApplication",
+                "position": 5,
+                "name": "Car Price Prediction",
+                "description": "Machine learning model to predict car prices based on various features and market data using scikit-learn",
+                "applicationCategory": "Machine Learning",
+                "operatingSystem": "Desktop",
+                "programmingLanguage": ["Python"],
+                "author": {
+                    "@type": "Person",
+                    "name": "Zafar"
+                },
+                "url": "https://github.com/zafar-TechWizard/Alpha-Intern-Internship-Program/tree/main/Car_price_prediction"
+            },
+            {
+                "@type": "SoftwareApplication",
+                "position": 6,
+                "name": "RhythMix",
+                "description": "AI-powered music recommendation system with mood-based playlist generation and Spotify API integration",
+                "applicationCategory": "Music Recommendation",
+                "operatingSystem": "Web",
+                "programmingLanguage": ["Python"],
+                "author": {
+                    "@type": "Person",
+                    "name": "Zafar"
+                },
+                "url": "https://github.com/zafar-TechWizard/RhythMix--A-Song-Recommendation-System"
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -59,11 +175,11 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Hero Section -->
+        
         <section class="project-hero">
             <div class="hero-content">
-                <h1 class="hero-title">Projects</h1>
-                <p class="hero-subtitle">Innovative solutions in AI, Machine Learning, and Data Science by a passionate B.Tech CSE student</p>
+                <h1 class="hero-title">AI/ML Projects Portfolio</h1>
+                <p class="hero-subtitle">Innovative artificial intelligence and machine learning solutions by Zafar - Computer Science Engineering student specializing in AI research assistants, data analytics platforms, and intelligent applications</p>
                 
                 <div class="hero-stats">
                     <div class="stat-card">

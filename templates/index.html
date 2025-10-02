@@ -1,16 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zafar</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Zafar - AI/ML An Engineer & Computer Science Student | Portfolio</title>
+    <meta name="title" content="Zafar - AI/ML And Automation Engineer & Computer Science Student | Portfolio">
+    <meta name="description" content="Passionate Computer Science student specializing in AI/ML, data science, and SaaS development. Explore my innovative projects including InfoLytix, SOFI AI Assistant, and ZenPulse. Available for internships and collaborations.">
+    <meta name="keywords" content="Zafar, Automation, AI engineer, machine learning, data science, computer science student, Python developer, Flask developer, AI projects, SaaS development, portfolio, Zafar, artificial intelligence, deep learning, web development">
+    <meta name="author" content="Zafar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://zafar-dev-portfolio.vercel.app/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zafar-dev-portfolio.vercel.app/">
+    <meta property="og:title" content="Zafar - AI/ML Engineer & Computer Science Student | Portfolio">
+    <meta property="og:description" content="Passionate Computer Science student specializing in AI/ML, data science, and SaaS development. Explore my innovative projects and technical expertise.">
+    <meta property="og:image" content="{{ url_for('static', filename='img/my.png', _external=True) }}">
+    <meta property="og:image:alt" content="Zafar - AI/ML Engineer Profile Picture">
+    <meta property="og:site_name" content="Zafar Portfolio">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourportfolio.com/">
+    <meta property="twitter:title" content="Zafar - AI/ML Engineer & Computer Science Student">
+    <meta property="twitter:description" content="Passionate Computer Science student specializing in AI/ML, data science, and SaaS development. Explore my innovative projects.">
+    <meta property="twitter:image" content="{{ url_for('static', filename='img/my.png', _external=True) }}">
+    <meta property="twitter:image:alt" content="Zafar - AI/ML Engineer Profile Picture">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    <meta name="application-name" content="Zafar Portfolio">
+    
     <link rel="icon" sizes="50x50" href="{{ url_for('static', filename='img/Logo.png') }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Zafar",
+        "alternateName": "Md Zafar",
+        "description": "Computer Science Engineering student and AI/ML developer specializing in artificial intelligence, machine learning, and SaaS development",
+        "url": "https://yourportfolio.com",
+        "image": "{{ url_for('static', filename='img/my.png', _external=True) }}",
+        "sameAs": [
+            "https://github.com/zafar-TechWizard",
+            "https://www.linkedin.com/in/md-z-41687b157"
+        ],
+        "jobTitle": "AI/ML Engineer & Computer Science Student",
+        "worksFor": {
+            "@type": "EducationalOrganization",
+            "name": "Maharishi Markandeshwar University"
+        },
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Maharishi Markandeshwar University",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "India"
+            }
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Haryana",
+            "addressCountry": "India"
+        },
+        "email": "mdzafarddd@gmail.com",
+        "telephone": "+919546299524",
+        "knowsAbout": [
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Python Programming",
+            "Flask Development",
+            "TensorFlow",
+            "Data Science",
+            "Computer Vision",
+            "Natural Language Processing",
+            "SaaS Development",
+            "Web Development"
+        ],
+        "hasCredential": [
+            {
+                "@type": "EducationalOccupationalCredential",
+                "name": "B.Tech Computer Science Engineering",
+                "educationalLevel": "Undergraduate",
+                "credentialCategory": "degree"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Website Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Zafar Portfolio",
+        "alternateName": "Zafar AI/ML Engineer Portfolio",
+        "url": "https://yourportfolio.com",
+        "description": "Portfolio website showcasing AI/ML projects and technical expertise of Zafar, Computer Science Engineering student",
+        "author": {
+            "@type": "Person",
+            "name": "Zafar"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://yourportfolio.com/work?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -48,7 +157,7 @@
     <section class="hero" id="home" style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;">
         <div class="hero-bg-name">ZAFAR</div>
         <div class="hero-image-container" style="z-index:2;">
-            <img src="{{url_for('static', filename='./img/my.png')}}" alt="Zafar - AI/ML Engineer" class="hero-image" />
+            <img src="{{url_for('static', filename='./img/my.png')}}" alt="Zafar - AI/ML Engineer and Computer Science Student specializing in artificial intelligence and machine learning" class="hero-image" width="400" height="400" loading="eager" />
         </div>
         <div class="hero-section-buttons">
             <div class="hero-buttons-blur-bg"></div>
@@ -69,24 +178,24 @@
         <div class="container">
             <div class="intro-content">
                 <h2>Computer Science Student & AI/SaaS Developer</h2>
-                <p>I'm a Computer Science student with a strong interest in solving real-world problems using data and logical thinking. 
-                    I have hands-on experience in building AI-based projects, including SaaS applications like an AI-powered research assistant and an emotional wellness app. 
-                    I enjoy tackling new challenges and believe these skills will help me contribute meaningfully to a growth-oriented and problem-solving team.</p>
+                <p>I'm a passionate Computer Science student at Maharishi Markandeshwar University with expertise in artificial intelligence, machine learning, and SaaS development. 
+                    I specialize in building innovative AI-powered solutions including research assistants, emotional wellness applications, and data analytics platforms. 
+                    My technical skills span Python, Flask, TensorFlow, LangChain, and modern web technologies. I'm actively seeking internship opportunities and collaborations in AI/ML engineering.</p>
                 <div class="tech-stack">
-                    <span><i class="fab fa-python"></i> Python</span>
-                    <span><i class="fas fa-brain"></i> scikit-learn</span>
-                    <span><i class="fas fa-robot"></i> Langchain</span>
-                    <span><i class="fas fa-server"></i> Flask</span>
-                    <span><i class="fas fa-cloud"></i> SaaS</span>
-                    <span><i class="fab fa-js"></i> HTML/CSS</span>
-                    <span><i class="fas fa-database"></i> SQLite</span>
-                    <span><i class="fas fa-leaf"></i> MongoDB</span>
-                    <span><i class="fas fa-chart-bar"></i> NumPy</span>
-                    <span><i class="fas fa-table"></i> Pandas</span>
-                    <span><i class="fab fa-github"></i> GitHub</span>
-                    <span><i class="fas fa-code-branch"></i> REST APIs</span>
-                    <span><i class="fas fa-cloud"></i> AWS (Learning)</span>
-                    <span><i class="fas fa-cogs"></i> OpenCV</span>
+                    <span><i class="fab fa-python"></i> Python Programming</span>
+                    <span><i class="fas fa-brain"></i> Machine Learning (scikit-learn)</span>
+                    <span><i class="fas fa-robot"></i> AI Development (LangChain)</span>
+                    <span><i class="fas fa-server"></i> Flask Web Framework</span>
+                    <span><i class="fas fa-cloud"></i> SaaS Development</span>
+                    <span><i class="fab fa-js"></i> Frontend Development</span>
+                    <span><i class="fas fa-database"></i> Database Management</span>
+                    <span><i class="fas fa-leaf"></i> MongoDB NoSQL</span>
+                    <span><i class="fas fa-chart-bar"></i> Data Analysis (NumPy)</span>
+                    <span><i class="fas fa-table"></i> Data Science (Pandas)</span>
+                    <span><i class="fab fa-github"></i> Version Control</span>
+                    <span><i class="fas fa-code-branch"></i> API Development</span>
+                    <span><i class="fas fa-cloud"></i> Cloud Computing</span>
+                    <span><i class="fas fa-cogs"></i> Computer Vision</span>
                 </div>
             </div>
         </div>
@@ -108,13 +217,13 @@
     "
                     >
                         <span class="project-icon">🔍</span>
-                        <h3>InfoLytix</h3>
+                        <h3>InfoLytix - AI Research Assistant</h3>
                         <span class="status-badge ongoing">
                                                 <i class="fas fa-sync-alt fa-spin"></i>
                                             </span>
                         
                     </div>
-                    <p>Next-gen AI research assistant that searches the web, analyzes information in real-time, and delivers intelligent answers along with personal knowledgebase.</p>
+                    <p>Advanced AI-powered research assistant leveraging machine learning algorithms to search the web, analyze information in real-time, and deliver intelligent answers with comprehensive citation support and personal knowledge management capabilities.</p>
                     <div class="project-tags">
                         <span><i class="fab fa-python"></i> Python</span>
                         <span><i class="fas fa-robot"></i> LLM Integration</span>
@@ -129,8 +238,8 @@
                 <div class="project-card">
                     <div class="project-card-blur-bg"></div>
                     <div class="project-icon">🧠</div>
-                    <h3>SOFI - AI Assistant</h3>
-                    <p>A sophisticated AI assistant leveraging LangChain and advanced LLMs. Features natural language processing, context-aware responses, and integration with various APIs for enhanced functionality.</p>
+                    <h3>SOFI - Intelligent AI Assistant</h3>
+                    <p>Sophisticated artificial intelligence assistant built with LangChain framework and advanced Large Language Models (LLMs). Features cutting-edge natural language processing, context-aware conversational AI, and seamless API integrations for enhanced user experience and productivity.</p>
                     <div class="project-tags">
                         <span><i class="fab fa-python"></i> Python</span>
                         <span><i class="fas fa-robot"></i> LangChain</span>
@@ -143,8 +252,8 @@
                 <div class="project-card">
                     <div class="project-card-blur-bg"></div>
                     <div class="project-icon">💪</div>
-                    <h3>ZenPulse</h3>
-                    <p>A Flask-based mental health web application designed to provide emotional support and improve users' well-being. Features interactive spaces for users to unwind and express themselves.</p>
+                    <h3>ZenPulse - Mental Wellness Platform</h3>
+                    <p>Innovative Flask-based mental health and wellness web application designed to provide comprehensive emotional support and improve users' psychological well-being. Features interactive therapeutic spaces, mood tracking, and personalized wellness recommendations for holistic mental health care.</p>
                     <div class="project-tags">
                         <span><i class="fas fa-server"></i> Flask</span>
                         <span><i class="fab fa-python"></i> Python</span>

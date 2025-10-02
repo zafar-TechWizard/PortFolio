@@ -1,0 +1,127 @@
+<!-- Google Analytics Setup Template -->
+<!-- Add this to the <head> section of all your HTML templates when you get your GA tracking ID -->
+
+<!-- Google tag (gtag.js) - Replace GA_MEASUREMENT_ID with your actual ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GA_MEASUREMENT_ID', {
+    // Privacy-focused configuration
+    'anonymize_ip': true,
+    'cookie_flags': 'SameSite=None;Secure',
+    // Custom events for portfolio tracking
+    'custom_map': {
+      'custom_parameter_1': 'project_view',
+      'custom_parameter_2': 'contact_form_submit',
+      'custom_parameter_3': 'resume_download'
+    }
+  });
+
+  // Custom event tracking for portfolio interactions
+  
+  // Track project card clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    const projectLinks = document.querySelectorAll('.project-link, .card-btn');
+    projectLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const projectName = this.closest('.project-card').querySelector('h3').textContent;
+        gtag('event', 'project_view', {
+          'event_category': 'Projects',
+          'event_label': projectName,
+          'value': 1
+        });
+      });
+    });
+
+    // Track resume downloads
+    const resumeLinks = document.querySelectorAll('a[download*="resume"], a[download*="Resume"]');
+    resumeLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        gtag('event', 'resume_download', {
+          'event_category': 'Downloads',
+          'event_label': 'Resume PDF',
+          'value': 1
+        });
+      });
+    });
+
+    // Track contact form submissions
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        gtag('event', 'contact_form_submit', {
+          'event_category': 'Contact',
+          'event_label': 'Contact Form',
+          'value': 1
+        });
+      });
+    }
+
+    // Track social media clicks
+    const socialLinks = document.querySelectorAll('a[href*="github.com"], a[href*="linkedin.com"], a[href*="twitter.com"]');
+    socialLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const platform = this.href.includes('github') ? 'GitHub' : 
+                         this.href.includes('linkedin') ? 'LinkedIn' : 
+                         this.href.includes('twitter') ? 'Twitter' : 'Social';
+        gtag('event', 'social_click', {
+          'event_category': 'Social Media',
+          'event_label': platform,
+          'value': 1
+        });
+      });
+    });
+
+    // Track scroll depth for engagement
+    let maxScroll = 0;
+    window.addEventListener('scroll', function() {
+      const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+      if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+        maxScroll = scrollPercent;
+        gtag('event', 'scroll_depth', {
+          'event_category': 'Engagement',
+          'event_label': scrollPercent + '%',
+          'value': scrollPercent
+        });
+      }
+    });
+  });
+</script>
+
+<!-- Google Search Console Verification -->
+<!-- Add this meta tag to your homepage <head> section when you get your verification code -->
+<meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
+
+<!-- Bing Webmaster Tools Verification -->
+<!-- Add this meta tag to your homepage <head> section when you set up Bing Webmaster -->
+<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE_HERE" />
+
+<!-- Additional tracking for enhanced ecommerce (if needed for freelance work) -->
+<script>
+  // Enhanced ecommerce tracking for potential freelance projects
+  function trackProjectInquiry(projectType, value) {
+    gtag('event', 'project_inquiry', {
+      'event_category': 'Business',
+      'event_label': projectType,
+      'value': value,
+      'currency': 'USD'
+    });
+  }
+
+  // Track page views with custom dimensions
+  gtag('config', 'GA_MEASUREMENT_ID', {
+    'custom_map': {
+      'custom_parameter_1': 'user_type',
+      'custom_parameter_2': 'traffic_source'
+    }
+  });
+
+  // Send page view with custom parameters
+  gtag('event', 'page_view', {
+    'user_type': 'portfolio_visitor',
+    'traffic_source': document.referrer || 'direct'
+  });
+</script>

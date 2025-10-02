@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Intro Animation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for easy customization */
+        :root {
+            --anim-letter-delay: 0.1s;
+            --anim-letter-duration: 0.8s;
+            --anim-main-start-delay: 2s; /* Time before split animation begins */
+            --anim-split-duration: 3.5s;   /* Duration of the split/rejoin/scale */
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        /* Animated Gradient Background */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Kept at the very back */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            opacity: 0;
+            /* Fade in as the split starts */
+            transition: opacity calc(var(--anim-split-duration) * 0.8) ease-in;
+        }
+        
+        .background-container.visible {
+            opacity: 1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Preloader Styling */
+        .preloader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            /* Final z-index: above content, below image */
+            z-index: 2;
+        }
+
+        .preloader .name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 11vw, 12rem);
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+            display: flex;
+            position: relative;
+        }
+
+        /* When split starts, trigger the scale-up animation on the parent .name container */
+        body.animate-split .preloader .name {
+            animation: scale-up-rejoined var(--anim-split-duration) cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
+        .name-part {
+            display: flex;
+        }
+        
+        /* Letter Animation (Initial fade-in) */
+        .name-part span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: letterFadeInUp var(--anim-letter-duration) cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+        
+        /* Stagger the animation for each letter */
+        .name-part.left span:nth-child(1) { animation-delay: calc(var(--anim-letter-delay) * 1); }
+        .name-part.left span:nth-child(2) { animation-delay: calc(var(--anim-letter-delay) * 2); }
+        .name-part.left span:nth-child(3) { animation-delay: calc(var(--anim-letter-delay) * 3); }
+        .name-part.left span:nth-child(4) { animation-delay: calc(var(--anim-letter-delay) * 4); }
+        .name-part.right span:nth-child(1) { animation-delay: calc(var(--anim-letter-delay) * 5); }
+        .name-part.right span:nth-child(2) { animation-delay: calc(var(--anim-letter-delay) * 6); }
+        .name-part.right span:nth-child(3) { animation-delay: calc(var(--anim-letter-delay) * 7); }
+        .name-part.right span:nth-child(4) { animation-delay: calc(var(--anim-letter-delay) * 8); }
+
+        @keyframes letterFadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Keyframe animations for splitting and rejoining */
+        @keyframes split-rejoin-left {
+            0% { transform: translateX(0); }
+            50%, 60% { transform: translateX(-120%); } /* Hold at edge slightly longer */
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes split-rejoin-right {
+            0% { transform: translateX(0); }
+            50%, 60% { transform: translateX(120%); } /* Hold at edge slightly longer */
+            100% { transform: translateX(0); }
+        }
+        
+        /* UPDATED: Keyframe to scale the entire name container */
+        @keyframes scale-up-rejoined {
+            /* Hold the initial state until the rejoin starts */
+            0%, 60% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            /* Scale up and fade out during the rejoin phase */
+            100% {
+                transform: scale(2); /* Scales ~11vw font size to ~88vw */
+                opacity: 0.3; /* Visible but not overpowering */
+            }
+        }
+
+        /* Triggering the split animations */
+        body.animate-split .name-part.left {
+            animation: split-rejoin-left var(--anim-split-duration) cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+        body.animate-split .name-part.right {
+            animation: split-rejoin-right var(--anim-split-duration) cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
+        /* Center Image Styling */
+        .center-image-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* width: clamp(250px, 35vw, 450px);  */
+            aspect-ratio:auto;
+            z-index: 3; /* Positioned above the final name */
+        }
+
+        .center-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        /* Image appears as the name parts near the edges */
+        body.animate-split .center-image-container img {
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+            /* Delay the image appearance to match the name reaching the edge */
+            transition-delay: calc(var(--anim-split-duration) * 0.35);
+            opacity: 1;
+            /* transform: scale(1); */
+            transform: scale(0.5);
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            padding: 40px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            /* Fade in as the split starts */
+            transition: opacity calc(var(--anim-split-duration) * 0.8) ease-in, transform calc(var(--anim-split-duration) * 0.8) ease-in;
+            position: relative;
+            z-index: 1; /* Positioned above the background, below the name */
+        }
+
+        .main-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .main-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .main-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="background-container" id="backgroundContainer"></div>
+
+    <div class="preloader" id="preloader">
+        <div class="name" id="name">
+            <div class="name-part left">
+                <span>A</span><span>k</span><span>a</span><span>n</span>
+            </div>
+            <div class="name-part right">
+                <span>k</span><span>s</span><span>h</span><span>a</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="center-image-container">
+        <img id="centerImage" src="img.jpg" alt="Central Image" onerror="this.onerror=null;this.src='https://placehold.co/450x450/e0e0e0/000?text=Image+Not+Found';">
+    </div>
+
+    <main class="main-content" id="mainContent">
+        <!-- <h1>Welcome to the Page</h1>
+        <p>This is where the main content will be displayed after the initial animation sequence. You can now add your own text, images, and other elements here.</p> -->
+    </main>
+
+    <script>
+        window.addEventListener('load', () => {
+            const mainContent = document.getElementById('mainContent');
+            const backgroundContainer = document.getElementById('backgroundContainer');
+
+            // Get timing from CSS variables
+            const mainStartDelay = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--anim-main-start-delay')) * 1000;
+            
+            // --- This is now the only step needed ---
+            // It triggers the split, which in turn triggers all other animations.
+            setTimeout(() => {
+                document.body.classList.add('animate-split');
+                // Make the background and content visible at the same time
+                backgroundContainer.classList.add('visible');
+                mainContent.classList.add('visible');
+            }, mainStartDelay);
+        });
+    </script>
+
+</body>
+</html>
