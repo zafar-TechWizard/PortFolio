@@ -7,7 +7,7 @@ class SEOConfig:
     
     # Basic Site Information
     SITE_NAME = "Zafar Portfolio"
-    SITE_URL = "https://yourportfolio.com"  # Update this with your actual domain
+    SITE_URL = "https://zafar-dev-portfolio.vercel.app"
     SITE_DESCRIPTION = "Portfolio of Zafar - AI/ML Engineer and Computer Science Student specializing in artificial intelligence, machine learning, and innovative technology solutions"
     
     # Author Information

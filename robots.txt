@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://yourportfolio.com/sitemap.xml
+Sitemap: https://zafar-dev-portfolio.vercel.app/sitemap.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1
