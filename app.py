@@ -28,7 +28,9 @@ def robots_txt():
 
 @app.route('/sitemap.xml')
 def sitemap_xml():
-    return send_from_directory(app.root_path, 'sitemap.xml')
+    response = make_response(send_from_directory(app.root_path, 'sitemap.xml'))
+    response.headers['Content-Type'] = 'application/xml'
+    return response
 
 # Add security headers for better SEO and security
 @app.after_request
