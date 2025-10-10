@@ -41,7 +41,7 @@ def after_request(response):
     response.headers['X-XSS-Protection'] = '1; mode=block'
     
     # SEO-friendly headers
-    response.headers['Cache-Control'] = 'public, max-age=300'  # 5 minutes cache
+    response.headers['Cache-Control'] = 'public, max-age=3600'  # 5 minutes cache
     
     # Only add HSTS in production
     if not app.debug:
