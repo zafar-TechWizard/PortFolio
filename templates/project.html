@@ -33,8 +33,24 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}">
-    
+    <link rel="preload" href="{{ url_for('static', filename='css/contact.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}"></noscript>
+
+    <style>
+        /* --- Critical CSS for contact.html --- */
+        body { background-color: #0a0a0a; color: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .page-header { text-align: center; padding-top: 100px; padding-bottom: 40px; }
+        .page-title { font-size: 3rem; margin-bottom: 10px; }
+        .page-subtitle { font-size: 1.2rem; color: #a0a0a0; }
+        .contact-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        @media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: .5rem; color: #ccc; }
+        .form-group input, .form-group textarea { width: 100%; padding: .8rem; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 5px; }
+        .btn-primary { display: inline-block; padding: .8rem 1.5rem; background: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+        .nav-container, .mobile-menu-btn { display: block; } /* Basic Navbar styles */
+    </style>    
     <!-- JSON-LD Structured Data for Projects -->
     <script type="application/ld+json">
     {

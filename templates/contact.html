@@ -31,7 +31,23 @@
     <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+    <link rel="preload" href="{{ url_for('static', filename='css/project.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}"></noscript>
+
+    <style>
+        /* --- Critical CSS for project.html --- */
+        body { background-color: #0a0a0a; color: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .page-header { text-align: center; padding-top: 100px; padding-bottom: 40px; }
+        .page-title { font-size: 3rem; margin-bottom: 10px; }
+        .page-subtitle { font-size: 1.2rem; color: #a0a0a0; }
+        .stats-section { display: flex; justify-content: space-around; text-align: center; padding-bottom: 40px; }
+        .stat-card { padding: 1rem; }
+        .stat-number { font-size: 2.5rem; font-weight: bold; }
+        .stat-label { font-size: 1rem; color: #a0a0a0; }
+        .projects-grid-section { padding-bottom: 60px; }
+        .nav-container, .mobile-menu-btn { display: block; } /* Basic Navbar styles */
+    </style>
 </head>
 
 <body>
