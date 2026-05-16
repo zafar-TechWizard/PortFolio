@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #0B0E14;
+  --color-foreground: #FFFFFF;
+  --color-surface: #151A25;
+  --color-surface-hover: #1E2533;
+  --color-primary: #FF6B4A;
+  --color-primary-hover: #FF856A;
+  --color-secondary: #8A63D2;
+  --color-muted: #94A3B8;
+  --color-border: rgba(255, 255, 255, 0.05);
+  --color-border-hover: rgba(255, 255, 255, 0.15);
+  
+  --font-sans: var(--font-space-grotesk), sans-serif;
+  --font-heading: var(--font-archivo), sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer components {
+  /* Layout */
+  .section-container {
+    @apply w-full max-w-7xl mx-auto px-6 py-20 md:py-32;
+  }
+  
+  /* Typography */
+  .heading-hero {
+    @apply text-5xl md:text-7xl font-bold tracking-tight text-foreground mb-6 leading-tight;
+  }
+  .heading-section {
+    @apply text-3xl md:text-5xl font-semibold tracking-tight text-foreground mb-12;
+  }
+  .text-body {
+    @apply text-lg md:text-xl text-muted leading-relaxed;
+  }
+  .text-highlight {
+    @apply text-primary font-medium;
+  }
+
+  /* UI Primitives */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-primary text-white font-medium px-8 py-4 transition-all duration-300 hover:bg-primary-hover hover:scale-[1.02] active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-border bg-surface text-foreground font-medium px-8 py-4 transition-all duration-300 hover:border-border-hover hover:bg-surface-hover hover:scale-[1.02] active:scale-95;
+  }
+
+  .card-base {
+    @apply bg-surface/40 backdrop-blur-lg border border-border/50 rounded-2xl p-8 transition-all duration-300 hover:border-primary/30 hover:bg-surface/60 hover:-translate-y-1 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+  }
+
+  .badge-skill {
+    @apply inline-flex items-center rounded-full bg-white/5 border border-white/10 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-white/10;
+  }
+  
+  .badge-success {
+    @apply inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 text-xs font-medium text-emerald-400;
+  }
+  
+  .badge-success-dot {
+    @apply w-2 h-2 rounded-full bg-emerald-500 animate-pulse;
+  }
+}
