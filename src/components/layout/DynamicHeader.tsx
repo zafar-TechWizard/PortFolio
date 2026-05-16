@@ -90,7 +90,7 @@ export function DynamicHeader() {
               <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-b from-white/[0.1] to-white/[0.02] border border-white/20 border-t-white/40 shadow-[0_10px_40px_rgba(0,0,0,0.8)]"}`}>
                 <div className={`absolute inset-0 bg-gradient-to-b from-white/30 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-40"}`} />
                 <div className="relative z-10 flex items-center justify-center gap-8 w-full h-full px-8">
-                  <Link href="#philosophy" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Philosophy</Link>
+                  <Link href="#work" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Work</Link>
                   <Link href="#services" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Services</Link>
                   <Link href="#projects" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Projects</Link>
                   <Link href="#skills" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Skills</Link>

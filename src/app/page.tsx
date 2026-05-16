@@ -1,10 +1,10 @@
 import { DynamicHeader } from "@/components/layout/DynamicHeader";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { PhilosophySection } from "@/components/sections/PhilosophySection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
+import { WorkSection } from "@/components/sections/PhilosophySection";
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
       <main className="flex flex-col items-center">
         <HeroSection />
         <AboutSection />
-        <PhilosophySection />
+        <WorkSection />
         <ServicesSection />
         <ProjectsSection />
         <SkillsSection />

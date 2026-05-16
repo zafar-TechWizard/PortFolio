@@ -5,28 +5,37 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 const services = [
   {
     title: "Custom AI Systems",
-    subtitle: "RAG & AI Agents",
-    description: "I help businesses build private, secure AI systems capable of understanding internal documents, databases, and knowledge systems.",
-    features: ["Internal AI Chat", "Knowledge Assistants", "Multi-Document Retrieval", "AI Dashboards"],
+    subtitle: "RAG, Agents & Intelligent Assistants",
+    description: "Your business has internal knowledge trapped in documents, databases, and tribal memory. I build private AI systems that turn that knowledge into an on-demand, conversational resource — no generic chatbots, no hallucinations.",
+    features: ["Internal Knowledge Assistants", "Document Q&A Systems", "AI Customer Support Agents", "Multi-Document Retrieval", "AI-Powered Dashboards", "Research Assistants"],
     colSpan: "lg:col-span-2",
     color: "from-primary"
   },
   {
-    title: "Intelligent Workflow Automation",
-    subtitle: "Eliminate Repetitive Work",
-    description: "I automate workflows by connecting APIs, AI models, scrapers, databases, and backend systems.",
-    features: ["WhatsApp Automation", "Data Pipelines", "Event-Driven Workflows"],
+    title: "Workflow Automation",
+    subtitle: "Eliminate Repetitive Operations",
+    description: "If your team is manually copying data, sending follow-ups, or processing reports — I connect your APIs, AI models, and databases into automated pipelines that run 24/7 without human intervention.",
+    features: ["WhatsApp & CRM Automation", "Data Processing Pipelines", "Event-Driven Notifications", "Scheduled Report Generation"],
     colSpan: "lg:col-span-1",
     color: "from-secondary"
   },
   {
-    title: "End-to-End SaaS MVP",
-    subtitle: "Idea to Product",
-    description: "I transform ideas into fully working products, handling scalable database architectures, frontend UI, and AI integration.",
-    features: ["Product Architecture", "Backend APIs", "Authentication Systems", "Scalable Infrastructure"],
+    title: "End-to-End SaaS Products",
+    subtitle: "From Idea to Launch-Ready Product",
+    description: "You have a product idea but need an engineer who thinks like a founder. I handle the full stack — database architecture, backend APIs, authentication, frontend UI, and AI integration — so you launch with a real product, not a prototype.",
+    features: ["Product Architecture & Design", "Scalable Backend APIs", "Authentication & Payments", "Admin Dashboards", "AI Feature Integration", "Deployment & CI/CD"],
     colSpan: "lg:col-span-3",
     color: "from-blue-500"
   }
+];
+
+const fields = [
+  { name: "SaaS & Product Development", icon: "🚀" },
+  { name: "AI & Machine Learning", icon: "🧠" },
+  { name: "Automation & Operations", icon: "⚙️" },
+  { name: "Knowledge Management", icon: "📚" },
+  { name: "E-Commerce & Marketplaces", icon: "🛒" },
+  { name: "Real Estate & PropTech", icon: "🏢" },
 ];
 
 export function ServicesSection() {
@@ -36,18 +45,41 @@ export function ServicesSection() {
         <div className="mb-20">
           <div className="inline-flex items-center gap-3 rounded-full bg-white/[0.03] border border-white/[0.1] px-5 py-2.5 text-sm font-medium text-secondary w-fit backdrop-blur-xl mb-6">
             <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-            Core Offerings
+            What I Can Build For You
           </div>
           <h2 className="text-5xl md:text-[4.5rem] font-bold tracking-tighter text-white leading-[1.05] font-heading">
-            I stop pitching programming languages.<br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">I solve business bottlenecks.</span>
+            You bring the problem.<br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">I engineer the solution.</span>
           </h2>
+          <p className="text-white/50 text-lg mt-6 max-w-2xl leading-relaxed">
+            I don&apos;t sell hours of coding. I deliver systems that solve operational bottlenecks, automate workflows, and turn complex ideas into scalable, AI-powered products.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {services.map((service, idx) => (
             <BentoCard key={idx} service={service} />
           ))}
+        </div>
+
+        {/* Fields I Work In */}
+        <div className="mt-24 pt-16 border-t border-white/[0.05]">
+          <p className="text-white/80 text-sm tracking-widest uppercase mb-10 font-semibold">Fields & Industries I Work In</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {fields.map((field, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05 }}
+                className="flex flex-col items-center gap-3 p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] hover:border-white/[0.1] transition-all group cursor-default"
+              >
+                <span className="text-2xl group-hover:scale-110 transition-transform">{field.icon}</span>
+                <span className="text-white/60 text-xs text-center tracking-wide leading-tight group-hover:text-white/80 transition-colors">{field.name}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
