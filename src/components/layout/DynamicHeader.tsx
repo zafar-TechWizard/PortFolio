@@ -77,7 +77,7 @@ export function DynamicHeader() {
               <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-br from-primary/20 to-white/[0.05] border border-white/20 border-t-primary/50 border-l-primary/50 shadow-[0_10px_40px_rgba(0,0,0,0.8)] shadow-primary/20"}`}>
                 <div className={`absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/10 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-100"}`} />
                 <Link href="/" className="relative z-10 flex items-center gap-3 px-6 w-full h-full justify-center group">
-                  <Image src="/img/Logo.png" alt="Zafar Logo" width={32} height={32} className="object-contain group-hover:scale-110 transition-transform duration-500" priority />
+                  <Image src="/img/Logo.png" alt="Zafar Logo" width={32} height={32} style={{ width: 32, height: 32 }} className="object-contain group-hover:scale-110 transition-transform duration-500" priority />
                   <span className="text-white font-bold tracking-widest hidden md:block text-lg drop-shadow-[0_2px_10px_rgba(255,107,74,0.8)]">
                     ZAFAR
                   </span>

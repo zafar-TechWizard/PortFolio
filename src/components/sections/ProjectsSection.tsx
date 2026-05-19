@@ -97,7 +97,7 @@ function ProjectCaseStudy({ project, index }: { project: typeof projects[0], ind
   } as const;
 
   return (
-    <div ref={ref} className={`relative flex flex-col ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center`}>
+    <div ref={ref} style={{ position: "relative" }} className={`flex flex-col ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center`}>
 
       {/* Visual Panel */}
       <div className="w-full lg:w-1/2 h-[500px] lg:h-[680px] relative rounded-[2rem] overflow-hidden bg-[#0A0D12] border border-white/[0.05] group">

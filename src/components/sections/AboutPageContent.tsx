@@ -235,8 +235,8 @@ function PageHero() {
   return (
     <section
       ref={ref}
-      className="relative w-full bg-[#050505] pt-40 pb-28 overflow-hidden border-b border-white/[0.05]"
-      style={{ zIndex: 1 }}
+      className="w-full bg-[#050505] pt-40 pb-28 overflow-hidden border-b border-white/[0.05]"
+      style={{ position: "relative", zIndex: 1 }}
     >
       {/* Section-specific hero glows */}
       <motion.div
