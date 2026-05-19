@@ -1,45 +1,36 @@
-# Welcome to My Portfolio
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-<div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2000&pause=1500&color=FF6B35&center=true&vCenter=true&width=300&lines=%F0%9F%94%84+Under+Development;%E2%9A%A1+Work+in+Progress;%F0%9F%9A%80+Coming+Soon" alt="Development Status">
-</div>
+## Getting Started
 
+First, run the development server:
 
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
----
-<div style='margin:5vh'></div>
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Learn More
 
-![Development Status](https://img.shields.io/badge/Status-Under%20Development-orange?style=for-the-badge)
-![Content](https://img.shields.io/badge/Content-Being%20Added-blue?style=for-the-badge)
-![Progress](https://img.shields.io/badge/Progress-80%25-green?style=for-the-badge)
+To learn more about Next.js, take a look at the following resources:
 
-## 🚧 Development Status
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-> **Note:** This portfolio is currently under active development! Final content, projects, and features are being added regularly. You may find some broken informations.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### What's Coming Soon:
-- ✅ Complete project showcases
-- ✅ Enhanced UI/UX improvements  
-- ✅ Additional interactive features
-- ✅ Performance optimizations
-- ✅ Mobile responsiveness enhancements
+## Deploy on Vercel
 
----
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Hey there! Welcome to my portfolio website. Here, you can find information about me, my projects, and more.
-
-## View Live Website
-
-Check out my portfolio live [HERE](https://zafar-dev-portfolio.vercel.app/) 🚀!
-
-> ⚠️ **Please note:** Some sections may be incomplete as I'm continuously adding new content and features.
-
-## Contact Me
-Connect with me on [LinkedIn](https://www.linkedin.com/in/md-z-41687b157).
-
----
-
-⭐ **Star this repo** if you like my work and want to follow my development journey!
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
