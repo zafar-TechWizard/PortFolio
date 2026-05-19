@@ -38,22 +38,37 @@ export function SkillsSection() {
   return (
     <section id="skills" className="relative w-full bg-[#050505] py-32 overflow-hidden border-t border-white/[0.05]">
       
-      {/* Infinite Marquee */}
-      <div className="relative w-full flex overflow-hidden whitespace-nowrap mb-32 -rotate-2 select-none pointer-events-none">
-        <motion.div 
+      {/* Infinite Marquee — Row 1 (left) */}
+      <div className="relative w-full flex overflow-hidden whitespace-nowrap -rotate-2 select-none pointer-events-none">
+        <motion.div
           className="flex gap-16 pr-16"
           animate={{ x: [0, -1035] }}
-          transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 22 }}
         >
-          {/* Repeat array 3 times for seamless looping */}
           {[...marqueeTech, ...marqueeTech, ...marqueeTech].map((tech, idx) => (
-            <span 
-              key={idx} 
-              className="text-[8vw] font-black font-heading tracking-tighter"
-              style={{
-                color: "transparent",
-                WebkitTextStroke: "1px rgba(255,255,255,0.1)"
-              }}
+            <span
+              key={idx}
+              className="text-[6vw] font-black font-heading tracking-tighter"
+              style={{ color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
+            >
+              {tech}
+            </span>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Infinite Marquee — Row 2 (right, opposite direction) */}
+      <div className="relative w-full flex overflow-hidden whitespace-nowrap rotate-2 select-none pointer-events-none mb-20">
+        <motion.div
+          className="flex gap-16 pr-16"
+          animate={{ x: [-1035, 0] }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 26 }}
+        >
+          {[...["FLASK", "FASTAPI", "REACT", "VECTOR_DB", "OPENAI", "AGENTS", "AUTOMATION", "MONGODB"], ...["FLASK", "FASTAPI", "REACT", "VECTOR_DB", "OPENAI", "AGENTS", "AUTOMATION", "MONGODB"], ...["FLASK", "FASTAPI", "REACT", "VECTOR_DB", "OPENAI", "AGENTS", "AUTOMATION", "MONGODB"]].map((tech, idx) => (
+            <span
+              key={idx}
+              className="text-[6vw] font-black font-heading tracking-tighter"
+              style={{ color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.07)" }}
             >
               {tech}
             </span>

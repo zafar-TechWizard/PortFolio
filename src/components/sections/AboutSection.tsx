@@ -24,7 +24,7 @@ const codeLines = [
 const stats = [
   { value: "3+", label: "Years Building AI Systems" },
   { value: "10+", label: "Projects Shipped" },
-  { value: "∞", label: "Systems Thinking" },
+  { value: "2", label: "Live AI Products" },
 ];
 
 export function AboutSection() {
