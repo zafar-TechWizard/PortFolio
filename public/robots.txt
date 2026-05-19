@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow non-public paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://zafar-dev-portfolio.vercel.app/sitemap.xml

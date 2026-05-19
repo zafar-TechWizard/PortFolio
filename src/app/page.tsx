@@ -1,5 +1,6 @@
 import { DynamicHeader } from "@/components/layout/DynamicHeader";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { SocialProofStrip } from "@/components/ui/SocialProofStrip";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
@@ -21,6 +22,7 @@ export default function Home() {
 
       <main className="flex flex-col items-center">
         <HeroSection />
+        <SocialProofStrip />
         <AboutSection />
         <ServicesSection />
         <ProcessSection />
@@ -38,16 +40,29 @@ export default function Home() {
             LET&apos;S BUILD THE <br className="hidden md:block"/> FUTURE.
           </h2>
 
-          <a
-            href="mailto:mdzafarddd@gmail.com"
-            className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white rounded-full bg-white/[0.05] border border-white/[0.1] backdrop-blur-xl overflow-hidden transition-all hover:scale-105 hover:border-white/[0.2] z-10"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
-            <span className="relative z-10 flex items-center gap-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-              mdzafarddd@gmail.com
-              <svg className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </span>
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 items-center z-10">
+            <a
+              href="/contact"
+              className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white rounded-full overflow-hidden transition-all hover:scale-105 z-10"
+              style={{ background: "linear-gradient(135deg,#FF6B4A,#8A63D2)", boxShadow: "0 0 40px rgba(255,107,74,0.3)" }}
+            >
+              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
+              <span className="relative z-10 flex items-center gap-3">
+                Start a Project
+                <svg className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
+              </span>
+            </a>
+            <a
+              href="mailto:mdzafarddd@gmail.com"
+              className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white rounded-full bg-white/[0.05] border border-white/[0.1] backdrop-blur-xl overflow-hidden transition-all hover:scale-105 hover:border-white/[0.2] z-10"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
+              <span className="relative z-10 flex items-center gap-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                mdzafarddd@gmail.com
+                <svg className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </span>
+            </a>
+          </div>
 
           <div className="mt-32 pt-8 border-t border-white/[0.05] w-full max-w-7xl flex flex-col md:flex-row items-center justify-between px-6 relative z-10">
             <p className="text-white/30 text-sm">

@@ -74,9 +74,9 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.12 }}
             className="text-5xl md:text-[5.5rem] font-bold tracking-tighter text-white mb-6 leading-[0.95] drop-shadow-2xl font-heading"
           >
-            Building <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-secondary">Intelligent Systems</span><br/>
-            into the Web.
+            Frontend to<br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-secondary">AI Agents —</span><br/>
+            I Build It All.
           </motion.h2>
 
           <motion.p
@@ -85,7 +85,7 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.24 }}
             className="text-white/60 text-lg md:text-xl mb-10 font-light max-w-md drop-shadow-md leading-relaxed"
           >
-            <strong className="text-white font-medium">AI Solutions Architect & Product Engineer</strong>. Turning complex ideas into scalable, automated, AI-powered digital products.
+            <strong className="text-white font-medium">Full-Stack Engineer · AI Systems · SaaS · Automation</strong>. From pixel-perfect interfaces to intelligent backends — complete products, shipped.
           </motion.p>
 
           <motion.div
@@ -94,10 +94,10 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.36 }}
             className="flex flex-wrap gap-4"
           >
-            <Button variant="primary" href="#contact" className="px-8 py-4 shadow-[0_0_40px_rgba(255,107,74,0.4)] border border-primary/50 text-base font-semibold group">
+            <Button variant="primary" href="/contact" className="px-8 py-4 shadow-[0_0_40px_rgba(255,107,74,0.4)] border border-primary/50 text-base font-semibold group">
               Let&apos;s Talk <span className="inline-block transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 ml-1">↗</span>
             </Button>
-            <Button variant="secondary" href="#projects" className="px-8 py-4 bg-white/[0.02] border-white/10 hover:bg-white/[0.08] text-white text-base backdrop-blur-md">
+            <Button variant="secondary" href="/#projects" className="px-8 py-4 bg-white/[0.02] border-white/10 hover:bg-white/[0.08] text-white text-base backdrop-blur-md">
               View Work
             </Button>
           </motion.div>
@@ -114,12 +114,12 @@ export function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative z-10">
               <p className="text-primary font-bold text-[10px] tracking-[0.25em] uppercase mb-2">Role</p>
-              <p className="text-white text-xl font-heading tracking-wide">AI Solutions Architect</p>
+              <p className="text-white text-xl font-heading tracking-wide">Full-Stack & AI Engineer</p>
             </div>
             <div className="w-full h-[1px] bg-gradient-to-r from-white/[0.1] to-transparent relative z-10" />
             <div className="relative z-10">
               <p className="text-secondary font-bold text-[10px] tracking-[0.25em] uppercase mb-2">Expertise</p>
-              <p className="text-white text-xl font-heading tracking-wide">SaaS & Automation</p>
+              <p className="text-white text-xl font-heading tracking-wide">AI · SaaS · Web · Automation</p>
             </div>
             <div className="w-full h-[1px] bg-gradient-to-r from-white/[0.1] to-transparent relative z-10" />
             <div className="flex justify-between items-center mt-2 relative z-10">

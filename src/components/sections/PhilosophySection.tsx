@@ -18,6 +18,7 @@ export function PhilosophySection() {
       id="philosophy"
       ref={containerRef}
       className="relative w-full bg-[#050505] py-32 px-6 overflow-hidden border-t border-white/[0.05]"
+      style={{ position: "relative" }}
     >
       {/* Abstract Background Elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 rounded-[100%] blur-[120px] pointer-events-none opacity-50" />

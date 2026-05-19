@@ -13,8 +13,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Zafar | AI Solutions Architect & Product Engineer",
-  description: "Portfolio of Zafar, an engineer who designs intelligent systems that automate workflows, organize knowledge, and turn ideas into scalable AI-powered products.",
+  title: "Zafar | Full-Stack Engineer · AI Systems · SaaS · Automation",
+  description:
+    "Portfolio of Zafar — Full-Stack Engineer, AI Systems Builder, and Product Maker. From pixel-perfect frontends to AI agents, SaaS products, automation pipelines, and ML models. Built to ship.",
   icons: {
     icon: "/img/Logo.png",
   },

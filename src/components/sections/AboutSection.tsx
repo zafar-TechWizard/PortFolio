@@ -6,15 +6,17 @@ import { motion, useInView } from "framer-motion";
 const codeLines = [
   "# identity.py — Zafar",
   "",
-  "role  = \"AI Solutions Architect\"",
-  "stack = [\"Python\", \"LangChain\", \"Next.js\", \"FastAPI\"]",
+  "role    = \"Full-Stack Engineer & AI Builder\"",
+  "stack   = [\"React\", \"Next.js\", \"FastAPI\", \"Python\", \"LangChain\"]",
+  "domains = [\"Web\", \"AI Agents\", \"SaaS\", \"Automation\", \"ML\"]",
   "",
-  "def solve(problem: BusinessProblem) -> System:",
-  "    arch = design_for_scale(problem)",
-  "    ai   = integrate_intelligence(arch)",
-  "    return deploy(ai)",
+  "def build(idea: Concept) -> Product:",
+  "    engineer_ui(idea)",
+  "    build_backend(idea)",
+  "    integrate_ai(idea)",
+  "    return ship_to_prod(idea)",
   "",
-  "open_to  = \"High-value AI consulting\"",
+  "open_to  = \"Full-Stack · AI · SaaS · Automation\"",
   "verified = True",
 ];
 
@@ -82,11 +84,12 @@ export function AboutSection() {
 
             {/* Paragraph */}
             <p className="text-white/55 text-[1.05rem] leading-[1.8] mb-10 max-w-lg">
-              I build intelligent, product-grade systems — shipped in production at{" "}
+              I engineer complete products — frontend, backend, AI systems, SaaS, automation,
+              ML models, and microservices. Shipped production software at{" "}
               <span className="text-white/85 font-semibold">SoftKiwi</span> as a Full-Stack Engineer,
-              and through applied GenAI work at{" "}
+              built real AI pipelines at{" "}
               <span className="text-white/85 font-semibold">Celebal Technologies</span>.
-              My focus: the right architecture for the real problem.
+              Whatever the problem demands — I build it.
             </p>
 
             {/* Stats Row */}
@@ -127,7 +130,7 @@ export function AboutSection() {
                 </div>
                 <div>
                   <p className="text-white/70 font-bold tracking-widest uppercase text-xs">Zafar</p>
-                  <p className="text-white/30 text-[10px] tracking-wider">AI Solutions Architect</p>
+                  <p className="text-white/30 text-[10px] tracking-wider">Full-Stack & AI Engineer</p>
                 </div>
               </div>
             </div>

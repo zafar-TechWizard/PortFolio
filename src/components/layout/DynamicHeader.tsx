@@ -3,11 +3,24 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import type { Transition } from "framer-motion";
 
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/skills", label: "Skills" },
+  { href: "/journey", label: "Journey" },
+];
+
 export function DynamicHeader() {
   const [isMerged, setIsMerged] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,11 +103,25 @@ export function DynamicHeader() {
               <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-b from-white/[0.1] to-white/[0.02] border border-white/20 border-t-white/40 shadow-[0_10px_40px_rgba(0,0,0,0.8)]"}`}>
                 <div className={`absolute inset-0 bg-gradient-to-b from-white/30 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-40"}`} />
                 <div className="relative z-10 flex items-center justify-center gap-6 w-full h-full px-8">
-                  <Link href="/" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Home</Link>
-                  <Link href="/about" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">About</Link>
-                  <Link href="/projects" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Projects</Link>
-                  <Link href="/skills" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Skills</Link>
-                  <Link href="/journey" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Journey</Link>
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`relative text-sm font-medium transition-all duration-200 ${
+                        isActive(link.href)
+                          ? "text-white drop-shadow-[0_0_12px_rgba(255,107,74,0.7)]"
+                          : "text-white/60 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                      }`}
+                    >
+                      {link.label}
+                      {isActive(link.href) && (
+                        <motion.span
+                          layoutId="activeNavIndicator"
+                          className="absolute -bottom-1.5 left-0 right-0 h-px rounded-full bg-gradient-to-r from-primary to-secondary"
+                        />
+                      )}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </motion.nav>
@@ -103,7 +130,7 @@ export function DynamicHeader() {
             <motion.div layout transition={springConfig} className="pointer-events-auto h-full w-[150px] flex items-center justify-center">
               <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out group ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-bl from-secondary/20 to-white/[0.05] border border-white/20 border-t-secondary/50 border-r-secondary/50 shadow-[0_10px_40px_rgba(0,0,0,0.8)] shadow-secondary/20 hover:shadow-[0_10px_40px_rgba(157,78,221,0.5)]"}`}>
                 <div className={`absolute inset-0 bg-gradient-to-l from-secondary/40 via-secondary/10 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-100"}`} />
-                <Link href="/#contact" className="relative z-10 flex items-center justify-center w-full h-full text-sm font-bold text-white tracking-wide group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(157,78,221,1)] transition-all">
+                <Link href="/contact" className="relative z-10 flex items-center justify-center w-full h-full text-sm font-bold text-white tracking-wide group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(157,78,221,1)] transition-all">
                   Contact Me
                 </Link>
               </div>
