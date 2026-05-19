@@ -8,7 +8,7 @@ const projects = [
     subtitle: "AI Research & Knowledge Assistant",
     description: "Your team wastes hours digging through documents, tabs, and chat history searching for answers that already exist in your company's knowledge. InfoLytix turns your entire knowledge base into a conversational AI resource — ask a question, get a source-referenced answer in under two seconds.",
     features: ["AI Conversational Search", "Web-enabled Workflows", "Document Ingestion", "AI Memory Systems"],
-    architecture: ["Flask", "MongoDB Atlas", "SQLite Hybrid", "Vector Search"],
+    architecture: ["Flask", "LangChain", "Groq LLM", "Vector Search"],
     align: "left",
     color: "from-[#FF6B4A]",
     status: "Shipped & Live",
@@ -38,6 +38,18 @@ const projects = [
     status: "Shipped",
     githubUrl: "https://github.com/zafar-TechWizard/ZenPulse",
     viz: "zenpulse"
+  },
+  {
+    title: "CoWork Pro",
+    subtitle: "Coworking Space Management SaaS",
+    description: "Managing a coworking space on spreadsheets and group chats is a full-time job on its own. CoWork Pro centralises every operational layer — member onboarding, workspace bookings, billing, and admin workflows — into a single, unified SaaS platform. Built and shipped professionally at SoftKiwi.",
+    features: ["Member Management", "Booking & Scheduling", "Billing & Invoicing", "Role-Based Access"],
+    architecture: ["Next.js", "FastAPI", "Tailwind CSS", "SQL", "Microservices"],
+    align: "right",
+    color: "from-[#3B82F6]",
+    status: "Shipped & Live",
+    githubUrl: null,
+    viz: "coworkpro"
   }
 ];
 
@@ -100,6 +112,7 @@ function ProjectCaseStudy({ project, index }: { project: typeof projects[0], ind
           {project.viz === "infolytix" && <InfoLytixViz />}
           {project.viz === "sofi" && <SOFIViz />}
           {project.viz === "zenpulse" && <ZenPulseViz />}
+          {project.viz === "coworkpro" && <CoWorkProViz />}
         </div>
       </div>
 
@@ -351,6 +364,96 @@ function ZenPulseViz() {
               transition={{ repeat: Infinity, duration: 1.2, delay: d }}
             />
           ))}
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── CoWork Pro: Dashboard UI Mockup ─── */
+const memberRows = [
+  { name: "Arjun Sharma", plan: "Hot Desk", status: "Active", statusColor: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20" },
+  { name: "Priya Nair", plan: "Private Cabin", status: "Active", statusColor: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20" },
+  { name: "Ravi Mehta", plan: "Meeting Room", status: "Booked", statusColor: "text-blue-400 bg-blue-400/10 border-blue-400/20" },
+];
+
+function CoWorkProViz() {
+  return (
+    <div className="flex flex-col w-full h-full max-w-[360px] mx-auto">
+      {/* Dashboard header */}
+      <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06] bg-white/[0.02] rounded-t-3xl">
+        <div className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+            <span className="text-blue-400 text-[10px] font-bold">C</span>
+          </div>
+          <span className="text-white/75 text-xs font-semibold">CoWork Pro</span>
+        </div>
+        <span className="text-white/25 text-[10px] font-mono">Admin Dashboard</span>
+      </div>
+
+      <div className="flex-1 flex flex-col gap-3 px-4 py-4 bg-[#0A0D12]/60">
+        {/* Stats row */}
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            { label: "Members", value: "142", color: "text-blue-400" },
+            { label: "Bookings", value: "38", color: "text-emerald-400" },
+            { label: "Revenue", value: "₹84K", color: "text-primary" },
+          ].map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex flex-col gap-0.5 p-3 rounded-xl bg-white/[0.03] border border-white/[0.05]"
+            >
+              <span className={`text-sm font-bold font-heading ${s.color}`}>{s.value}</span>
+              <span className="text-white/30 text-[9px] uppercase tracking-wide">{s.label}</span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Members list */}
+        <div className="flex flex-col gap-1.5">
+          <p className="text-white/25 text-[9px] uppercase tracking-[0.18em] px-1 font-semibold">Active Members</p>
+          {memberRows.map((m, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 + i * 0.1 }}
+              className="flex items-center justify-between px-3 py-2.5 rounded-xl bg-white/[0.02] border border-white/[0.04]"
+            >
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 rounded-full bg-blue-500/15 border border-blue-500/20 flex items-center justify-center shrink-0">
+                  <span className="text-blue-400/80 text-[10px] font-bold">{m.name[0]}</span>
+                </div>
+                <div>
+                  <p className="text-white/75 text-[11px] font-medium">{m.name}</p>
+                  <p className="text-white/30 text-[9px]">{m.plan}</p>
+                </div>
+              </div>
+              <span className={`text-[9px] px-2 py-0.5 rounded-full font-semibold border ${m.statusColor}`}>
+                {m.status}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Invoice row */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.55 }}
+          className="flex items-center justify-between px-3 py-2.5 rounded-xl bg-primary/[0.05] border border-primary/[0.12] mt-auto"
+        >
+          <div>
+            <p className="text-white/60 text-[10px] font-medium">Invoice #INV-2024</p>
+            <p className="text-white/30 text-[9px]">Arjun Sharma · Hot Desk · Mar</p>
+          </div>
+          <span className="text-primary text-[10px] font-bold">₹4,200</span>
         </motion.div>
       </div>
     </div>

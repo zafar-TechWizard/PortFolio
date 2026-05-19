@@ -8,17 +8,17 @@ const skillCategories = [
   {
     id: "ai",
     title: "AI & ML",
-    skills: ["Retrieval-Augmented Gen (RAG)", "AI Agents & Multi-Agent Systems", "LangChain Pipelines", "Context-aware Systems", "Prompt Engineering", "Semantic Search", "LLM Integration"]
+    skills: ["Retrieval-Augmented Gen (RAG)", "AI Agents & Multi-Agent Systems", "LangChain Pipelines", "LLM Integration", "Hugging Face", "OpenCV & Computer Vision", "NLP", "Prompt Engineering", "Semantic Search"]
   },
   {
     id: "backend",
     title: "Backend",
-    skills: ["Python", "Flask", "FastAPI", "REST APIs", "WebSocket Systems", "Async Architectures", "Authentication"]
+    skills: ["Python", "Flask", "FastAPI", "REST APIs", "WebSocket Systems", "Microservices", "Authentication", "Async Architectures"]
   },
   {
     id: "data",
     title: "Data & Cloud",
-    skills: ["MongoDB Atlas", "SQLite", "Vector Databases", "Document Storage", "Metadata Architectures", "Real-time Processing"]
+    skills: ["MongoDB Atlas", "PostgreSQL", "MySQL", "SQLite", "Vector Databases", "NumPy & Pandas", "Real-time Processing", "Document Storage"]
   },
   {
     id: "frontend",
@@ -28,7 +28,7 @@ const skillCategories = [
   {
     id: "automation",
     title: "Automation",
-    skills: ["WhatsApp API", "Web Scraping", "Background Tasks", "Event-driven Workflows", "API Integrations", "Notification Systems"]
+    skills: ["WhatsApp API", "Web Scraping Pipelines", "Background Tasks", "Event-driven Workflows", "API Integrations", "SMTP & Notification Systems"]
   }
 ];
 

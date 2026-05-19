@@ -55,7 +55,7 @@ export function DynamicHeader() {
               {/* Logo Blob */}
               <motion.div layout transition={springConfig} className="h-full bg-white/20 rounded-full w-[160px]" />
               {/* Nav Blob */}
-              <motion.div layout transition={springConfig} className="hidden lg:block h-full bg-white/20 rounded-full w-[450px]" />
+              <motion.div layout transition={springConfig} className="hidden lg:block h-full bg-white/20 rounded-full w-[530px]" />
               {/* Contact Blob */}
               <motion.div layout transition={springConfig} className="h-full bg-white/20 rounded-full w-[150px]" />
             </motion.div>
@@ -86,14 +86,15 @@ export function DynamicHeader() {
             </motion.div>
 
             {/* NAV ITEMS */}
-            <motion.nav layout transition={springConfig} className="hidden lg:flex pointer-events-auto h-full w-[450px]">
+            <motion.nav layout transition={springConfig} className="hidden lg:flex pointer-events-auto h-full w-[530px]">
               <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-b from-white/[0.1] to-white/[0.02] border border-white/20 border-t-white/40 shadow-[0_10px_40px_rgba(0,0,0,0.8)]"}`}>
                 <div className={`absolute inset-0 bg-gradient-to-b from-white/30 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-40"}`} />
-                <div className="relative z-10 flex items-center justify-center gap-8 w-full h-full px-8">
-                  <Link href="#services" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Services</Link>
-                  <Link href="#projects" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Projects</Link>
-                  <Link href="#philosophy" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Philosophy</Link>
-                  <Link href="#skills" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Skills</Link>
+                <div className="relative z-10 flex items-center justify-center gap-6 w-full h-full px-8">
+                  <Link href="/" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Home</Link>
+                  <Link href="/about" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">About</Link>
+                  <Link href="/projects" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Projects</Link>
+                  <Link href="/skills" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Skills</Link>
+                  <Link href="/journey" className="text-sm font-medium text-white/90 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">Journey</Link>
                 </div>
               </div>
             </motion.nav>
@@ -102,7 +103,7 @@ export function DynamicHeader() {
             <motion.div layout transition={springConfig} className="pointer-events-auto h-full w-[150px] flex items-center justify-center">
               <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out group ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-bl from-secondary/20 to-white/[0.05] border border-white/20 border-t-secondary/50 border-r-secondary/50 shadow-[0_10px_40px_rgba(0,0,0,0.8)] shadow-secondary/20 hover:shadow-[0_10px_40px_rgba(157,78,221,0.5)]"}`}>
                 <div className={`absolute inset-0 bg-gradient-to-l from-secondary/40 via-secondary/10 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-100"}`} />
-                <Link href="#contact" className="relative z-10 flex items-center justify-center w-full h-full text-sm font-bold text-white tracking-wide group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(157,78,221,1)] transition-all">
+                <Link href="/#contact" className="relative z-10 flex items-center justify-center w-full h-full text-sm font-bold text-white tracking-wide group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(157,78,221,1)] transition-all">
                   Contact Me
                 </Link>
               </div>

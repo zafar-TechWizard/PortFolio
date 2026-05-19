@@ -39,12 +39,12 @@ export default function Home() {
           </h2>
 
           <a
-            href="mailto:contact@thetrycompany.com"
+            href="mailto:mdzafarddd@gmail.com"
             className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white rounded-full bg-white/[0.05] border border-white/[0.1] backdrop-blur-xl overflow-hidden transition-all hover:scale-105 hover:border-white/[0.2] z-10"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
             <span className="relative z-10 flex items-center gap-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-              contact@thetrycompany.com
+              mdzafarddd@gmail.com
               <svg className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </span>
           </a>

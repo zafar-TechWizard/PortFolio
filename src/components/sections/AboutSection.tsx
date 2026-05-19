@@ -1,28 +1,25 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 
 const codeLines = [
-  "class ZafarIdentity(ProductEngineer):",
-  "    def __init__(self):",
-  "        self.role = 'AI Solutions Architect'",
-  "        self.focus = ['SaaS', 'Automation', 'AI']",
-  "        self.mindset = 'Systems Architect'",
+  "# identity.py — Zafar",
   "",
-  "    def execute_vision(self):",
-  "        while True:",
-  "            problem = identify_bottleneck()",
-  "            arch = design_scalable_system(problem)",
-  "            ai = deploy_intelligence(arch)",
-  "            return build_human_centered_ux(ai)",
+  "role  = \"AI Solutions Architect\"",
+  "stack = [\"Python\", \"LangChain\", \"Next.js\", \"FastAPI\"]",
   "",
-  "    def get_long_term_goal(self):",
-  "        return 'Build deeply intelligent,",
-  "                adaptive ecosystems.'",
+  "def solve(problem: BusinessProblem) -> System:",
+  "    arch = design_for_scale(problem)",
+  "    ai   = integrate_intelligence(arch)",
+  "    return deploy(ai)",
+  "",
+  "open_to  = \"High-value AI consulting\"",
+  "verified = True",
 ];
 
 const stats = [
-  { value: "3+", label: "Years Building AI Systems" },
+  { value: "3+", label: "Years Engineering" },
   { value: "10+", label: "Projects Shipped" },
   { value: "2", label: "Live AI Products" },
 ];
@@ -33,70 +30,109 @@ export function AboutSection() {
       id="about"
       className="relative w-full bg-[#050505] py-32 overflow-hidden border-t border-white/[0.05]"
     >
-      {/* Background Gradient */}
-      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* Dot grid texture */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.35]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      {/* Animated ambient orbs */}
+      <motion.div
+        className="absolute w-[700px] h-[700px] rounded-full bg-secondary/[0.07] blur-[140px] pointer-events-none"
+        animate={{ x: [0, 60, -30, 0], y: [0, -80, 50, 0] }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        style={{ top: "5%", left: "-10%" }}
+      />
+      <motion.div
+        className="absolute w-[500px] h-[500px] rounded-full bg-primary/[0.07] blur-[120px] pointer-events-none"
+        animate={{ x: [0, -50, 30, 0], y: [0, 70, -40, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 8 }}
+        style={{ bottom: "0%", right: "5%" }}
+      />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-20 items-center">
+        <div className="flex flex-col lg:flex-row gap-20 items-start">
 
           {/* Left: Terminal Visual */}
-          <div className="w-full lg:w-1/2 z-10">
+          <div className="w-full lg:w-1/2 z-10 lg:sticky lg:top-32 relative">
+            {/* Subtle ambient glow behind terminal */}
+            <div className="absolute -inset-4 bg-primary/[0.04] rounded-[3rem] blur-2xl pointer-events-none" />
             <TerminalWindow />
           </div>
 
           {/* Right: Text Content */}
-          <div className="w-full lg:w-1/2 flex flex-col gap-10 z-10">
-            <div className="inline-flex items-center gap-3 rounded-full bg-white/[0.03] border border-white/[0.1] px-5 py-2.5 text-sm font-medium text-primary w-fit backdrop-blur-xl">
+          <div className="w-full lg:w-1/2 flex flex-col z-10">
+
+            {/* Label */}
+            <div className="inline-flex items-center gap-3 rounded-full bg-white/[0.03] border border-white/[0.1] px-5 py-2.5 text-sm font-medium text-primary w-fit backdrop-blur-xl mb-7">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               The Identity
             </div>
 
-            <h2 className="text-5xl md:text-[4rem] font-bold tracking-tighter text-white leading-[1.05] font-heading">
+            {/* Headline */}
+            <h2 className="text-5xl md:text-[4rem] font-bold tracking-tighter text-white leading-[1.05] font-heading mb-6">
               More than a developer.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
                 An Architect.
               </span>
             </h2>
 
-            <div className="flex flex-col gap-5 text-white/60 text-lg leading-relaxed">
-              <p>
-                I am a Product Engineer focused on building intelligent digital systems that combine AI, automation, scalable backend architectures, and user-focused product experiences.
-              </p>
-              <p>
-                My long-term vision is to create deeply intelligent AI ecosystems — not just functional tools, but adaptive digital companions capable of understanding users, learning continuously, and improving everyday workflows.
-              </p>
-            </div>
+            {/* Paragraph */}
+            <p className="text-white/55 text-[1.05rem] leading-[1.8] mb-10 max-w-lg">
+              I build intelligent, product-grade systems — shipped in production at{" "}
+              <span className="text-white/85 font-semibold">SoftKiwi</span> as a Full-Stack Engineer,
+              and through applied GenAI work at{" "}
+              <span className="text-white/85 font-semibold">Celebal Technologies</span>.
+              My focus: the right architecture for the real problem.
+            </p>
 
             {/* Stats Row */}
-            <div className="grid grid-cols-3 gap-4 pt-4">
+            <div className="grid grid-cols-3 gap-3 mb-8">
               {stats.map((stat, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="flex flex-col gap-1 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md"
+                  transition={{ delay: idx * 0.08 }}
+                  className="flex flex-col gap-1 p-5 rounded-2xl bg-white/[0.025] border border-white/[0.06] hover:border-white/[0.1] hover:bg-white/[0.04] transition-colors"
                 >
                   <span className="text-3xl font-black text-white font-heading tracking-tighter">{stat.value}</span>
-                  <span className="text-white/40 text-xs uppercase tracking-widest leading-tight">{stat.label}</span>
+                  <span className="text-white/35 text-[10px] uppercase tracking-[0.15em] leading-tight">{stat.label}</span>
                 </motion.div>
               ))}
             </div>
 
-            {/* Signature Badge */}
-            <div className="flex items-center gap-4 pt-2">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 border border-white/10 flex items-center justify-center backdrop-blur-md shadow-[0_0_20px_rgba(255,107,74,0.2)]">
-                <span className="text-white font-heading font-bold text-xl">Z</span>
-              </div>
-              <div>
-                <p className="text-white font-bold tracking-widest uppercase text-sm">Zafar</p>
-                <p className="text-white/40 text-xs tracking-widest uppercase">AI Solutions Architect & Product Engineer</p>
+            {/* Separator */}
+            <div className="w-full h-px bg-white/[0.06] mb-8" />
+
+            {/* Bottom row: CTA + Signature */}
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/[0.1] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.18] text-white/60 hover:text-white/90 text-sm font-medium transition-all"
+              >
+                Full Story
+                <span className="text-white/30 group-hover:text-white/60 transition-colors">—</span>
+                <span className="text-white/45 group-hover:text-white/80 text-xs">Experience & More</span>
+                <span className="transform group-hover:translate-x-0.5 transition-transform text-white/40 group-hover:text-primary">→</span>
+              </Link>
+
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/30 to-secondary/20 border border-white/[0.1] flex items-center justify-center shadow-[0_0_16px_rgba(255,107,74,0.15)]">
+                  <span className="text-white font-heading font-bold text-sm">Z</span>
+                </div>
+                <div>
+                  <p className="text-white/70 font-bold tracking-widest uppercase text-xs">Zafar</p>
+                  <p className="text-white/30 text-[10px] tracking-wider">AI Solutions Architect</p>
+                </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
     </section>
@@ -118,18 +154,24 @@ function TerminalWindow() {
       } else {
         clearInterval(interval);
       }
-    }, 130);
+    }, 110);
     return () => clearInterval(interval);
   }, [isInView]);
 
-  const highlight = (line: string, idx: number) => {
+  const highlight = (line: string) => {
     if (line === "") return <span>&nbsp;</span>;
 
-    // Keywords
-    if (/^(class|def|return|while)/.test(line.trim())) {
-      const keyword = line.trim().split(" ")[0];
-      const rest = line.replace(keyword, "");
+    // Comment
+    if (line.trim().startsWith("#")) {
+      return <span className="text-white/25 italic">{line}</span>;
+    }
+
+    // Keywords at start of trimmed line
+    if (/^(class|def|return|while|import|from)/.test(line.trim())) {
+      const trimmed = line.trim();
+      const keyword = trimmed.split(/[\s(]/)[0];
       const indent = line.match(/^\s*/)?.[0] ?? "";
+      const rest = line.slice(indent.length + keyword.length);
       return (
         <>
           <span className="text-secondary font-bold">{indent}{keyword}</span>
@@ -138,25 +180,55 @@ function TerminalWindow() {
       );
     }
 
-    // self.x = 'value' lines
-    if (line.includes("self.")) {
-      const parts = line.split("=");
+    // Dict string entries: "key" : "value"
+    if (/^\s+"[^"]*"\s*:\s*"[^"]*"/.test(line)) {
+      const colonIdx = line.indexOf(":");
       return (
         <>
-          <span className="text-primary/90">{parts[0]}</span>
-          {parts.length > 1 && <span className="text-white/50">= </span>}
-          <span className="text-green-400/80">{parts.slice(1).join("=")}</span>
+          <span className="text-blue-400/80">{line.slice(0, colonIdx + 1)}</span>
+          <span className="text-green-400/80">{line.slice(colonIdx + 1)}</span>
         </>
       );
     }
 
-    // Function call lines
+    // Closing brace/bracket only
+    if (line.trim() === "}" || line.trim() === "]" || line.trim() === ")") {
+      return <span className="text-white/40">{line}</span>;
+    }
+
+    // Variable assignments (role = , stack = ) — no parens, no leading self.
+    if (line.includes(" = ") && !line.trim().startsWith("self.") && !line.includes("(")) {
+      const eqIdx = line.indexOf(" = ");
+      return (
+        <>
+          <span className="text-primary/80">{line.slice(0, eqIdx + 3)}</span>
+          <span className="text-green-400/80">{line.slice(eqIdx + 3)}</span>
+        </>
+      );
+    }
+
+    // self.x lines (assignment or call)
+    if (line.includes("self.")) {
+      if (line.includes(" = ")) {
+        const eqIdx = line.indexOf(" = ");
+        return (
+          <>
+            <span className="text-primary/90">{line.slice(0, eqIdx)}</span>
+            <span className="text-white/50"> = </span>
+            <span className="text-blue-400/80">{line.slice(eqIdx + 3)}</span>
+          </>
+        );
+      }
+      return <span className="text-blue-400/80">{line}</span>;
+    }
+
+    // Function call lines (has parens but no self)
     if (line.includes("(")) {
       return <span className="text-blue-400/80">{line}</span>;
     }
 
-    // Continuation string lines
-    if (line.trim().startsWith("'") || line.trim().startsWith('"')) {
+    // String lines
+    if (line.trim().startsWith('"') || line.trim().startsWith("'")) {
       return <span className="text-green-400/80">{line}</span>;
     }
 
@@ -166,7 +238,7 @@ function TerminalWindow() {
   return (
     <div
       ref={ref}
-      className="relative w-full rounded-[2rem] bg-[#0A0D12] border border-white/[0.08] shadow-[0_30px_70px_rgba(0,0,0,0.7)] overflow-hidden"
+      className="relative w-full rounded-[2rem] bg-[#0A0D12] border border-white/[0.08] overflow-hidden"
       style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.05), 0 30px 70px rgba(0,0,0,0.7), 0 0 60px rgba(255,107,74,0.05)" }}
     >
       {/* Terminal chrome bar */}
@@ -181,28 +253,27 @@ function TerminalWindow() {
       </div>
 
       {/* Code Body */}
-      <div className="p-6 font-mono text-sm leading-7 overflow-x-auto min-h-[380px]">
+      <div className="p-6 font-mono text-sm leading-[1.9] overflow-x-auto pb-8">
         {codeLines.map((line, idx) => (
           <motion.div
             key={idx}
             initial={{ opacity: 0 }}
             animate={idx < displayedLines ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.15 }}
+            transition={{ duration: 0.12 }}
             className="flex"
           >
-            <span className="text-white/20 w-8 shrink-0 select-none text-right mr-6">
+            <span className="text-white/15 w-7 shrink-0 select-none text-right mr-5 tabular-nums">
               {idx + 1}
             </span>
-            <span className="whitespace-pre">{highlight(line, idx)}</span>
+            <span className="whitespace-pre">{highlight(line)}</span>
           </motion.div>
         ))}
 
-        {/* Blinking cursor while typing */}
         {displayedLines < codeLines.length && (
           <motion.div
             animate={{ opacity: [1, 0, 1] }}
-            transition={{ repeat: Infinity, duration: 0.9 }}
-            className="w-2 h-5 bg-white/50 inline-block ml-8 mt-1 rounded-sm"
+            transition={{ repeat: Infinity, duration: 0.85 }}
+            className="w-[7px] h-[18px] bg-white/40 inline-block ml-12 mt-1 rounded-[2px]"
           />
         )}
       </div>
