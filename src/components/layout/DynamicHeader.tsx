@@ -76,9 +76,11 @@ export function DynamicHeader() {
   const logoX = useTransform(progress, [0, 1], [0, logoMax]);
   const contactX = useTransform(progress, [0, 1], [0, contactMax]);
 
+  // Header "activates" as content scrolls behind it — firms up from 0.82 → 1
+  const headerOpacity = useTransform(progress, [0, 0.25], [0.82, 1]);
+
   // Glass crossfade: three separate pills → one unified glass panel
-  // Separate pills fade out while blobs are merging (progress 0.55 → 0.85)
-  // const separateOpacity = useTransform(progress, [0.55, 0.85], [1, 0]);
+  // Separate pills fade out while blobs are merging (progress 0.00 → 0.95)
   const separateOpacity = useTransform(progress, [0.0, 0.95], [1, 0]);
   // Unified panel fades in only after merge is fully done (progress 0.98 → 1.0)
   const unifiedOpacity = useTransform(progress, [0.98, 1], [0, 1]);
@@ -127,9 +129,12 @@ export function DynamicHeader() {
         </defs>
       </svg>
 
-      <div
+      <motion.div
         className="fixed top-0 left-0 w-full z-50 pointer-events-none"
-        style={{ paddingTop: 14 }}
+        style={{ paddingTop: 14, opacity: headerOpacity }}
+        initial={{ y: -86 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
       >
         <div
           ref={containerRef}
@@ -157,7 +162,10 @@ export function DynamicHeader() {
             <div className="relative" style={{ height: 56 }}>
 
               {/* CENTER NAV DROP — stationary, never changes size */}
-              <div
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.16, duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   position: "absolute",
                   top: 0,
@@ -173,6 +181,9 @@ export function DynamicHeader() {
 
               {/* LOGO DROP — slides right until it touches nav left side */}
               <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   position: "absolute",
                   top: 0,
@@ -188,6 +199,9 @@ export function DynamicHeader() {
 
               {/* CONTACT DROP — slides left until it touches nav right side */}
               <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.27, duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   position: "absolute",
                   top: 0,
@@ -323,6 +337,9 @@ export function DynamicHeader() {
             <motion.div
               className="pointer-events-auto h-full flex items-center shrink-0"
               style={{ width: LOGO_W, x: logoX }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.05, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               <Link
                 href="/"
@@ -347,12 +364,17 @@ export function DynamicHeader() {
               className="hidden lg:flex pointer-events-auto h-full items-center justify-center shrink-0"
               style={{ width: NAV_W }}
             >
-              <div className="flex items-center justify-center gap-7 w-full h-full px-8">
+              <motion.div
+                className="flex items-center justify-center gap-7 w-full h-full px-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.16, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
+                    className={`relative text-sm font-medium transition-colors duration-200 whitespace-nowrap hover:-translate-y-px transition-transform ${
                       isActive(link.href)
                         ? "text-white drop-shadow-[0_0_10px_rgba(255,107,74,0.65)]"
                         : "text-white/55 hover:text-white"
@@ -368,7 +390,7 @@ export function DynamicHeader() {
                     )}
                   </Link>
                 ))}
-              </div>
+              </motion.div>
             </nav>
 
             {/* HAMBURGER — mobile */}
@@ -391,6 +413,9 @@ export function DynamicHeader() {
             <motion.div
               className="hidden lg:flex pointer-events-auto h-full items-center justify-center shrink-0"
               style={{ width: CONTACT_W, x: contactX }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.27, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
               <Link
                 href="/contact"
@@ -402,7 +427,7 @@ export function DynamicHeader() {
 
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ─────────────────────────────────────────
           MOBILE FULLSCREEN OVERLAY
