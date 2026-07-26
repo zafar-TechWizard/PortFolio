@@ -17,6 +17,10 @@
 }
 
 @layer base {
+  * {
+    cursor: none !important;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
