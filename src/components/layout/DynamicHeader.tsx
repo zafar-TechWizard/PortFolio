@@ -28,6 +28,13 @@ const PADDING = 24;
 // Blobs stop HERE — touching the nav sides, not going inside.
 const OVERLAP = 12;
 
+// Merged state geometry (constant, independent of viewport width)
+// Merged width  = full span of all three blobs when touching
+// Merged offset = distance from viewport center to panel left edge
+//   = NAV_W/2 - OVERLAP + LOGO_W = 245 - 12 + 160 = 393
+const MERGED_W = LOGO_W + NAV_W + CONTACT_W - 2 * OVERLAP; // 776px
+const MERGED_OFFSET = NAV_W / 2 - OVERLAP + LOGO_W;         // 393px → calc(50% - 393px)
+
 export function DynamicHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
@@ -66,11 +73,15 @@ export function DynamicHeader() {
   const rawProgress = useTransform(scrollY, [0, 460], [0, 1], { clamp: true });
   const progress = useSpring(rawProgress, { stiffness: 120, damping: 18, mass: 0.9 });
 
-  // Blobs translate until their outer edges rest against the nav sides.
-  // OVERLAP=12 → gooey filter fuses the touching edges into one liquid shape.
-  // No scale-down — blobs stay full size and ATTACH to the nav, not disappear.
   const logoX = useTransform(progress, [0, 1], [0, logoMax]);
   const contactX = useTransform(progress, [0, 1], [0, contactMax]);
+
+  // Glass crossfade: three separate pills → one unified glass panel
+  // Separate pills fade out while blobs are merging (progress 0.55 → 0.85)
+  // const separateOpacity = useTransform(progress, [0.55, 0.85], [1, 0]);
+  const separateOpacity = useTransform(progress, [0.0, 0.95], [1, 0]);
+  // Unified panel fades in only after merge is fully done (progress 0.98 → 1.0)
+  const unifiedOpacity = useTransform(progress, [0.98, 1], [0, 1]);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -194,12 +205,18 @@ export function DynamicHeader() {
           </div>
 
           {/* ═══════════════════════════════════════════
-              LAYER 2 — GLASS SHEEN OVERLAY
-              A thin highlight + backdrop-blur ONLY for
-              the center nav pill (always present).
-              Side pills get a subtle highlight that
-              fades with sideOpacity.
-              NOT filtered by gooey — keeps it crisp.
+              LAYER 2 — GLASS OVERLAY (crossfade)
+
+              Phase A — three separate pills (at rest):
+                Logo + Nav + Contact each have their
+                own glass ring. Fade OUT on merge.
+
+              Phase B — unified glass panel (merged):
+                Single wide backdrop-blur panel that
+                covers the exact merged blob footprint.
+                Fades IN as merge completes.
+
+              NOT filtered by gooey — stays crisp.
           ═══════════════════════════════════════════ */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -207,7 +224,8 @@ export function DynamicHeader() {
           >
             <div className="relative" style={{ height: 56 }}>
 
-              {/* Logo sheen */}
+              {/* ── PHASE A: three separate glass pills ── */}
+              {/* Logo glass */}
               <motion.div
                 style={{
                   position: "absolute",
@@ -217,31 +235,33 @@ export function DynamicHeader() {
                   height: 56,
                   borderRadius: 9999,
                   x: logoX,
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid rgba(255,255,255,0.14)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)",
+                  opacity: separateOpacity,
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.2), 0 8px 32px rgba(0,0,0,0.4)",
                 }}
               />
 
-              {/* Center nav glass — always */}
-              <div
+              {/* Nav glass */}
+              <motion.div
                 style={{
                   position: "absolute",
                   top: 0,
                   width: NAV_W,
                   height: 56,
                   left: "50%",
-                  transform: "translateX(-50%)",
+                  x: "-50%",
+                  opacity: separateOpacity,
                   borderRadius: 9999,
                   backdropFilter: "blur(16px)",
                   WebkitBackdropFilter: "blur(16px)",
-                  border: "1px solid rgba(255,255,255,0.18)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.26)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.28), 0 8px 32px rgba(0,0,0,0.4)",
                 }}
               />
 
-              {/* Contact sheen */}
+              {/* Contact glass */}
               <motion.div
                 style={{
                   position: "absolute",
@@ -251,10 +271,35 @@ export function DynamicHeader() {
                   height: 56,
                   borderRadius: 9999,
                   x: contactX,
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid rgba(255,255,255,0.14)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)",
+                  opacity: separateOpacity,
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.2), 0 8px 32px rgba(0,0,0,0.4)",
+                }}
+              />
+
+              {/* ── PHASE B: unified single glass panel ──
+                  Width  = MERGED_W = 776px (all three blobs joined)
+                  Left   = calc(50% - MERGED_OFFSET px) = calc(50% - 393px)
+                  This sits exactly over the gooey merged shape.
+              */}
+              <motion.div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: `calc(50% - ${MERGED_OFFSET}px)`,
+                  width: MERGED_W,
+                  height: 56,
+                  borderRadius: 9999,
+                  opacity: unifiedOpacity,
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)",
+                  border: "1px solid rgba(255,255,255,0.18)",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.3), 0 16px 48px rgba(0,0,0,0.55)",
                 }}
               />
 
