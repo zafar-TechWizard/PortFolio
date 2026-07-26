@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Archivo, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { LenisProvider } from "@/components/providers/LenisProvider";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -29,10 +31,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
-      className={`${archivo.variable} ${spaceGrotesk.variable} h-full antialiased scroll-smooth`}
+      className={`${archivo.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <CustomCursor />
+        <LenisProvider>{children}</LenisProvider>
+      </body>
     </html>
   );
 }

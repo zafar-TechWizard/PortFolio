@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Transition } from "framer-motion";
 
 const navLinks = [
@@ -17,7 +17,19 @@ const navLinks = [
 
 export function DynamicHeader() {
   const [isMerged, setIsMerged] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -126,8 +138,21 @@ export function DynamicHeader() {
               </div>
             </motion.nav>
 
-            {/* CONTACT */}
-            <motion.div layout transition={springConfig} className="pointer-events-auto h-full w-[150px] flex items-center justify-center">
+            {/* HAMBURGER — mobile only */}
+            <motion.div layout transition={springConfig} className="lg:hidden pointer-events-auto h-full flex items-center justify-center w-[60px]">
+              <button
+                onClick={() => setMobileOpen((o) => !o)}
+                aria-label="Toggle menu"
+                className="relative w-10 h-10 flex flex-col items-center justify-center gap-[5px] group"
+              >
+                <span className={`block w-5 h-[1.5px] bg-white transition-all duration-300 origin-center ${mobileOpen ? "rotate-45 translate-y-[6.5px]" : ""}`} />
+                <span className={`block h-[1.5px] bg-white transition-all duration-300 ${mobileOpen ? "w-0 opacity-0" : "w-5"}`} />
+                <span className={`block w-5 h-[1.5px] bg-white transition-all duration-300 origin-center ${mobileOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`} />
+              </button>
+            </motion.div>
+
+            {/* CONTACT — desktop only */}
+            <motion.div layout transition={springConfig} className="hidden lg:flex pointer-events-auto h-full w-[150px] items-center justify-center">
               <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out group ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-bl from-secondary/20 to-white/[0.05] border border-white/20 border-t-secondary/50 border-r-secondary/50 shadow-[0_10px_40px_rgba(0,0,0,0.8)] shadow-secondary/20 hover:shadow-[0_10px_40px_rgba(157,78,221,0.5)]"}`}>
                 <div className={`absolute inset-0 bg-gradient-to-l from-secondary/40 via-secondary/10 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-100"}`} />
                 <Link href="/contact" className="relative z-10 flex items-center justify-center w-full h-full text-sm font-bold text-white tracking-wide group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(157,78,221,1)] transition-all">
@@ -147,6 +172,69 @@ export function DynamicHeader() {
         </div>
 
       </div>
+      {/* Mobile fullscreen overlay */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-40 lg:hidden flex flex-col bg-[#050505]/95 backdrop-blur-2xl"
+          >
+            {/* Ambient glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
+
+            <nav className="flex-1 flex flex-col items-center justify-center gap-2 px-8">
+              {navLinks.map((link, idx) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={{ delay: idx * 0.06, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-full"
+                >
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`group flex items-center justify-between w-full py-5 border-b border-white/[0.06] transition-colors ${
+                      isActive(link.href) ? "text-white" : "text-white/40 hover:text-white"
+                    }`}
+                  >
+                    <span className="text-4xl font-bold font-heading tracking-tighter">{link.label}</span>
+                    {isActive(link.href) && (
+                      <span className="text-primary text-2xl">↗</span>
+                    )}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+
+            {/* Bottom: socials + CTA */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.35, duration: 0.4 }}
+              className="px-8 pb-12 flex items-center justify-between"
+            >
+              <div className="flex gap-6">
+                <a href="#" className="text-white/30 hover:text-white text-sm font-medium transition-colors">LinkedIn</a>
+                <a href="https://github.com/zafar-TechWizard" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-sm font-medium transition-colors">GitHub</a>
+              </div>
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="px-6 py-3 rounded-full text-sm font-bold text-white"
+                style={{ background: "linear-gradient(135deg,#FF6B4A,#8A63D2)" }}
+              >
+                Contact Me
+              </Link>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
