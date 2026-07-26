@@ -1,98 +1,84 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-type CursorState = "default" | "hover" | "text";
+type CursorState = "default" | "hover";
 
 export function CustomCursor() {
   const [state, setState] = useState<CursorState>("default");
   const [visible, setVisible] = useState(false);
-  const cursorRef = useRef<HTMLDivElement>(null);
 
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
+  const mouseX = useMotionValue(-200);
+  const mouseY = useMotionValue(-200);
 
-  // Outer ring — slow, laggy follow
-  const springX = useSpring(mouseX, { stiffness: 120, damping: 20, mass: 0.5 });
-  const springY = useSpring(mouseY, { stiffness: 120, damping: 20, mass: 0.5 });
+  // Outer ring — slight lag, feels premium
+  const ringX = useSpring(mouseX, { stiffness: 350, damping: 28, mass: 0.3 });
+  const ringY = useSpring(mouseY, { stiffness: 350, damping: 28, mass: 0.3 });
 
-  // Inner dot — instant follow
-  const dotX = useSpring(mouseX, { stiffness: 800, damping: 40 });
-  const dotY = useSpring(mouseY, { stiffness: 800, damping: 40 });
+  // Inner dot — near-instant
+  const dotX = useSpring(mouseX, { stiffness: 1500, damping: 50 });
+  const dotY = useSpring(mouseY, { stiffness: 1500, damping: 50 });
 
   useEffect(() => {
-    // Hide on touch devices
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    // Disable on touch devices
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
 
     const onMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!visible) setVisible(true);
+      setVisible(true);
     };
 
-    const onEnter = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.getAttribute("role") === "button"
-      ) {
-        setState("hover");
-      } else if (target.tagName === "P" || target.tagName === "SPAN" || target.tagName === "H1" || target.tagName === "H2" || target.tagName === "H3") {
-        setState("text");
-      } else {
-        setState("default");
-      }
+    const onOver = (e: MouseEvent) => {
+      const t = e.target as HTMLElement;
+      const isInteractive =
+        t.tagName === "A" ||
+        t.tagName === "BUTTON" ||
+        !!t.closest("a") ||
+        !!t.closest("button") ||
+        t.getAttribute("role") === "button";
+      setState(isInteractive ? "hover" : "default");
     };
 
     const onLeave = () => setVisible(false);
+    const onEnter = () => setVisible(true);
 
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseover", onEnter);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("mouseover", onOver, { passive: true });
     document.documentElement.addEventListener("mouseleave", onLeave);
-    document.documentElement.addEventListener("mouseenter", () => setVisible(true));
+    document.documentElement.addEventListener("mouseenter", onEnter);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseover", onEnter);
+      window.removeEventListener("mouseover", onOver);
       document.documentElement.removeEventListener("mouseleave", onLeave);
+      document.documentElement.removeEventListener("mouseenter", onEnter);
     };
-  }, [mouseX, mouseY, visible]);
+  }, [mouseX, mouseY]);
 
-  const ringSize = state === "hover" ? 48 : state === "text" ? 3 : 36;
-  const ringOpacity = state === "hover" ? 0.6 : 0.4;
-  const dotSize = state === "hover" ? 0 : 5;
-  const ringBorderColor =
-    state === "hover" ? "rgba(255,107,74,0.8)" : "rgba(255,255,255,0.5)";
-  const ringBg = state === "hover" ? "rgba(255,107,74,0.08)" : "transparent";
+  const isHover = state === "hover";
 
   return (
     <>
-      {/* Hide native cursor globally */}
-      <style>{`* { cursor: none !important; }`}</style>
-
       {/* Outer ring */}
       <motion.div
-        ref={cursorRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full border"
+        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full border border-white/50"
         style={{
-          x: springX,
-          y: springY,
+          x: ringX,
+          y: ringY,
           translateX: "-50%",
           translateY: "-50%",
-          opacity: visible ? ringOpacity : 0,
-          width: ringSize,
-          height: ringSize,
-          borderColor: ringBorderColor,
-          backgroundColor: ringBg,
-          transition: "width 0.25s ease, height 0.25s ease, background-color 0.25s ease, border-color 0.25s ease",
+          width: isHover ? 44 : 32,
+          height: isHover ? 44 : 32,
+          opacity: visible ? (isHover ? 0.7 : 0.45) : 0,
+          borderColor: isHover ? "rgba(255,107,74,0.85)" : "rgba(255,255,255,0.5)",
+          backgroundColor: isHover ? "rgba(255,107,74,0.06)" : "transparent",
+          transition: "width 0.2s ease, height 0.2s ease, opacity 0.15s ease, border-color 0.2s ease, background-color 0.2s ease",
         }}
       />
 
-      {/* Inner dot */}
+      {/* Inner dot — hidden on hover */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full bg-white"
         style={{
@@ -100,10 +86,10 @@ export function CustomCursor() {
           y: dotY,
           translateX: "-50%",
           translateY: "-50%",
+          width: isHover ? 0 : 4,
+          height: isHover ? 0 : 4,
           opacity: visible ? 1 : 0,
-          width: dotSize,
-          height: dotSize,
-          transition: "width 0.2s ease, height 0.2s ease, opacity 0.2s ease",
+          transition: "width 0.15s ease, height 0.15s ease, opacity 0.15s ease",
         }}
       />
     </>

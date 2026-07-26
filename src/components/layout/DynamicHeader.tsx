@@ -1,11 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import type { Transition } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useSpring,
+} from "framer-motion";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -15,178 +20,361 @@ const navLinks = [
   { href: "/journey", label: "Journey" },
 ];
 
+const LOGO_W = 160;
+const NAV_W = 490;
+const CONTACT_W = 150;
+const PADDING = 24;
+// Small overlap so gooey filter creates a liquid neck at the join.
+// Blobs stop HERE — touching the nav sides, not going inside.
+const OVERLAP = 12;
+
 export function DynamicHeader() {
-  const [isMerged, setIsMerged] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [logoMax, setLogoMax] = useState(180);
+  const [contactMax, setContactMax] = useState(-180);
 
-  // Lock body scroll when mobile menu is open
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const calc = () => {
+      const innerW = el.offsetWidth - 2 * PADDING;
+      // Logo right edge + logoMax = nav left edge + OVERLAP
+      //   => LOGO_W + logoMax = innerW/2 - NAV_W/2 + OVERLAP
+      setLogoMax(innerW / 2 - NAV_W / 2 + OVERLAP - LOGO_W);
+      // Contact left edge (= innerW - CONTACT_W) + contactMax = nav right edge - OVERLAP
+      //   => contactMax = innerW/2 + NAV_W/2 - OVERLAP - (innerW - CONTACT_W)
+      //                 = -innerW/2 + NAV_W/2 - OVERLAP + CONTACT_W
+      setContactMax(-(innerW / 2 - NAV_W / 2 + OVERLAP - CONTACT_W));
+    };
+    calc();
+    const ro = new ResizeObserver(calc);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const { scrollY } = useScroll();
+  const rawProgress = useTransform(scrollY, [0, 460], [0, 1], { clamp: true });
+  const progress = useSpring(rawProgress, { stiffness: 120, damping: 18, mass: 0.9 });
+
+  // Blobs translate until their outer edges rest against the nav sides.
+  // OVERLAP=12 → gooey filter fuses the touching edges into one liquid shape.
+  // No scale-down — blobs stay full size and ATTACH to the nav, not disappear.
+  const logoX = useTransform(progress, [0, 1], [0, logoMax]);
+  const contactX = useTransform(progress, [0, 1], [0, contactMax]);
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Trigger slightly before leaving hero
-      const threshold = window.innerHeight * 0.8;
-      setIsMerged(window.scrollY > threshold);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Soft spring for the fluid liquid feel
-  const springConfig: Transition = { type: "spring", stiffness: 150, damping: 20, mass: 1 };
-
   return (
     <>
-      {/* 
-        True Gooey SVG Filter 
-        Applied ONLY to the background layer so text remains crystal clear!
-      */}
-      <svg width="0" height="0" className="absolute hidden">
-        <filter id="gooey">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10" result="gooey" />
-          <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
-        </filter>
+      {/* ─────────────────────────────────────────
+          SVG GOOEY FILTER
+          feGaussianBlur blurs alpha → feColorMatrix
+          thresholds it to a sharp edge → creates the
+          liquid neck/merge at overlap zone.
+          feDropShadow adds depth after merge.
+      ───────────────────────────────────────── */}
+      <svg
+        width="0"
+        height="0"
+        aria-hidden="true"
+        style={{ position: "fixed", top: 0, left: 0, pointerEvents: "none", zIndex: -1 }}
+      >
+        <defs>
+          <filter id="gooey-hdr" x="-60%" y="-300%" width="220%" height="700%">
+            {/* Step 1: blur to create soft alpha gradient between blobs */}
+            <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="blur" />
+            {/* Step 2: threshold — pixels with alpha > 11/26≈0.42 snap to opaque */}
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -11"
+              result="gooeyMask"
+            />
+            {/* Step 3: clip original colors to the gooey mask shape */}
+            <feComposite in="SourceGraphic" in2="gooeyMask" operator="atop" result="clipped" />
+            {/* Step 4: drop shadow for depth */}
+            <feDropShadow
+              dx="0"
+              dy="6"
+              stdDeviation="16"
+              floodColor="rgba(0,0,0,0.7)"
+              floodOpacity="1"
+              in="clipped"
+            />
+          </filter>
+        </defs>
       </svg>
 
-      <div className="fixed top-0 left-0 w-full z-50 pointer-events-none mt-4">
+      <div
+        className="fixed top-0 left-0 w-full z-50 pointer-events-none"
+        style={{ paddingTop: 14 }}
+      >
+        <div
+          ref={containerRef}
+          className="relative w-full"
+          style={{ padding: `0 ${PADDING}px` }}
+        >
 
-        <div className="relative w-full mx-auto px-6">
+          {/* ═══════════════════════════════════════════
+              LAYER 1 — GOOEY WATER DROPS
+              These ARE the visible header shapes.
+              Color must contrast with background.
+              Background = #0B0E14 ≈ rgb(11,14,20)
+              Blob = rgb(42,52,80) — clearly visible
+              navy/indigo toned dark pill.
 
-          {/* ==========================================================
-              BACKGROUND LAYER (GOOEY)
-              This layer contains the blobs that melt together.
-          ========================================================== */}
-          <div className="absolute inset-0 px-6 pointer-events-none" style={{ filter: "url(#gooey)" }}>
-            <motion.div
-              layout
-              className={`flex items-center transition-all duration-700 ease-in-out h-14 ${isMerged ? "justify-center gap-0" : "justify-between gap-0"
-                }`}
-            >
-              {/* Logo Blob */}
-              <motion.div layout transition={springConfig} className="h-full bg-white/20 rounded-full w-[160px]" />
-              {/* Nav Blob */}
-              <motion.div layout transition={springConfig} className="hidden lg:block h-full bg-white/20 rounded-full w-[530px]" />
-              {/* Contact Blob */}
-              <motion.div layout transition={springConfig} className="h-full bg-white/20 rounded-full w-[150px]" />
-            </motion.div>
+              The SVG gooey filter creates the liquid
+              merge neck when blobs overlap.
+              sideScale (1→0) makes sides absorb INTO
+              the center nav, not expand it.
+          ═══════════════════════════════════════════ */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ filter: "url(#gooey-hdr)" }}
+          >
+            <div className="relative" style={{ height: 56 }}>
+
+              {/* CENTER NAV DROP — stationary, never changes size */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  width: NAV_W,
+                  height: 56,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  borderRadius: 9999,
+                  background:
+                    "linear-gradient(170deg, rgba(58,68,102,0.97) 0%, rgba(34,42,68,0.97) 100%)",
+                }}
+              />
+
+              {/* LOGO DROP — slides right until it touches nav left side */}
+              <motion.div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: PADDING,
+                  width: LOGO_W,
+                  height: 56,
+                  borderRadius: 9999,
+                  x: logoX,
+                  background:
+                    "linear-gradient(170deg, rgba(58,68,102,0.97) 0%, rgba(34,42,68,0.97) 100%)",
+                }}
+              />
+
+              {/* CONTACT DROP — slides left until it touches nav right side */}
+              <motion.div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: PADDING,
+                  width: CONTACT_W,
+                  height: 56,
+                  borderRadius: 9999,
+                  x: contactX,
+                  background:
+                    "linear-gradient(170deg, rgba(58,68,102,0.97) 0%, rgba(34,42,68,0.97) 100%)",
+                }}
+              />
+
+            </div>
           </div>
 
-          {/* ==========================================================
-              FOREGROUND LAYER (CONTENT)
-              This layer contains the crisp text and images.
-              Zero padding changes = Zero layout jitter!
-          ========================================================== */}
-          <motion.div
-            layout
-            className={`relative flex items-center transition-all duration-700 ease-in-out h-14 ${isMerged ? "justify-center gap-4 scale-95" : "justify-between gap-0 scale-100"
-              }`}
+          {/* ═══════════════════════════════════════════
+              LAYER 2 — GLASS SHEEN OVERLAY
+              A thin highlight + backdrop-blur ONLY for
+              the center nav pill (always present).
+              Side pills get a subtle highlight that
+              fades with sideOpacity.
+              NOT filtered by gooey — keeps it crisp.
+          ═══════════════════════════════════════════ */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{ zIndex: 2 }}
+          >
+            <div className="relative" style={{ height: 56 }}>
+
+              {/* Logo sheen */}
+              <motion.div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: PADDING,
+                  width: LOGO_W,
+                  height: 56,
+                  borderRadius: 9999,
+                  x: logoX,
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255,255,255,0.14)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)",
+                }}
+              />
+
+              {/* Center nav glass — always */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  width: NAV_W,
+                  height: 56,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  borderRadius: 9999,
+                  backdropFilter: "blur(16px)",
+                  WebkitBackdropFilter: "blur(16px)",
+                  border: "1px solid rgba(255,255,255,0.18)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.26)",
+                }}
+              />
+
+              {/* Contact sheen */}
+              <motion.div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: PADDING,
+                  width: CONTACT_W,
+                  height: 56,
+                  borderRadius: 9999,
+                  x: contactX,
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255,255,255,0.14)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)",
+                }}
+              />
+
+            </div>
+          </div>
+
+          {/* ═══════════════════════════════════════════
+              LAYER 3 — CONTENT
+              Logo + Contact move (same x as blobs)
+              and fade. Nav is always visible.
+              No scale on content — it fades BEFORE
+              blob squish starts (timing gap ensures
+              no visible distortion of text).
+          ═══════════════════════════════════════════ */}
+          <div
+            className="relative flex items-center justify-between"
+            style={{ height: 56, zIndex: 10 }}
           >
 
             {/* LOGO */}
-            <motion.div layout transition={springConfig} className="pointer-events-auto h-full flex items-center justify-center w-[160px]">
-              <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-br from-primary/20 to-white/[0.05] border border-white/20 border-t-primary/50 border-l-primary/50 shadow-[0_10px_40px_rgba(0,0,0,0.8)] shadow-primary/20"}`}>
-                <div className={`absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/10 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-100"}`} />
-                <Link href="/" className="relative z-10 flex items-center gap-3 px-6 w-full h-full justify-center group">
-                  <Image src="/img/Logo.png" alt="Zafar Logo" width={32} height={32} style={{ width: 32, height: 32 }} className="object-contain group-hover:scale-110 transition-transform duration-500" priority />
-                  <span className="text-white font-bold tracking-widest hidden md:block text-lg drop-shadow-[0_2px_10px_rgba(255,107,74,0.8)]">
-                    ZAFAR
-                  </span>
-                </Link>
-              </div>
+            <motion.div
+              className="pointer-events-auto h-full flex items-center shrink-0"
+              style={{ width: LOGO_W, x: logoX }}
+            >
+              <Link
+                href="/"
+                className="flex items-center gap-2.5 px-5 w-full h-full justify-center group"
+              >
+                <Image
+                  src="/img/Logo.png"
+                  alt="Zafar"
+                  width={28}
+                  height={28}
+                  className="object-contain group-hover:scale-110 transition-transform duration-500 shrink-0"
+                  priority
+                />
+                <span className="text-white font-bold tracking-[0.18em] text-[13px] whitespace-nowrap">
+                  ZAFAR
+                </span>
+              </Link>
             </motion.div>
 
-            {/* NAV ITEMS */}
-            <motion.nav layout transition={springConfig} className="hidden lg:flex pointer-events-auto h-full w-[530px]">
-              <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-b from-white/[0.1] to-white/[0.02] border border-white/20 border-t-white/40 shadow-[0_10px_40px_rgba(0,0,0,0.8)]"}`}>
-                <div className={`absolute inset-0 bg-gradient-to-b from-white/30 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-40"}`} />
-                <div className="relative z-10 flex items-center justify-center gap-6 w-full h-full px-8">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={`relative text-sm font-medium transition-all duration-200 ${
-                        isActive(link.href)
-                          ? "text-white drop-shadow-[0_0_12px_rgba(255,107,74,0.7)]"
-                          : "text-white/60 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
-                      }`}
-                    >
-                      {link.label}
-                      {isActive(link.href) && (
-                        <motion.span
-                          layoutId="activeNavIndicator"
-                          className="absolute -bottom-1.5 left-0 right-0 h-px rounded-full bg-gradient-to-r from-primary to-secondary"
-                        />
-                      )}
-                    </Link>
-                  ))}
-                </div>
+            {/* NAV — desktop */}
+            <nav
+              className="hidden lg:flex pointer-events-auto h-full items-center justify-center shrink-0"
+              style={{ width: NAV_W }}
+            >
+              <div className="flex items-center justify-center gap-7 w-full h-full px-8">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
+                      isActive(link.href)
+                        ? "text-white drop-shadow-[0_0_10px_rgba(255,107,74,0.65)]"
+                        : "text-white/55 hover:text-white"
+                    }`}
+                  >
+                    {link.label}
+                    {isActive(link.href) && (
+                      <motion.span
+                        layoutId="navActive"
+                        className="absolute -bottom-[5px] left-0 right-0 h-px rounded-full"
+                        style={{ background: "linear-gradient(90deg,#FF6B4A,#8A63D2)" }}
+                      />
+                    )}
+                  </Link>
+                ))}
               </div>
-            </motion.nav>
+            </nav>
 
-            {/* HAMBURGER — mobile only */}
-            <motion.div layout transition={springConfig} className="lg:hidden pointer-events-auto h-full flex items-center justify-center w-[60px]">
+            {/* HAMBURGER — mobile */}
+            <div
+              className="lg:hidden pointer-events-auto h-full flex items-center justify-center"
+              style={{ width: 56 }}
+            >
               <button
                 onClick={() => setMobileOpen((o) => !o)}
                 aria-label="Toggle menu"
-                className="relative w-10 h-10 flex flex-col items-center justify-center gap-[5px] group"
+                className="w-10 h-10 flex flex-col items-center justify-center gap-[5px]"
               >
                 <span className={`block w-5 h-[1.5px] bg-white transition-all duration-300 origin-center ${mobileOpen ? "rotate-45 translate-y-[6.5px]" : ""}`} />
                 <span className={`block h-[1.5px] bg-white transition-all duration-300 ${mobileOpen ? "w-0 opacity-0" : "w-5"}`} />
                 <span className={`block w-5 h-[1.5px] bg-white transition-all duration-300 origin-center ${mobileOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`} />
               </button>
+            </div>
+
+            {/* CONTACT — desktop */}
+            <motion.div
+              className="hidden lg:flex pointer-events-auto h-full items-center justify-center shrink-0"
+              style={{ width: CONTACT_W, x: contactX }}
+            >
+              <Link
+                href="/contact"
+                className="flex items-center justify-center w-full h-full text-[13px] font-bold text-white tracking-wide hover:drop-shadow-[0_0_10px_rgba(138,99,210,0.9)] transition-all"
+              >
+                Contact Me
+              </Link>
             </motion.div>
 
-            {/* CONTACT — desktop only */}
-            <motion.div layout transition={springConfig} className="hidden lg:flex pointer-events-auto h-full w-[150px] items-center justify-center">
-              <div className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out group ${isMerged ? "rounded-full bg-transparent border-transparent" : "rounded-[2rem] backdrop-blur-2xl bg-gradient-to-bl from-secondary/20 to-white/[0.05] border border-white/20 border-t-secondary/50 border-r-secondary/50 shadow-[0_10px_40px_rgba(0,0,0,0.8)] shadow-secondary/20 hover:shadow-[0_10px_40px_rgba(157,78,221,0.5)]"}`}>
-                <div className={`absolute inset-0 bg-gradient-to-l from-secondary/40 via-secondary/10 to-transparent blur-[12px] pointer-events-none transition-opacity duration-700 ${isMerged ? "opacity-0" : "opacity-100"}`} />
-                <Link href="/contact" className="relative z-10 flex items-center justify-center w-full h-full text-sm font-bold text-white tracking-wide group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(157,78,221,1)] transition-all">
-                  Contact Me
-                </Link>
-              </div>
-            </motion.div>
-
-          </motion.div>
-
-          {/* Global Blur Layer underneath to ensure glassmorphism look even with Gooey */}
-          <div className={`absolute inset-0 px-6 -z-10 transition-all duration-700 pointer-events-none flex justify-center items-center ${isMerged ? "opacity-100" : "opacity-0"
-            }`}>
-            <div className="w-[800px] h-14 rounded-full backdrop-blur-3xl border border-white/20 border-t-white/40 bg-gradient-to-b from-white/[0.15] to-white/[0.05] shadow-[0_30px_60px_rgba(0,0,0,0.9)] shadow-white/5" style={{ boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.2), 0 20px 40px rgba(0,0,0,0.8)' }} />
           </div>
-
         </div>
-
       </div>
-      {/* Mobile fullscreen overlay */}
+
+      {/* ─────────────────────────────────────────
+          MOBILE FULLSCREEN OVERLAY
+      ───────────────────────────────────────── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-40 lg:hidden flex flex-col bg-[#050505]/95 backdrop-blur-2xl"
           >
-            {/* Ambient glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
 
-            <nav className="flex-1 flex flex-col items-center justify-center gap-2 px-8">
+            <nav className="flex-1 flex flex-col items-center justify-center gap-1 px-8">
               {navLinks.map((link, idx) => (
                 <motion.div
                   key={link.href}
@@ -199,11 +387,13 @@ export function DynamicHeader() {
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`group flex items-center justify-between w-full py-5 border-b border-white/[0.06] transition-colors ${
+                    className={`flex items-center justify-between w-full py-5 border-b border-white/[0.06] transition-colors ${
                       isActive(link.href) ? "text-white" : "text-white/40 hover:text-white"
                     }`}
                   >
-                    <span className="text-4xl font-bold font-heading tracking-tighter">{link.label}</span>
+                    <span className="text-4xl font-bold font-heading tracking-tighter">
+                      {link.label}
+                    </span>
                     {isActive(link.href) && (
                       <span className="text-primary text-2xl">↗</span>
                     )}
@@ -212,16 +402,24 @@ export function DynamicHeader() {
               ))}
             </nav>
 
-            {/* Bottom: socials + CTA */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.35, duration: 0.4 }}
+              transition={{ delay: 0.32, duration: 0.4 }}
               className="px-8 pb-12 flex items-center justify-between"
             >
               <div className="flex gap-6">
-                <a href="#" className="text-white/30 hover:text-white text-sm font-medium transition-colors">LinkedIn</a>
-                <a href="https://github.com/zafar-TechWizard" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white text-sm font-medium transition-colors">GitHub</a>
+                <a href="#" className="text-white/30 hover:text-white text-sm font-medium transition-colors">
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/zafar-TechWizard"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/30 hover:text-white text-sm font-medium transition-colors"
+                >
+                  GitHub
+                </a>
               </div>
               <Link
                 href="/contact"
