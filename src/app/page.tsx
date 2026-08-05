@@ -21,7 +21,11 @@ export default function Home() {
       <DynamicHeader />
 
       <main className="flex flex-col items-center">
-        <HeroSection />
+        {/* ── HERO SECTION (The Converter) ── */}
+        <div className="w-full">
+          <HeroSection />
+        </div>
+
         <SocialProofStrip />
         <AboutSection />
         <ServicesSection />

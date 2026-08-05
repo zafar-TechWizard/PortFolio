@@ -1,146 +1,185 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Button } from "@/components/ui/Button";
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function HeroSection() {
-  const { scrollY } = useScroll();
-  const scrollIndicatorOpacity = useTransform(scrollY, [0, 180], [1, 0]);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setStatus("submitting");
+    
+    // Simulate API call, then redirect to mailto as fallback
+    setTimeout(() => {
+      setStatus("success");
+      window.location.href = `mailto:mdzafarddd@gmail.com?subject=Project Inquiry&body=Hi Zafar, I'd like to discuss a project. My contact email is: ${email}`;
+      
+      // Reset after 3 seconds
+      setTimeout(() => {
+        setStatus("idle");
+        setEmail("");
+      }, 3000);
+    }, 800);
+  };
 
   return (
-    <section id="hero" className="w-full flex justify-center bg-[#050505] pt-24 pb-12">
-      <div className="relative flex items-center justify-center h-[calc(100vh-120px)] min-h-[700px] w-[95vw] lg:w-[90vw] overflow-hidden bg-[#0A0D12] rounded-[2.5rem] border border-white/[0.05] shadow-[0_0_100px_rgba(0,0,0,1)]">
+    <section id="hero" className="relative w-full flex flex-col items-center justify-center bg-[#000000] min-h-[calc(100vh-80px)] pt-24 pb-12 overflow-hidden font-sans">
+      
+      {/* ── Background: Subtle Grid & Spotlight ── */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[1000px] h-[800px] bg-[radial-gradient(circle_800px_at_100%_0%,#ffffff08,transparent)] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[800px] h-[600px] bg-[radial-gradient(circle_600px_at_0%_100%,#8A63D205,transparent)] pointer-events-none" />
 
-        {/* Cinematic Grain/Noise Overlay */}
-        <div className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
-
-        {/* Background Orbs */}
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] mix-blend-screen pointer-events-none -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-secondary/15 rounded-full blur-[150px] mix-blend-screen pointer-events-none translate-x-1/3 translate-y-1/3" />
-
-        {/* Massive Background Typography */}
-        <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center pointer-events-none select-none z-[2]">
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.2 }}
-            className="text-[28vw] leading-none font-bold uppercase tracking-tighter whitespace-nowrap opacity-20"
-            style={{
-              WebkitTextStroke: "1.5px rgba(255,255,255,0.3)",
-              color: "transparent",
-              background: "linear-gradient(to bottom, rgba(255,255,255,0.1), transparent)",
-              WebkitBackgroundClip: "text"
-            }}
-          >
-            ZAFAR
-          </motion.h1>
-        </div>
-
-        {/* Main Subject Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.15 }}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[95%] z-[10] pointer-events-none flex items-end justify-center"
-        >
-          <Image
-            src="/img/my.png"
-            alt="Zafar"
-            width={1000}
-            height={1400}
-            className="object-contain object-bottom h-full w-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-            priority
-          />
-          <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#0A0D12] via-[#0A0D12]/80 to-transparent" />
-        </motion.div>
-
-        {/* Bottom Left: Identity & CTA */}
-        <div className="absolute bottom-10 left-8 md:bottom-16 md:left-16 z-[20] max-w-xl pointer-events-auto">
-
+      {/* ── Main Content Split ── */}
+      <div className="relative z-10 w-full max-w-[90rem] mx-auto px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-8">
+        
+        {/* Left Side: Typography */}
+        <div className="flex-1 flex flex-col items-start text-left w-full max-w-3xl">
+          
+          {/* Eyebrow Label */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.0 }}
-            className="inline-flex items-center gap-3 rounded-full bg-white/[0.03] border border-white/[0.1] px-4 py-2 text-xs font-medium text-white/80 backdrop-blur-xl shadow-2xl mb-6"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: EASE }}
+            className="flex items-center gap-3 mb-8"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
-            Available for Work
+            <span className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            <span className="text-white/50 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">
+              Md Zafar — Lead Software Engineer
+            </span>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.12 }}
-            className="text-5xl md:text-[5.5rem] font-bold tracking-tighter text-white mb-6 leading-[0.95] drop-shadow-2xl font-heading"
-          >
-            Frontend to<br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-secondary">AI Agents —</span><br/>
-            I Build It All.
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.24 }}
-            className="text-white/60 text-lg md:text-xl mb-10 font-light max-w-md drop-shadow-md leading-relaxed"
-          >
-            <strong className="text-white font-medium">Full-Stack Engineer · AI Systems · SaaS · Automation</strong>. From pixel-perfect interfaces to intelligent backends — complete products, shipped.
-          </motion.p>
-
+          {/* Massive Headline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.36 }}
-            className="flex flex-wrap gap-4"
+            transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+            className="flex flex-col items-start gap-1 mb-8 w-full"
           >
-            <Button variant="primary" href="/contact" className="px-8 py-4 shadow-[0_0_40px_rgba(255,107,74,0.4)] border border-primary/50 text-base font-semibold group">
-              Let&apos;s Talk <span className="inline-block transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 ml-1">↗</span>
-            </Button>
-            <Button variant="secondary" href="/#projects" className="px-8 py-4 bg-white/[0.02] border-white/10 hover:bg-white/[0.08] text-white text-base backdrop-blur-md">
-              View Work
-            </Button>
+            <h1 className="text-[12vw] sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[7.5rem] font-bold tracking-tighter text-white leading-[0.9] drop-shadow-lg">
+              Engineering
+            </h1>
+            <h1 className="text-[12vw] sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[7.5rem] font-bold tracking-tighter text-white leading-[0.9] drop-shadow-lg">
+              Intelligence.
+            </h1>
+            <h1 className="text-[12vw] sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[7.5rem] font-bold tracking-tighter text-white/30 leading-[0.9] mt-2">
+              Building Scale.
+            </h1>
           </motion.div>
+
+          {/* Sub-headline */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
+            className="text-white/50 text-lg md:text-xl font-normal max-w-xl leading-relaxed mb-12"
+          >
+            Architecting robust full-stack systems and integrating advanced AI capabilities for ambitious teams and forward-thinking enterprises.
+          </motion.p>
+
+          {/* Micro Social Proof (Left Aligned) */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4, ease: EASE }}
+            className="flex flex-col gap-4"
+          >
+            <p className="text-white/20 text-[10px] font-semibold tracking-[0.2em] uppercase">
+              Engineered solutions for teams at
+            </p>
+            <div className="flex flex-wrap items-center gap-8 grayscale opacity-50 hover:opacity-100 transition-opacity duration-500">
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span className="text-white font-bold tracking-widest uppercase text-xs">SoftKiwi</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+                <span className="text-white font-bold tracking-widest uppercase text-xs">Celebal Tech</span>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
 
-        {/* Bottom Right: Floating Glass Element */}
+        {/* Right Side: IDE / Terminal Interface */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="absolute bottom-10 right-8 md:bottom-16 md:right-16 z-[20] hidden lg:flex flex-col gap-4 pointer-events-auto"
+          transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
+          className="flex-[0.8] w-full max-w-[500px] lg:max-w-[600px] perspective-1000"
         >
-          <div className="backdrop-blur-3xl bg-white/[0.02] border border-white/[0.05] rounded-3xl p-8 shadow-[0_30px_60px_rgba(0,0,0,0.5)] flex flex-col gap-6 w-[300px] hover:bg-white/[0.04] transition-colors relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative z-10">
-              <p className="text-primary font-bold text-[10px] tracking-[0.25em] uppercase mb-2">Role</p>
-              <p className="text-white text-xl font-heading tracking-wide">Full-Stack & AI Engineer</p>
+          <div className="w-full bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.8)] ring-1 ring-white/5 relative group">
+            
+            {/* Terminal Header */}
+            <div className="w-full bg-[#111] border-b border-white/5 px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-white/10" />
+                <div className="w-3 h-3 rounded-full bg-white/10" />
+                <div className="w-3 h-3 rounded-full bg-white/10" />
+              </div>
+              <p className="text-[10px] text-white/30 uppercase tracking-widest font-medium">init_project.sh</p>
+              <div className="w-4" /> {/* Spacer for balance */}
             </div>
-            <div className="w-full h-[1px] bg-gradient-to-r from-white/[0.1] to-transparent relative z-10" />
-            <div className="relative z-10">
-              <p className="text-secondary font-bold text-[10px] tracking-[0.25em] uppercase mb-2">Expertise</p>
-              <p className="text-white text-xl font-heading tracking-wide">AI · SaaS · Web · Automation</p>
-            </div>
-            <div className="w-full h-[1px] bg-gradient-to-r from-white/[0.1] to-transparent relative z-10" />
-            <div className="flex justify-between items-center mt-2 relative z-10">
-              <a href="#" className="text-white/50 hover:text-primary transition-colors text-xs uppercase tracking-[0.2em] font-bold">LinkedIn</a>
-              <a href="https://github.com/zafar-TechWizard" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-white transition-colors text-xs uppercase tracking-[0.2em] font-bold">GitHub</a>
-            </div>
-          </div>
-        </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          style={{ opacity: scrollIndicatorOpacity }}
-          className="absolute bottom-7 left-1/2 -translate-x-1/2 z-[20] flex flex-col items-center gap-1 pointer-events-none"
-        >
-          <motion.div
-            animate={{ y: [0, 7, 0] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-            className="text-white/25 text-base leading-none"
-          >
-            ↓
-          </motion.div>
+            {/* Terminal Body */}
+            <div className="p-6 md:p-8 flex flex-col gap-8 relative z-10">
+              
+              <div className="space-y-4">
+                <p className="text-white/40 text-sm font-mono flex gap-3">
+                  <span className="text-primary/70">~</span> 
+                  <span>$ status --current</span>
+                </p>
+                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4 flex items-center gap-4 w-fit">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-emerald-400 text-xs font-mono uppercase tracking-wider">Accepting Contracts for Q4</span>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <p className="text-white/40 text-sm font-mono flex gap-3">
+                  <span className="text-primary/70">~</span> 
+                  <span>$ connect --email</span>
+                </p>
+                <p className="text-white/60 text-xs font-mono leading-relaxed max-w-sm">
+                  Enter your email address below to initialize a secure line. A connection will be established within 24 hours.
+                </p>
+                
+                {/* Form */}
+                <form 
+                  onSubmit={handleSubmit} 
+                  className="w-full mt-4 flex flex-col sm:flex-row gap-3"
+                >
+                  <input
+                    type="email"
+                    required
+                    placeholder="contact@company.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={status !== "idle"}
+                    className="flex-1 bg-white/[0.03] border border-white/10 text-white placeholder:text-white/20 px-4 py-3 outline-none text-sm font-mono focus:border-white/30 focus:bg-white/[0.05] transition-all disabled:opacity-50 rounded-lg"
+                  />
+                  <button
+                    type="submit"
+                    disabled={status !== "idle"}
+                    className="px-6 py-3 bg-white text-black font-bold hover:bg-white/90 active:scale-[0.98] transition-all flex items-center justify-center min-w-[120px] disabled:opacity-80 text-sm shadow-[0_0_20px_rgba(255,255,255,0.1)] rounded-lg font-mono uppercase tracking-wider"
+                  >
+                    {status === "idle" && "Execute"}
+                    {status === "submitting" && <span className="w-4 h-4 border-2 border-black/20 border-t-black rounded-full animate-spin" />}
+                    {status === "success" && "Sent ✓"}
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            {/* Subtle Gradient Glow in background of terminal */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] pointer-events-none rounded-full" />
+          </div>
         </motion.div>
 
       </div>
