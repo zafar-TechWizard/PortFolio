@@ -125,14 +125,14 @@ const experiences = [
     company: "Hackathon Finalist",
     role: "Top 4 · Startup Thrive @ ACIC RISE, CGC Landran",
     period: "Mar 2024",
-    duration: "50+ teams",
+    duration: "250+ teams",
     color: "from-yellow-500/50 to-yellow-500/5",
     dot: "bg-yellow-400",
     glow: "rgba(250,204,21,0.5)",
     achievements: [
       "Built a real-time threat detection system under 24-hour hackathon conditions",
       "Designed automated emergency alerting with sub-second response architecture",
-      "Placed Top 4 among 50+ competing teams",
+      "Placed Top 4 among 250+ competing teams",
     ],
   },
 ];

@@ -39,7 +39,7 @@ const milestones = [
     year: "Mar 2024",
     title: "First Recognition",
     label: "Hackathon Finalist — Top 4",
-    body: "Competed in Startup Thrive @ ACIC RISE, CGC Landran. Built a real-time threat detection system with automated emergency alerting under 24-hour conditions. Finished Top 4 out of 50+ teams. First proof that what I build can win.",
+    body: "Competed in Startup Thrive @ ACIC RISE, CGC Landran. Built a real-time threat detection system with automated emergency alerting under 24-hour conditions. Finished Top 4 out of 250+ teams. First proof that what I build can win.",
     tag: "Milestone",
     color: "border-yellow-400/40",
     dot: "bg-yellow-400",

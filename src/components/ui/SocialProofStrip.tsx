@@ -24,7 +24,7 @@ const credentials = [
   {
     org: "ACIC RISE · CGC Landran",
     role: "Hackathon Finalist",
-    period: "Top 4 of 50+ Teams",
+    period: "Top 4 of 250+ Teams",
     type: "award",
     color: "from-emerald-500/15 to-emerald-500/5",
     dot: "bg-emerald-400",
