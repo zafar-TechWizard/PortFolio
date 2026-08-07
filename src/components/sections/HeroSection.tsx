@@ -150,41 +150,7 @@ export function HeroSection() {
             I help founders and businesses build high-converting web applications, scalable SaaS platforms, and custom AI agents. From idea to launch, I turn your vision into a digital product.
           </motion.p>
 
-          {/* Clear, High-Converting Inline Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
-            className="w-full max-w-lg mb-10 relative z-20"
-          >
-            <form onSubmit={handleSubmit} className="relative flex items-center w-full group">
-              <div className="absolute left-6 text-white/30 group-focus-within:text-white/60 transition-colors pointer-events-none">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              </div>
-              <input
-                type="email"
-                required
-                placeholder="Enter your email to discuss your project..."
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={status !== "idle"}
-                className="w-full bg-[#111] border border-white/10 text-white placeholder:text-white/30 rounded-full pl-14 pr-[150px] py-4 outline-none focus:border-white/30 focus:bg-white/[0.02] transition-all disabled:opacity-50 shadow-inner"
-              />
-              <button
-                type="submit"
-                disabled={status !== "idle"}
-                className="absolute right-2 top-2 bottom-2 px-6 bg-white text-black font-bold rounded-full hover:bg-gray-200 active:scale-[0.98] transition-all flex items-center justify-center min-w-[130px] disabled:opacity-80 text-sm tracking-wide"
-              >
-                <span 
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
-                >
-                  {status === "idle" && "Let's Talk"}
-                  {status === "submitting" && <span className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />}
-                  {status === "success" && "Sent ✓"}
-                </span>
-              </button>
-            </form>
-          </motion.div>
+
 
           {/* High-Trust Mini Testimonial (Rotating) */}
           <motion.div
@@ -214,12 +180,12 @@ export function HeroSection() {
 
         </div>
 
-        {/* Right Side: Professional Status Card with 3D Tilt */}
+        {/* Right Side: Conversion Stack (Status + Contact) */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
-          className="flex-1 w-full max-w-[460px] flex justify-center lg:justify-end mt-12 lg:mt-0 perspective-1000"
+          className="flex-1 w-full max-w-[460px] flex flex-col gap-6 mt-12 lg:mt-0 perspective-1000 lg:ml-auto"
         >
           {/* 3D Tilt Container */}
           <motion.div
@@ -291,6 +257,40 @@ export function HeroSection() {
                 View Live Projects →
               </a>
             </div>
+          </motion.div>
+
+          {/* Contact Form Moved Here */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
+            className="w-full relative z-20"
+          >
+            <form onSubmit={handleSubmit} className="relative flex items-center w-full group">
+              <div className="absolute left-6 text-white/30 group-focus-within:text-white/60 transition-colors pointer-events-none">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <input
+                type="email"
+                required
+                placeholder="Enter email to discuss project..."
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status !== "idle"}
+                className="w-full h-[72px] bg-[#111] border border-white/10 text-white placeholder:text-white/30 rounded-full pl-14 pr-[150px] outline-none focus:border-white/30 focus:bg-white/[0.02] transition-all disabled:opacity-50 shadow-inner text-base"
+              />
+              <button
+                type="submit"
+                disabled={status !== "idle"}
+                className="absolute right-2.5 top-2.5 bottom-2.5 px-6 bg-white text-black font-bold rounded-full hover:bg-gray-200 active:scale-[0.98] transition-all flex items-center justify-center min-w-[130px] disabled:opacity-80 text-[15px] tracking-wide"
+              >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                  {status === "idle" && "Let's Talk"}
+                  {status === "submitting" && <span className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />}
+                  {status === "success" && "Sent ✓"}
+                </span>
+              </button>
+            </form>
           </motion.div>
         </motion.div>
 
