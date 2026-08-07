@@ -175,9 +175,13 @@ export function HeroSection() {
                 disabled={status !== "idle"}
                 className="absolute right-2 top-2 bottom-2 px-6 bg-white text-black font-bold rounded-full hover:bg-gray-200 active:scale-[0.98] transition-all flex items-center justify-center min-w-[130px] disabled:opacity-80 text-sm tracking-wide"
               >
-                {status === "idle" && "Let's Talk"}
-                {status === "submitting" && <span className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />}
-                {status === "success" && "Sent ✓"}
+                <span 
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"
+                >
+                  {status === "idle" && "Let's Talk"}
+                  {status === "submitting" && <span className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />}
+                  {status === "success" && "Sent ✓"}
+                </span>
               </button>
             </form>
           </motion.div>
