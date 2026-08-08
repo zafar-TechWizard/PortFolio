@@ -175,7 +175,7 @@ export function DynamicHeader() {
                   transform: "translateX(-50%)",
                   borderRadius: 9999,
                   background:
-                    "linear-gradient(170deg, rgba(58,68,102,0.97) 0%, rgba(34,42,68,0.97) 100%)",
+                    "linear-gradient(170deg, rgba(35,35,35,0.95) 0%, rgba(15,15,15,0.95) 100%)",
                 }}
               />
 
@@ -193,7 +193,7 @@ export function DynamicHeader() {
                   borderRadius: 9999,
                   x: logoX,
                   background:
-                    "linear-gradient(170deg, rgba(58,68,102,0.97) 0%, rgba(34,42,68,0.97) 100%)",
+                    "linear-gradient(170deg, rgba(35,35,35,0.95) 0%, rgba(15,15,15,0.95) 100%)",
                 }}
               />
 
@@ -211,7 +211,7 @@ export function DynamicHeader() {
                   borderRadius: 9999,
                   x: contactX,
                   background:
-                    "linear-gradient(170deg, rgba(58,68,102,0.97) 0%, rgba(34,42,68,0.97) 100%)",
+                    "linear-gradient(170deg, rgba(35,35,35,0.95) 0%, rgba(15,15,15,0.95) 100%)",
                 }}
               />
 
@@ -250,10 +250,11 @@ export function DynamicHeader() {
                   borderRadius: 9999,
                   x: logoX,
                   opacity: separateOpacity,
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.2), 0 8px 32px rgba(0,0,0,0.4)",
+                  backdropFilter: "blur(16px)",
+                  WebkitBackdropFilter: "blur(16px)",
+                  background: "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(255,255,255,0.02), 0 8px 32px rgba(0,0,0,0.8)",
                 }}
               />
 
@@ -270,8 +271,9 @@ export function DynamicHeader() {
                   borderRadius: 9999,
                   backdropFilter: "blur(16px)",
                   WebkitBackdropFilter: "blur(16px)",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.28), 0 8px 32px rgba(0,0,0,0.4)",
+                  background: "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(255,255,255,0.02), 0 8px 32px rgba(0,0,0,0.8)",
                 }}
               />
 
@@ -286,10 +288,11 @@ export function DynamicHeader() {
                   borderRadius: 9999,
                   x: contactX,
                   opacity: separateOpacity,
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.2), 0 8px 32px rgba(0,0,0,0.4)",
+                  backdropFilter: "blur(16px)",
+                  WebkitBackdropFilter: "blur(16px)",
+                  background: "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(255,255,255,0.02), 0 8px 32px rgba(0,0,0,0.8)",
                 }}
               />
 
@@ -310,10 +313,10 @@ export function DynamicHeader() {
                   backdropFilter: "blur(20px)",
                   WebkitBackdropFilter: "blur(20px)",
                   background:
-                    "linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)",
-                  border: "1px solid rgba(255,255,255,0.18)",
+                    "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
+                  border: "1px solid rgba(255,255,255,0.08)",
                   boxShadow:
-                    "inset 0 1px 0 rgba(255,255,255,0.3), 0 16px 48px rgba(0,0,0,0.55)",
+                    "inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(255,255,255,0.02), 0 16px 48px rgba(0,0,0,0.9)",
                 }}
               />
 
