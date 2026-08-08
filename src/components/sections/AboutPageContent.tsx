@@ -298,7 +298,7 @@ function PageHero() {
               className="flex gap-10 pt-1"
             >
               {[
-                { value: "3+", label: "Years Engineering" },
+                { value: "2+", label: "Years Engineering" },
                 { value: "10+", label: "Projects Shipped" },
                 { value: "2", label: "Live AI Products" },
               ].map((s, i) => (

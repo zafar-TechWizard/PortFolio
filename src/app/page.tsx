@@ -5,9 +5,9 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { PhilosophySection } from "@/components/sections/PhilosophySection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
 import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
+import { FooterCTA } from "@/components/ui/FooterCTA";
 
 export default function Home() {
   return (
@@ -31,51 +31,51 @@ export default function Home() {
         <ServicesSection />
         <ProcessSection />
         <ProjectsSection />
-        <PhilosophySection />
         <SkillsSection />
 
-        <footer id="contact" className="relative w-full py-32 border-t border-white/[0.05] flex flex-col items-center justify-center bg-[#050505] overflow-hidden">
-          {/* Subtle Background Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-gradient-to-r from-primary/10 to-secondary/10 blur-[120px] rounded-[100%] pointer-events-none" />
+        <footer id="contact" className="relative w-full pt-32 flex flex-col items-center justify-center bg-[#050505] overflow-hidden">
+          
+          {/* Subtle Background Glow for the CTA area */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-primary/10 to-secondary/10 blur-[150px] rounded-[100%] pointer-events-none opacity-40" />
 
-          <p className="text-white/50 tracking-[0.2em] uppercase text-sm mb-6 font-semibold relative z-10">Start a Project</p>
+          <p className="text-white/40 tracking-[0.25em] uppercase text-xs mb-6 font-bold relative z-10">Start a Project</p>
 
           <h2 className="text-[10vw] md:text-[8vw] font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20 leading-[0.9] text-center mb-16 font-heading tracking-tighter relative z-10">
             LET&apos;S BUILD THE <br className="hidden md:block"/> FUTURE.
           </h2>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-center z-10">
-            <a
-              href="/contact"
-              className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white rounded-full overflow-hidden transition-all hover:scale-105 z-10"
-              style={{ background: "linear-gradient(135deg,#FF6B4A,#8A63D2)", boxShadow: "0 0 40px rgba(255,107,74,0.3)" }}
-            >
-              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
-              <span className="relative z-10 flex items-center gap-3">
-                Start a Project
-                <svg className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg>
-              </span>
-            </a>
-            <a
-              href="mailto:mdzafarddd@gmail.com"
-              className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white rounded-full bg-white/[0.05] border border-white/[0.1] backdrop-blur-xl overflow-hidden transition-all hover:scale-105 hover:border-white/[0.2] z-10"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
-              <span className="relative z-10 flex items-center gap-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
-                mdzafarddd@gmail.com
-                <svg className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-              </span>
-            </a>
+          <div className="w-full relative z-10 px-4 pb-40">
+            <FooterCTA />
           </div>
 
-          <div className="mt-32 pt-8 border-t border-white/[0.05] w-full max-w-7xl flex flex-col md:flex-row items-center justify-between px-6 relative z-10">
-            <p className="text-white/30 text-sm">
-              © {new Date().getFullYear()} Zafar. All rights reserved.
-            </p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="text-white/30 hover:text-white transition-colors text-sm font-medium">LinkedIn</a>
-              <a href="https://github.com/zafar-TechWizard" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white transition-colors text-sm font-medium">GitHub</a>
-              <a href="#" className="text-white/30 hover:text-white transition-colors text-sm font-medium">Twitter</a>
+          {/* Premium Luxury Footer Bar */}
+          <div className="w-full relative z-10 mt-auto border-t border-white/[0.04]">
+            {/* Elegant top gradient highlight */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-10">
+              
+              <div className="flex flex-col items-center md:items-start gap-1">
+                <p className="text-white/50 text-sm font-semibold tracking-wide">
+                  © {new Date().getFullYear()} Zafar
+                </p>
+                <p className="text-white/30 text-[10px] uppercase tracking-[0.2em] font-medium">
+                  Engineering & Design
+                </p>
+              </div>
+
+              <div className="flex gap-8 mt-6 md:mt-0">
+                <a 
+                  href="https://github.com/zafar-TechWizard" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="group relative flex items-center gap-2 text-white/40 hover:text-white transition-colors duration-300 text-sm font-bold tracking-widest uppercase"
+                >
+                  <svg className="w-4 h-4 transform group-hover:-rotate-12 transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" /></svg>
+                  <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent opacity-0 group-hover:opacity-100 absolute inset-0 transition-opacity duration-300 pl-6">GITHUB</span>
+                  <span className="group-hover:opacity-0 transition-opacity duration-300">GITHUB</span>
+                </a>
+              </div>
             </div>
           </div>
         </footer>

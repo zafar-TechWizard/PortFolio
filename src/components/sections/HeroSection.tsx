@@ -239,12 +239,12 @@ export function HeroSection() {
                 className="flex gap-4 w-full"
               >
                 <div className="flex-1 bg-[#111] border border-white/[0.05] rounded-[1.25rem] p-5 flex flex-col justify-center items-center shadow-lg">
-                  <span className="text-white text-3xl font-bold mb-1">15+</span>
-                  <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest text-center">Products<br/>Shipped</span>
+                  <span className="text-white text-3xl font-bold mb-1">10+</span>
+                  <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest text-center">Projects<br/>Shipped</span>
                 </div>
                 <div className="flex-1 bg-[#111] border border-white/[0.05] rounded-[1.25rem] p-5 flex flex-col justify-center items-center shadow-lg">
-                  <span className="text-white text-3xl font-bold mb-1">100%</span>
-                  <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest text-center">Client<br/>Success</span>
+                  <span className="text-white text-3xl font-bold mb-1">2+</span>
+                  <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest text-center">Years<br/>Engineering</span>
                 </div>
               </div>
               
@@ -277,7 +277,7 @@ export function HeroSection() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={status !== "idle"}
-                className="w-full h-[72px] bg-[#111] border border-white/10 text-white placeholder:text-white/30 rounded-full pl-14 pr-[150px] outline-none focus:border-white/30 focus:bg-white/[0.02] transition-all disabled:opacity-50 shadow-inner text-base"
+                className="w-full h-[72px] bg-white/[0.03] backdrop-blur-xl border border-white/10 text-white placeholder:text-white/30 rounded-full pl-14 pr-[150px] outline-none focus:border-white/30 focus:bg-white/[0.06] transition-all disabled:opacity-50 shadow-inner text-base shadow-[0_0_15px_rgba(255,255,255,0.02)_inset]"
               />
               <button
                 type="submit"
