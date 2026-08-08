@@ -353,10 +353,10 @@ export function DynamicHeader() {
                   alt="Zafar"
                   width={28}
                   height={28}
-                  className="object-contain group-hover:scale-110 transition-transform duration-500 shrink-0"
+                  className="object-contain group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] transition-all duration-500 shrink-0"
                   priority
                 />
-                <span className="text-white font-bold tracking-[0.18em] text-[13px] whitespace-nowrap">
+                <span className="font-bold tracking-[0.18em] text-[13px] whitespace-nowrap transition-all duration-700 bg-clip-text text-transparent bg-white group-hover:bg-[linear-gradient(110deg,#fff,45%,rgba(255,255,255,0.3),55%,#fff)] bg-[length:250%_100%] bg-[position:100%_0] group-hover:bg-[position:0%_0]">
                   ZAFAR
                 </span>
               </Link>
@@ -368,7 +368,7 @@ export function DynamicHeader() {
               style={{ width: NAV_W }}
             >
               <motion.div
-                className="flex items-center justify-center gap-7 w-full h-full px-8"
+                className="flex items-center justify-center gap-2 w-full h-full px-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.16, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -377,19 +377,30 @@ export function DynamicHeader() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative text-sm font-medium transition-colors duration-200 whitespace-nowrap hover:-translate-y-px transition-transform ${
+                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 whitespace-nowrap group ${
                       isActive(link.href)
-                        ? "text-white drop-shadow-[0_0_10px_rgba(255,107,74,0.65)]"
-                        : "text-white/55 hover:text-white"
+                        ? "text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                        : "text-white/50 hover:text-white"
                     }`}
                   >
-                    {link.label}
+                    <span className="relative z-10 transition-transform duration-300 block group-hover:-translate-y-[1px]">
+                      {link.label}
+                    </span>
                     {isActive(link.href) && (
                       <motion.span
-                        layoutId="navActive"
-                        className="absolute -bottom-[5px] left-0 right-0 h-px rounded-full"
-                        style={{ background: "linear-gradient(90deg,#FF6B4A,#8A63D2)" }}
+                        layoutId="navActiveBg"
+                        className="absolute inset-0 rounded-full z-0"
+                        style={{ 
+                          background: "linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02))", 
+                          border: "1px solid rgba(255,255,255,0.12)",
+                          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.25), 0 4px 12px rgba(0,0,0,0.3)"
+                        }}
+                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
                       />
+                    )}
+                    {/* Hover state pill (only shows if not active) */}
+                    {!isActive(link.href) && (
+                      <span className="absolute inset-0 rounded-full z-0 bg-white/0 group-hover:bg-white/[0.06] border border-transparent group-hover:border-white/[0.08] scale-90 group-hover:scale-100 transition-all duration-300 ease-out" />
                     )}
                   </Link>
                 ))}
@@ -422,9 +433,16 @@ export function DynamicHeader() {
             >
               <Link
                 href="/contact"
-                className="flex items-center justify-center w-full h-full text-[13px] font-bold text-white tracking-wide hover:drop-shadow-[0_0_10px_rgba(138,99,210,0.9)] transition-all"
+                className="group flex items-center justify-center w-full h-full text-[13px] font-bold text-white tracking-wide transition-all"
               >
-                Contact Me
+                <span className="relative flex items-center gap-1.5 transition-all duration-300">
+                  <span className="bg-gradient-to-r from-white to-white bg-clip-text text-transparent group-hover:from-primary group-hover:to-secondary transition-all duration-300">
+                    Contact Me
+                  </span>
+                  <svg className="w-3.5 h-3.5 text-secondary opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 ease-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </span>
               </Link>
             </motion.div>
 
