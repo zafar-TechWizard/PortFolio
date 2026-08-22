@@ -18,9 +18,9 @@ export default function JourneyPage() {
       <ScrollProgressBar />
       <DynamicHeader />
 
-      <main>
+      {/* <main>
         <JourneyPageContent />
-      </main>
+      </main> */}
     </div>
   );
 }

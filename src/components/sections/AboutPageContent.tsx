@@ -4,91 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// ─── Shared skill data ────────────────────────────────────────────────────────
-const skillCategories = [
-  {
-    id: "ai",
-    title: "AI & ML",
-    color: "text-primary",
-    border: "border-primary/20",
-    bg: "bg-primary/[0.06]",
-    skills: [
-      "Retrieval-Augmented Gen (RAG)",
-      "AI Agents & Multi-Agent Systems",
-      "LangChain Pipelines",
-      "LLM Integration",
-      "Hugging Face",
-      "OpenCV & Computer Vision",
-      "NLP",
-      "Prompt Engineering",
-      "Semantic Search",
-    ],
-  },
-  {
-    id: "backend",
-    title: "Backend",
-    color: "text-blue-400",
-    border: "border-blue-400/20",
-    bg: "bg-blue-400/[0.05]",
-    skills: [
-      "Python",
-      "Flask",
-      "FastAPI",
-      "REST APIs",
-      "WebSocket Systems",
-      "Microservices",
-      "Authentication",
-      "Async Architectures",
-    ],
-  },
-  {
-    id: "data",
-    title: "Data & Cloud",
-    color: "text-emerald-400",
-    border: "border-emerald-400/20",
-    bg: "bg-emerald-400/[0.05]",
-    skills: [
-      "MongoDB Atlas",
-      "PostgreSQL",
-      "MySQL",
-      "SQLite",
-      "Vector Databases",
-      "NumPy & Pandas",
-      "Real-time Processing",
-      "Document Storage",
-    ],
-  },
-  {
-    id: "frontend",
-    title: "Frontend",
-    color: "text-secondary",
-    border: "border-secondary/20",
-    bg: "bg-secondary/[0.06]",
-    skills: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "SaaS Dashboard Design",
-      "AI Chatbot Interfaces",
-      "UX-focused Web",
-    ],
-  },
-  {
-    id: "automation",
-    title: "Automation",
-    color: "text-yellow-400",
-    border: "border-yellow-400/20",
-    bg: "bg-yellow-400/[0.05]",
-    skills: [
-      "WhatsApp API",
-      "Web Scraping Pipelines",
-      "Background Tasks",
-      "Event-driven Workflows",
-      "API Integrations",
-      "SMTP & Notification Systems",
-    ],
-  },
+// ─── Core Stack data ──────────────────────────────────────────────────────────
+const coreStack = [
+  { name: "Python", icon: "🐍", desc: "Primary language" },
+  { name: "LangChain", icon: "🔗", desc: "LLM orchestration" },
+  { name: "Next.js", icon: "▲", desc: "Full-stack React" },
+  { name: "FastAPI", icon: "⚡", desc: "Async Python APIs" },
+  { name: "React", icon: "⚛", desc: "UI framework" },
+  { name: "MongoDB", icon: "🍃", desc: "Document store" },
+  { name: "TypeScript", icon: "TS", desc: "Type-safe JS" },
+  { name: "PostgreSQL", icon: "🐘", desc: "Relational DB" },
 ];
 
 // ─── Experience data ──────────────────────────────────────────────────────────
@@ -146,7 +71,7 @@ const narrative = [
   },
   {
     label: "The Approach",
-    body: "Bottleneck-first. Before writing a line, I identify the real constraint — then design the architecture around it. No over-engineering, no feature theatre. The goal is something that works in production, not just in a demo.",
+    body: "Bottleneck-first. Before writing a line, I identify the real constraint — then design the architecture around it. No over-engineering, no feature theatre. The right tool is the one that actually solves the problem — not the newest trend.",
     accent: "border-secondary/30",
   },
   {
@@ -599,56 +524,36 @@ function EducationSection() {
   );
 }
 
-// ─── Tech Stack Section ───────────────────────────────────────────────────────
-function TechStackSection() {
+// ─── Core Stack ───────────────────────────────────────────────────────────────
+function CoreStack() {
   return (
-    <section className="relative w-full bg-[#050505] py-28 border-b border-white/[0.05] overflow-hidden" style={{ zIndex: 1 }}>
-      {/* Fine grid lines */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
-      {/* Corner glows */}
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/[0.05] rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/[0.05] rounded-full blur-[100px] pointer-events-none" />
+    <section className="relative w-full bg-[#050505] py-20 border-b border-white/[0.05] overflow-hidden" style={{ zIndex: 1 }}>
+      {/* Pulsing center glow */}
+      <motion.div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none rounded-full"
+        style={{ width: 600, height: 200, background: "radial-gradient(ellipse, rgba(255,107,74,0.06) 0%, transparent 70%)" }}
+        animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <p className="text-[10px] uppercase tracking-[0.25em] text-white/25 font-semibold mb-3">Tools & Technologies</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white font-heading">Technical Skills</h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-white/25 font-semibold mb-2">Daily Drivers</p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-white font-heading">Core Stack</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((cat, ci) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: ci * 0.07 }}
-              className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.09] hover:bg-white/[0.03] transition-all group"
-            >
-              <p className={`text-xs font-bold uppercase tracking-[0.18em] mb-4 ${cat.color}`}>
-                {cat.title}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {cat.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className={`px-2.5 py-1 rounded-full text-[11px] font-medium text-white/55 ${cat.bg} border ${cat.border} hover:text-white/80 transition-colors`}
-                  >
-                    {skill}
-                  </span>
-                ))}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          {coreStack.map((tool, i) => (
+            <motion.div key={tool.name}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="interactive group flex flex-col items-center gap-3 p-5 rounded-2xl bg-surface/30 border border-white/5 backdrop-blur-md hover:bg-surface/50 hover:border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all cursor-default">
+              <motion.span 
+                animate={{ y: [0, -3, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.15 }}
+                className="text-3xl font-bold font-heading text-white/80 group-hover:text-white transition-colors drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">
+                {tool.icon}
+              </motion.span>
+              <div className="text-center">
+                <p className="text-white/80 text-xs font-semibold group-hover:text-white transition-colors">{tool.name}</p>
+                <p className="text-white/25 text-[9px] mt-0.5">{tool.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -757,9 +662,9 @@ export function AboutPageContent() {
       {/* Page sections */}
       <PageHero />
       <NarrativeSection />
+      <CoreStack />
       <ExperienceTimeline />
       <EducationSection />
-      <TechStackSection />
       <CTASection />
     </>
   );

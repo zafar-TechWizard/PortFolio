@@ -87,7 +87,7 @@ function ProjectCaseStudy({ project, index }: { project: typeof projects[0], ind
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="relative w-full rounded-[2.5rem] bg-[#0A0D12]/80 border border-white/[0.08] overflow-hidden group flex flex-col lg:flex-row shadow-2xl backdrop-blur-sm hover:border-white/[0.15] transition-colors"
+      className="interactive relative w-full rounded-[2.5rem] bg-[#0A0D12]/80 border border-white/[0.08] overflow-hidden group flex flex-col lg:flex-row shadow-2xl backdrop-blur-sm hover:border-white/[0.15] transition-colors"
     >
       {/* Background glow line at top */}
       <div className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-700">

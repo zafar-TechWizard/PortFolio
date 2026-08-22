@@ -397,7 +397,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, delay: index * 0.05 }}
       style={{ position: "relative" }}
-      className={`flex flex-col ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"} gap-0 rounded-[2rem] overflow-hidden border border-white/[0.06] bg-[#0A0D12]/60`}
+      className={`interactive flex flex-col ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"} gap-0 rounded-[2rem] overflow-hidden border border-white/[0.06] bg-[#0A0D12]/60`}
     >
       {/* Visual panel */}
       <div className="w-full lg:w-1/2 h-[380px] lg:h-[580px] relative overflow-hidden group">
@@ -545,7 +545,7 @@ function ProjectsCTA() {
           <p className="text-white/18 text-xs">© {new Date().getFullYear()} Zafar. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/" className="text-white/22 hover:text-white/55 transition-colors text-xs">Home</Link>
-            <Link href="/journey" className="text-white/22 hover:text-white/55 transition-colors text-xs">Journey</Link>
+            {/* <Link href="/journey" className="text-white/22 hover:text-white/55 transition-colors text-xs">Journey</Link> */}
             <a href="https://github.com/zafar-TechWizard" target="_blank" rel="noopener noreferrer" className="text-white/22 hover:text-white/55 transition-colors text-xs">GitHub</a>
           </div>
         </div>
