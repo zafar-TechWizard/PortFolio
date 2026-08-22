@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DynamicHeader } from "@/components/layout/DynamicHeader";
 import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
 import { AboutPageContent } from "@/components/sections/AboutPageContent";
+import { GlobalFooter } from "@/components/layout/GlobalFooter";
 
 export const metadata: Metadata = {
   title: "About Zafar | AI Solutions Architect & Product Engineer",
@@ -21,6 +22,7 @@ export default function AboutPage() {
       <main>
         <AboutPageContent />
       </main>
+      <GlobalFooter />
     </div>
   );
 }

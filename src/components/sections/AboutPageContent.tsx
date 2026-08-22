@@ -65,18 +65,18 @@ const experiences = [
 // ─── Narrative copy ───────────────────────────────────────────────────────────
 const narrative = [
   {
-    label: "The Background",
-    body: "I came up building things — B.Tech CSE at Maharishi Markandeshwar University, with early projects that went from scripts to shipped, production software. Professionally: Full-Stack Engineer at SoftKiwi, AI Intern at Celebal Technologies.",
+    label: "Business-First Engineering",
+    body: "I don't just write code; I solve business problems. Every architecture I design is focused on delivering measurable value, reducing operational costs, and driving revenue growth for your business.",
     accent: "border-primary/30",
   },
   {
     label: "The Approach",
-    body: "Bottleneck-first. Before writing a line, I identify the real constraint — then design the architecture around it. No over-engineering, no feature theatre. The right tool is the one that actually solves the problem — not the newest trend.",
+    body: "Bottleneck-first. Before writing a line, I identify your real constraint — then design the architecture around it. No over-engineering, no feature theatre. Just scalable, production-ready systems.",
     accent: "border-secondary/30",
   },
   {
-    label: "The Vision",
-    body: "Intelligent ecosystems, not just apps. Software that understands context, adapts to users, and compounds in value over time. AI isn't bolted on — it's the foundation.",
+    label: "The Commitment",
+    body: "Reliability, transparency, and ownership. I treat your product as my own, ensuring pixel-perfect UIs, robust backend services, and scalable AI integrations that compound in value over time.",
     accent: "border-white/20",
   },
 ];
@@ -225,7 +225,6 @@ function PageHero() {
               {[
                 { value: "2+", label: "Years Engineering" },
                 { value: "10+", label: "Projects Shipped" },
-                { value: "2", label: "Live AI Products" },
               ].map((s, i) => (
                 <motion.div
                   key={s.label}
@@ -248,19 +247,18 @@ function PageHero() {
               className="flex items-center gap-5 flex-wrap pt-1"
             >
               <a
-                href="mailto:mdzafarddd@gmail.com"
+                href="/contact"
                 className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-primary/20 to-secondary/10 border border-primary/30 text-white text-sm font-semibold hover:from-primary/30 hover:to-secondary/20 hover:border-primary/50 transition-all shadow-[0_0_20px_rgba(255,107,74,0.1)]"
               >
                 Get in Touch
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-0.5 transition-transform"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </a>
               <a
-                href="/cv.pdf"
-                download
+                href="/resume"
                 className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white/[0.03] border border-white/[0.1] text-white/70 hover:text-white text-sm font-semibold hover:bg-white/[0.06] hover:border-white/[0.2] transition-all"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-y-0.5 transition-transform"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                Download CV
+                Get CV
               </a>
               <Link
                 href="/"
@@ -295,9 +293,10 @@ function PageHero() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/70 via-[#050505]/10 to-transparent" />
                 {/* Name tag overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-white/[0.08] bg-gradient-to-t from-[#050505]/90 to-transparent">
-                  <p className="text-white font-bold font-heading tracking-[0.12em] uppercase text-sm">Zafar</p>
-                  <p className="text-white/40 text-[10px] tracking-widest uppercase mt-0.5">AI Solutions Architect</p>
+                {/* Premium frosted glass name tag overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 bg-[#050505]/40 backdrop-blur-xl border-t border-white/[0.12] shadow-[0_-10px_40px_rgba(0,0,0,0.6)]">
+                  <p className="text-white font-bold font-heading tracking-[0.12em] uppercase text-sm drop-shadow-lg">Zafar</p>
+                  <p className="text-white/60 text-[10px] tracking-widest uppercase mt-0.5 drop-shadow-md">AI Solutions Architect</p>
                 </div>
               </div>
             </div>
@@ -335,11 +334,12 @@ function NarrativeSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex flex-col gap-4 p-8 bg-[#050505]/80 hover:bg-white/[0.02] transition-colors group"
+              className="relative flex flex-col gap-4 p-8 bg-[#050505] hover:bg-[#0a0a0a] transition-all duration-500 group overflow-hidden"
             >
-              <div className={`w-8 h-[2px] bg-gradient-to-r ${i === 0 ? "from-primary to-primary/20" : i === 1 ? "from-secondary to-secondary/20" : "from-white/40 to-white/5"}`} />
-              <span className="text-[10px] uppercase tracking-[0.25em] text-white/30 font-semibold">{item.label}</span>
-              <p className="text-white/60 text-sm leading-[1.85] group-hover:text-white/75 transition-colors">{item.body}</p>
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className={`w-8 h-[2px] bg-gradient-to-r ${i === 0 ? "from-primary to-primary/20" : i === 1 ? "from-secondary to-secondary/20" : "from-white/40 to-white/5"} relative z-10`} />
+              <span className="text-[10px] uppercase tracking-[0.25em] text-white/30 font-semibold relative z-10 group-hover:text-white/50 transition-colors">{item.label}</span>
+              <p className="text-white/50 text-sm leading-[1.85] group-hover:text-white/70 transition-colors relative z-10">{item.body}</p>
             </motion.div>
           ))}
         </div>
@@ -375,7 +375,7 @@ function ExperienceTimeline() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <p className="text-[10px] uppercase tracking-[0.25em] text-white/25 font-semibold mb-3">Work History</p>
+          <p className="text-[10px] uppercase tracking-[0.25em] text-white/25 font-semibold mb-3">Proven Track Record</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white font-heading">
             Experience
           </h2>
@@ -411,27 +411,27 @@ function ExperienceTimeline() {
               </div>
 
               {/* Card */}
-              <div className="flex-1 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.1] group-hover:bg-white/[0.035] transition-all relative overflow-hidden">
+              <div className="flex-1 p-7 rounded-2xl bg-white/[0.015] border border-white/[0.05] hover:border-white/[0.12] group-hover:bg-white/[0.03] group-hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] transition-all duration-500 relative overflow-hidden">
                 <div className={`absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b ${exp.color} rounded-l-2xl`} />
                 {/* Card inner glow on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-                  style={{ background: `radial-gradient(ellipse at left center, ${exp.glow.replace("0.5", "0.04")} 0%, transparent 60%)` }} />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-2xl"
+                  style={{ background: `radial-gradient(120% 120% at left center, ${exp.glow.replace("0.5", "0.06")} 0%, transparent 70%)` }} />
 
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5 relative z-10">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-6 relative z-10">
                   <div>
-                    <h3 className="text-white font-bold text-lg font-heading leading-tight">{exp.company}</h3>
-                    <p className="text-white/45 text-sm mt-1">{exp.role}</p>
+                    <h3 className="text-white font-bold text-lg font-heading leading-tight tracking-wide">{exp.company}</h3>
+                    <p className="text-white/50 text-sm mt-1">{exp.role}</p>
                   </div>
                   <div className="flex flex-col items-start sm:items-end gap-1 shrink-0">
                     <span className="text-white/30 text-xs font-mono">{exp.period}</span>
-                    <span className="text-white/18 text-[10px] uppercase tracking-wider">{exp.duration}</span>
+                    <span className="text-white/20 text-[10px] uppercase tracking-wider font-semibold">{exp.duration}</span>
                   </div>
                 </div>
 
-                <ul className="flex flex-col gap-2.5 relative z-10">
+                <ul className="flex flex-col gap-3 relative z-10">
                   {exp.achievements.map((ach, j) => (
-                    <li key={j} className="flex items-start gap-3 text-white/50 text-sm leading-relaxed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary/50 mt-[7px] shrink-0" />
+                    <li key={j} className="flex items-start gap-3 text-white/50 group-hover:text-white/60 transition-colors text-sm leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-primary/60 transition-colors mt-[7px] shrink-0 shadow-[0_0_8px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_8px_rgba(255,107,74,0.4)]" />
                       {ach}
                     </li>
                   ))}
@@ -465,7 +465,7 @@ function EducationSection() {
           viewport={{ once: true }}
           className="mb-14"
         >
-          <p className="text-[10px] uppercase tracking-[0.25em] text-white/25 font-semibold mb-3">Academic Background</p>
+          <p className="text-[10px] uppercase tracking-[0.25em] text-white/25 font-semibold mb-3">Foundations</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white font-heading">Education</h2>
         </motion.div>
 
@@ -476,11 +476,11 @@ function EducationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="group relative flex flex-col sm:flex-row sm:items-center gap-6 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-secondary/25 hover:bg-white/[0.035] transition-all overflow-hidden"
+            className="group relative flex flex-col sm:flex-row sm:items-center gap-6 p-7 rounded-2xl bg-white/[0.015] border border-white/[0.05] hover:border-secondary/30 hover:bg-white/[0.03] transition-all duration-500 overflow-hidden"
           >
             <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-secondary/60 to-secondary/10 rounded-l-2xl" />
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{ background: "radial-gradient(ellipse at left center, rgba(138,99,210,0.05) 0%, transparent 60%)" }} />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              style={{ background: "radial-gradient(120% 120% at left center, rgba(138,99,210,0.06) 0%, transparent 70%)" }} />
 
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary/25 to-secondary/5 border border-secondary/20 flex items-center justify-center shrink-0 relative z-10">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="text-secondary/80">
@@ -505,9 +505,10 @@ function EducationSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="group relative flex flex-col sm:flex-row sm:items-center gap-6 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.1] transition-all overflow-hidden"
+            className="group relative flex flex-col sm:flex-row sm:items-center gap-6 p-7 rounded-2xl bg-white/[0.015] border border-white/[0.05] hover:border-white/[0.12] transition-all duration-500 overflow-hidden"
           >
             <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-white/20 to-white/5 rounded-l-2xl" />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-white/[0.02] to-transparent" />
             <div className="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/[0.07] flex items-center justify-center shrink-0">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="text-white/45">
                 <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
@@ -535,7 +536,7 @@ function CoreStack() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-          <p className="text-[10px] uppercase tracking-[0.25em] text-white/25 font-semibold mb-2">Daily Drivers</p>
+          <p className="text-[10px] uppercase tracking-[0.25em] text-white/25 font-semibold mb-2">Technology Stack</p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-white font-heading">Core Stack</h2>
         </motion.div>
 
@@ -544,7 +545,7 @@ function CoreStack() {
             <motion.div key={tool.name}
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: i * 0.06 }}
-              className="interactive group flex flex-col items-center gap-3 p-5 rounded-2xl bg-surface/30 border border-white/5 backdrop-blur-md hover:bg-surface/50 hover:border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all cursor-default">
+              className="interactive group flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/[0.015] border border-white/[0.05] backdrop-blur-md hover:bg-white/[0.035] hover:border-white/[0.12] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] transition-all duration-500 cursor-default">
               <motion.span 
                 animate={{ y: [0, -3, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.15 }}
@@ -665,7 +666,6 @@ export function AboutPageContent() {
       <CoreStack />
       <ExperienceTimeline />
       <EducationSection />
-      <CTASection />
     </>
   );
 }
